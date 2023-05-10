@@ -1,26 +1,33 @@
-import React, { useState, useEffect } from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import React, { Component } from "react";
+import Account from "./pages/Account";
+// import axios from "axios";
 
-function App() {
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    fetch("/api/example")
-      .then((response) => response.text())
-      .then((message) => {
-        setMessage(message);
-      });
-  }, []);
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>{message}</p>
-      </header>
-    </div>
-  );
+class App extends Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     message: "none",
+  //   };
+  // }
+  render() {
+    return (
+      <div>
+        <Account />
+      </div>
+    );
+  }
+  // componentDidMount() {
+  //   axios
+  //     .get("/api/example")
+  //     .then(({ data }) => {
+  //       console.log(data);
+  //       this.setState({ message: data });
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //       this.setState({ message: error });
+  //     });
+  // }
 }
 
 export default App;
