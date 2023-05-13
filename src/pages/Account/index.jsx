@@ -1,31 +1,22 @@
-import React, { Component } from "react";
+import { useState } from "react";
 import styles from "./style.module.scss";
 
 import Login from "./Login";
 import Signup from "./Signup";
 
-class Account extends Component {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [page, setPage] = useState("Login");
 
-    this.state = {
-      login: true,
-    };
-  }
-  render() {
-    return (
-      <div className={styles.container}>
-        <div></div>
-        <div>
-          {this.state.login ? (
-            <Login changePage={() => this.setState({ login: false })} />
-          ) : (
-            <Signup changePage={() => this.setState({ login: true })} />
-          )}
-        </div>
+  const loginComponent = <Login changePage={() => setPage("SignUp")} />;
+  const signupComponent = <Signup changePage={() => setPage("Login")} />;
+
+  return (
+    <div className={styles.account}>
+      <div></div>
+      <div>
+        {page === "Login" && loginComponent}
+        {page === "SignUp" && signupComponent}
       </div>
-    );
-  }
-}
-
-export default Account;
+    </div>
+  );
+};
