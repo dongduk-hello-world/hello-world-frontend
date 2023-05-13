@@ -2,7 +2,7 @@
   padding: 0;
   margin: 0;
 }
-.container {
+.account {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -38,4 +38,48 @@
 
 a {
   cursor: pointer;
+}
+
+.container {
+  width: 600px;
+  height: 500px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1,
+  hr {
+    width: 100%;
+    margin: 10px;
+  }
+
+  form {
+    width: 80%;
+    margin: 15px;
+
+    display: flex;
+    flex-direction: column;
+
+    > * {
+      margin: 7.5px 0px;
+    }
+    > button {
+      height: 45px;
+    }
+  }
+
+  span {
+    margin: 5px;
+    color: gray;
+  }
+
+  @media (max-width: 600px) {
+    width: 320px;
+
+    form {
+      width: 100%;
+    }
+  }
 }
