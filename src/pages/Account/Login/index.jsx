@@ -3,7 +3,7 @@ import styles from "../style.module.scss";
 
 import Link from "@mui/material/Link";
 
-import Form from "./Form";
+import Form from "./form";
 import ResetPasswordModal from "./ResetPasswordModal";
 
 export default (props) => {

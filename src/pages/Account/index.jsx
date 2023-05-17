@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styles from "./style.module.scss";
 
-import Login from "./Login";
-import Signup from "./Signup";
+import Login from "./login";
+import Signup from "./signup";
 
 export default () => {
   const [page, setPage] = useState("Login");
