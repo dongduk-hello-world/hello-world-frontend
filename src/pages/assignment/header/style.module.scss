@@ -1,0 +1,18 @@
+.header {
+  position: relative !important;
+
+  > div {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+
+    > div > div {
+      margin: 0px 26px;
+    }
+  }
+}
+
+.timer {
+  font-size: 20px !important;
+  color: white !important;
+}

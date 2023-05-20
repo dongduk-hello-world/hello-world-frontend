@@ -8,7 +8,6 @@ import { useLogin, useVaildateEmail, useVaildatePassword } from "./formHook";
 export default () => {
   const [refForm, refSubmit] = useLogin();
   const [refEmail, errEmail] = useVaildateEmail();
-  const [refPassword, errPassword] = useVaildatePassword();
 
   return (
     <form ref={refForm}>
@@ -27,9 +26,6 @@ export default () => {
         variant="outlined"
         type="password"
         fullWidth
-        inputRef={refPassword}
-        error={errPassword && true}
-        helperText={errPassword}
       />
       <Button variant="contained" ref={refSubmit}>
         로그인

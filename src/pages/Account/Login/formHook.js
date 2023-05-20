@@ -52,11 +52,10 @@ export const useVaildateEmail = () => {
   const [err, setErr] = useState(false);
 
   useEffect(() => {
-    const { current } = ref;
-    console.log(current);
+    const emailInput = ref.current;
 
-    if (ref.current) {
-      ref.current.onchange = (e) => {
+    if (emailInput) {
+      emailInput.onchange = (e) => {
         setErr(vaildateEmail(e.target.value));
         console.log(e.target.value);
       };
