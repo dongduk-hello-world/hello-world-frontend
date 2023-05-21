@@ -8,10 +8,6 @@
 
 두 정수 A와 B를 입력 받은 다음 A + B를 출력하는 프로그램을 작성하시오.
 
-- 리스트도
-  - 가능
-    - 해요
-
 ## 입력
 
 첫째 줄에 A와 B가 주어진다. (0 < A, B < 10)
@@ -32,4 +28,43 @@
 
 ```
 3
+```
+
+## 잡다한 거 테스트해보기
+
+- 리스트도
+  - 가능
+    - 해요
+
+### C 코드 예시
+
+```c
+#include <stdio.h>
+
+int main() {
+  int a, b;
+  scanf("%d %d", &a, &b);
+  printf("%d\n", a + b);
+  return 0;
+}
+```
+
+### Java 코드 예시
+
+```java
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		Scanner in = new Scanner(System.in);
+		int A = in.nextInt();
+		int B = in.nextInt();
+
+		System.out.println(A+B);
+
+		in.close();
+	}
+}
 ```
