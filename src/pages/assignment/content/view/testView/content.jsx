@@ -1,28 +1,31 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { Box } from "@mui/material";
 
-import styles from "../style.module.scss";
+import styles from "../../style.module.scss";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import remarkGfm from "remark-gfm";
 
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneLight } from "react-syntax-highlighter/dist/esm/styles/prism";
 
-import markdownText from "./example_md.md";
-
-export default () => {
+export default ({ idx }) => {
   const [text, setText] = useState("");
+  const contentRef = useRef();
+
   useEffect(() => {
-    fetch(markdownText)
+    fetch(require(`./tmp/md_${idx}.md`))
       .then((res) => res.text())
       .then((md) => {
         setText(md);
+        //contentRef.current.style.scrollTop = 0;
       });
   });
+
   return (
     <div className={styles.view}>
       <ReactMarkdown
+        ref={contentRef}
         children={text}
         remarkPlugins={[remarkGfm]}
         className="markdown-body"
