@@ -1,12 +1,11 @@
 import { useState } from "react";
-//import styles from "./style.module.scss";
 
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 
-import TextFieldWithButton from "../../TextFieldWithButton";
+import TextFieldWithButton from "../../../components/input/TextFieldWithButton";
 
 export default (props) => {
   const [email, setEmail] = useState("");

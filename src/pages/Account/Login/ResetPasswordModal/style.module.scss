@@ -17,3 +17,13 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
+.input {
+  position: relative;
+}
+.button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translate(0, -50%);
+}

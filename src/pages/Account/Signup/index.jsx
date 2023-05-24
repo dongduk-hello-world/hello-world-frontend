@@ -3,7 +3,7 @@ import styles from "../style.module.scss";
 
 import Link from "@mui/material/Link";
 
-import Form from "./Form";
+import Form from "./form";
 
 export default (props) => {
   return (
