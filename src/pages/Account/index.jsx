@@ -1,19 +1,15 @@
-import { useState, useRef, useEffect } from "react";
-import styles from "./style.module.scss";
+import { useRef, useEffect } from "react";
+import { Outlet } from "react-router-dom";
 
-import Login from "./login";
-import Signup from "./signup";
 import bodymovin from "bodymovin";
 
+import styles from "./style.module.scss";
+
 export default () => {
-  const [page, setPage] = useState("Login");
-
-  const loginComponent = <Login changePage={() => setPage("SignUp")} />;
-  const signupComponent = <Signup changePage={() => setPage("Login")} />;
-
   const lottieRef = useRef();
+
   useEffect(() => {
-    const animation = bodymovin.loadAnimation({
+    bodymovin.loadAnimation({
       container: lottieRef.current,
       renderer: "svg",
       loop: true,
@@ -21,14 +17,14 @@ export default () => {
       path: "https://assets10.lottiefiles.com/packages/lf20_xafe7wbh.json",
     });
   });
+
   return (
     <div className={styles.account}>
       <div>
         <div ref={lottieRef} />
       </div>
       <div>
-        {page === "Login" && loginComponent}
-        {page === "SignUp" && signupComponent}
+        <Outlet />
       </div>
     </div>
   );

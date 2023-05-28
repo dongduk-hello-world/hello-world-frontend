@@ -1,0 +1,29 @@
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .form {
+    padding: 50px;
+
+    background: white;
+    border-radius: 10px;
+
+    > p {
+      margin-top: 10px;
+      margin-bottom: 30px;
+    }
+    > .input {
+      display: flex;
+      position: relative;
+
+      margin: 15px 0px;
+      > button {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+      }
+    }
+  }
+}
