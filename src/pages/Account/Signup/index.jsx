@@ -1,7 +1,7 @@
 import { useState } from "react";
-import styles from "../style.module.scss";
+import { Link } from "react-router-dom";
 
-import Link from "@mui/material/Link";
+import styles from "../style.module.scss";
 
 import Form from "./form";
 
@@ -12,7 +12,7 @@ export default (props) => {
       <hr />
       <Form />
       <span>
-        계정이 이미 있으신가요? <Link onClick={props.changePage}>로그인</Link>
+        계정이 이미 있으신가요? <Link to="/account">로그인</Link>
       </span>
     </div>
   );

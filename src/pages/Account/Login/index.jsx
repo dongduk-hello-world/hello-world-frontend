@@ -1,23 +1,22 @@
 import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-import { useLogin, useVaildateEmail } from "../hooks";
+import { login, vaildateEmail } from "../hooks";
 
 import styles from "../style.module.scss";
 
 import Modal from "./modal";
 
 export default (props) => {
-  const [modal, setModal] = useState(false);
-  // const handleModalOpen = () => setModalOpen(true);
-  // const handleModalClose = () => setModalOpen(false);
+  const navigate = useNavigate();
 
-  const refForm = useLogin();
-  const refEmail = useRef();
-  const errEmail = useVaildateEmail(refEmail);
+  const [modal, setModal] = useState(false);
+
+  const refForm = useRef();
+  const [errEmail, setErrEmail] = useState();
 
   return (
     <div className={styles.container}>
@@ -29,7 +28,6 @@ export default (props) => {
           label="학교 메일"
           variant="outlined"
           fullWidth
-          inputRef={refEmail}
           error={errEmail && true}
           helperText={errEmail}
         />
@@ -42,9 +40,18 @@ export default (props) => {
         />
         <Button
           variant="contained"
-          onClick={() => {
-            //console.log(refForm.current.onsubmit);
-            refForm.current.onsubmit();
+          onClick={async () => {
+            const form = refForm.current;
+            const data = {
+              email: form.email.value,
+              password: form.password.value,
+            };
+
+            setErrEmail(vaildateEmail(data.email));
+            if (errEmail != "") return;
+
+            const result = await login(data);
+            if (result) navigate("/");
           }}
         >
           로그인

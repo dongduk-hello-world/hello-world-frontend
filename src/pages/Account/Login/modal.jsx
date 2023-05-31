@@ -5,19 +5,30 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 import styles from "./style.module.scss";
 
-import { findUserByemail, useEmailAuth } from "../hooks";
+import {
+  findUserByemail,
+  useEmailAuth,
+  changePassword,
+  vaildateEmail,
+  vaildatePassword,
+} from "../hooks";
+
+let _userId;
 
 export default ({ open, onClose }) => {
   const refForm = useRef();
+
   const [process, loading, sendMail, submitAuthCode] = useEmailAuth();
   const [errEmail, setErrEmail] = useState();
+  const [errPassword, setErrPassword] = useState();
+  const [errPasswordComfirm, setErrPasswordComfirm] = useState();
 
-  const vaildEmail = (email) => {
-    if (email.indexOf("@") === -1) setErrEmail("유효한 이메일이 아닙니다.");
-    else if (email.split("@")[1] != "dongduk.ac.kr")
-      setErrEmail("학교 메일을 입력하세요");
-    else setErrEmail("");
-  };
+  // const vaildEmail = (email) => {
+  //   if (email.indexOf("@") === -1) setErrEmail("유효한 이메일이 아닙니다.");
+  //   else if (email.split("@")[1] != "dongduk.ac.kr")
+  //     setErrEmail("학교 메일을 입력하세요");
+  //   else setErrEmail("");
+  // };
 
   return (
     <Modal open={open} onClose={onClose} className={styles.modal}>
@@ -41,12 +52,13 @@ export default ({ open, onClose }) => {
             onClick={async () => {
               const form = refForm.current;
               const email = form.email.value;
-              vaildEmail(email);
-              if (errEmail != "") {
-                // if (!(await findUserByemail(email))) {
-                console.log(sendMail);
+              setErrEmail(vaildateEmail(email));
+
+              if (errEmail != "") return;
+
+              _userId = await findUserByemail(email);
+              if (_userId != "") {
                 sendMail(email);
-                //}
               }
             }}
           >
@@ -83,6 +95,8 @@ export default ({ open, onClose }) => {
                 name="password"
                 variant="standard"
                 fullWidth
+                error={errPassword && true}
+                helperText={errPassword}
               />
             </div>
             <div className={styles.input}>
@@ -92,9 +106,36 @@ export default ({ open, onClose }) => {
                 name="passwordComfirm"
                 variant="standard"
                 fullWidth
+                error={errPasswordComfirm && true}
+                helperText={errPasswordComfirm}
               />
             </div>
-            <Button variant="contained">비밀번호 변경</Button>
+            <Button
+              variant="contained"
+              onClick={async () => {
+                const form = refForm.current;
+                const password = form.password.value;
+                setErrPassword(vaildatePassword(password));
+
+                if (errPassword != "") return;
+
+                const passwordComfirm = form.passwordComfirm.value;
+                if (password != passwordComfirm) {
+                  setErrPasswordComfirm("비밀번호가 일치하지 않습니다.");
+                  return;
+                }
+
+                const result = await changePassword(_userId, password);
+                if (result) {
+                  alert("비밀번호가 변경되었습니다!");
+                } else {
+                  alert("비밀번호 변경에 실패했습니다! 다시 시도해주세요.");
+                }
+                onClose();
+              }}
+            >
+              비밀번호 변경
+            </Button>
           </>
         )}
       </form>

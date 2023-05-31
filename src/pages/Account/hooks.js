@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+
 import axios from "axios";
 
 const get = (uri, data) => {
@@ -26,25 +27,35 @@ const post = (uri, data) => {
       })
   );
 };
+const put = (uri, data) => {
+  return new Promise((resolve) =>
+    axios
+      .put(uri, data)
+      .then((response) => {
+        resolve(response.data);
+      })
+      .catch((error) => {
+        resolve("");
+      })
+  );
+};
 
-export const useLogin = () => {
-  const refForm = useRef();
-  useEffect(() => {
-    const form = refForm.current;
-    form.onsubmit = async () => {
-      const data = {
-        email: form.email.value,
-        password: form.password.value,
-      };
-      const result = await post("/login", data);
-      if (!result) {
-        alert("로그인에 실패했습니다");
-        return;
-      }
-      window.location.href = "/";
-    };
-  });
-  return refForm;
+export const login = async (data) => {
+  const result = await post("/login", data);
+  if (!result) {
+    alert("로그인에 실패했습니다");
+    return false;
+  }
+  return true;
+};
+
+export const signup = async (data) => {
+  const result = await post("/users", data);
+  if (!result) {
+    alert("회원가입에 실패했습니다.");
+    return false;
+  }
+  return true;
 };
 
 let authcode;
@@ -75,26 +86,26 @@ export const useEmailAuth = () => {
 
 export const findUserByemail = async (email) => {
   const result = await get(`/email/${email}`);
-  return result != "";
+  return result;
 };
 
-export const useVaildateEmail = (ref) => {
-  const [err, setErr] = useState("");
-
-  useEffect(() => {
-    const email = ref.current;
-    if (email) {
-      email.onchange = (e) => {
-        setErr(vaildateEmail(e.target.value));
-      };
-    }
-  });
-
-  return err;
+export const changePassword = async (userId, password) => {
+  const result = await put(`/users/${userId}/password`, { password });
+  return result;
 };
 
-const vaildateEmail = (email) => {
+export const vaildateEmail = (email) => {
   if (email.indexOf("@") === -1) return "유효한 이메일이 아닙니다.";
   if (email.split("@")[1] != "dongduk.ac.kr") return "학교 메일을 입력하세요";
+  return "";
+};
+
+export const vaildatePassword = (password) => {
+  if (password.length < 8) return "비밀번호가 너무 짧습니다.";
+  return "";
+};
+
+export const vaildateName = (name) => {
+  if (name === "") return "이름을 입력해주세요.";
   return "";
 };

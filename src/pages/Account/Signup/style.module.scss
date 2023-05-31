@@ -1,0 +1,13 @@
+.input {
+  display: flex;
+  position: relative;
+
+  margin: 15px 0px;
+
+  > button {
+    position: absolute;
+    top: 50%;
+    right: 7.5px;
+    transform: translateY(-50%);
+  }
+}
