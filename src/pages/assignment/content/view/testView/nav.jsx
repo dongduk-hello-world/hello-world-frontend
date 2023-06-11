@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useContext } from "react";
 import { Box, Tabs, Tab } from "@mui/material";
 import {
   CheckCircleOutline,
@@ -6,7 +6,11 @@ import {
   RadioButtonUnchecked,
 } from "@mui/icons-material";
 
-export default ({ idx, setIdx }) => {
+import { TestIdxContext } from "../../../contexts";
+
+export default ({ tests }) => {
+  const [idx, setIdx] = useContext(TestIdxContext);
+
   const handleChange = (event, newValue) => {
     setIdx(newValue);
   };
@@ -26,11 +30,11 @@ export default ({ idx, setIdx }) => {
         scrollButtons="auto"
         aria-label="scrollable auto tabs example"
       >
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((val, idx) => (
+        {tests.map((val, idx) => (
           <Tab
             key={`testNav_${idx}`}
             label={`문제 ${idx + 1}`}
-            icon={idx < 4 ? <CheckCircleOutline /> : <RadioButtonUnchecked />}
+            icon={ <RadioButtonUnchecked /> }
             iconPosition="start"
           />
         ))}

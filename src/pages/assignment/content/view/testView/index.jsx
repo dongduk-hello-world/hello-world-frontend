@@ -1,17 +1,19 @@
-import { useEffect, useState } from "react";
-
-import { Box } from "@mui/material";
+import { useContext } from "react";
+import { useLoaderData } from "react-router-dom";
 
 import Nav from "./nav";
 import Content from "./content";
 
+import { TestIdxContext } from "../../../contexts";
+
 export default () => {
-  const [idx, setIdx] = useState(0);
+  const { tests } = useLoaderData();
+  const [ idx ] = useContext(TestIdxContext);
 
   return (
     <div>
-      <Nav idx={idx} setIdx={setIdx} />
-      <Content idx={idx} />
+      <Nav tests={tests}/>
+      <Content test={tests[idx]} />
     </div>
   );
 };

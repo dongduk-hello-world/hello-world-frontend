@@ -9,24 +9,11 @@ import remarkGfm from "remark-gfm";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneLight } from "react-syntax-highlighter/dist/esm/styles/prism";
 
-export default ({ idx }) => {
-  const [text, setText] = useState("");
-  const contentRef = useRef();
-
-  useEffect(() => {
-    fetch(require(`./tmp/md_${idx}.md`))
-      .then((res) => res.text())
-      .then((md) => {
-        setText(md);
-        //contentRef.current.style.scrollTop = 0;
-      });
-  });
-
+export default ({ test }) => {
   return (
     <div className={styles.view}>
       <ReactMarkdown
-        ref={contentRef}
-        children={text}
+        children={test.description}
         remarkPlugins={[remarkGfm]}
         className="markdown-body"
         components={{

@@ -1,4 +1,4 @@
-.content {
+.pc_content {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -12,6 +12,19 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+}
+
+.moblie_content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  margin: 20px 0px;
+
+  > div {
+    width: 100%;
   }
 }
 

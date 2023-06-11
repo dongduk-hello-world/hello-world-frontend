@@ -1,47 +1,8 @@
 import { useState, useEffect, useRef } from "react";
-
-import axios from "axios";
-
-const get = (uri, data) => {
-  return new Promise((resolve) =>
-    axios
-      .get(uri, data)
-      .then((response) => {
-        resolve(response.data);
-      })
-      .catch((error) => {
-        resolve("");
-      })
-  );
-};
-
-const post = (uri, data) => {
-  return new Promise((resolve) =>
-    axios
-      .post(uri, data)
-      .then((response) => {
-        resolve(response.data);
-      })
-      .catch((error) => {
-        resolve("");
-      })
-  );
-};
-const put = (uri, data) => {
-  return new Promise((resolve) =>
-    axios
-      .put(uri, data)
-      .then((response) => {
-        resolve(response.data);
-      })
-      .catch((error) => {
-        resolve("");
-      })
-  );
-};
+import axiosPromise from "../../services/axiosPromise";
 
 export const login = async (data) => {
-  const result = await post("/login", data);
+  const result = await axiosPromise.post("/login", data);
   if (!result) {
     alert("로그인에 실패했습니다");
     return false;
@@ -50,7 +11,7 @@ export const login = async (data) => {
 };
 
 export const signup = async (data) => {
-  const result = await post("/users", data);
+  const result = await axiosPromise.post("/users", data);
   if (!result) {
     alert("회원가입에 실패했습니다.");
     return false;
@@ -64,7 +25,7 @@ export const useEmailAuth = () => {
   const [loading, setLoading] = useState(false);
   const sendMail = async (email) => {
     setLoading(true);
-    authcode = await get(`/email/${email}/auth`);
+    authcode = await axiosPromise.get(`/email/${email}/auth`);
     setLoading(false);
 
     setState(1);
@@ -85,12 +46,12 @@ export const useEmailAuth = () => {
 };
 
 export const findUserByemail = async (email) => {
-  const result = await get(`/email/${email}`);
+  const result = await axiosPromise.get(`/email/${email}`);
   return result;
 };
 
 export const changePassword = async (userId, password) => {
-  const result = await put(`/users/${userId}/password`, { password });
+  const result = await axiosPromise.put(`/users/${userId}/password`, { password });
   return result;
 };
 

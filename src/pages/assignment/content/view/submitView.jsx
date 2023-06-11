@@ -22,7 +22,15 @@ import {
   githubDarkInit,
 } from "@uiw/codemirror-theme-github";
 
+import { submit } from "../../hooks";
+import { useContext } from "react";
+import { useLoaderData } from "react-router-dom";
+import { TestIdxContext } from "pages/assignment/contexts";
+
 export default () => {
+  const { tests } = useLoaderData();
+  const [ testIdx ] = useContext(TestIdxContext);
+
   const [languageIdx, setLanguageIdx] = useState(0);
   const language = [c, java, python];
   const languageName = ["c", "java", "python"];
@@ -68,7 +76,7 @@ export default () => {
         variant="contained"
         size="large"
         onClick={() =>
-          alert("language: " + languageName[languageIdx] + "\n\n" + code)
+          submit(tests[testIdx].testId, languageName[languageIdx], code)
         }
       >
         제출
