@@ -2,24 +2,43 @@ import { useState } from "react";
 
 import styles from "./style.module.scss";
 
-import TapNav from "./nav";
+import Nav from "./nav";
 
 import TestView from "./view/testView";
-
 import SubmitView from "./view/submitView";
 import ResultView from "./view/resultView";
 
 export default () => {
+  return (
+    <PC_content/>
+  );
+};
+
+const PC_content = () => {
   const [view, setView] = useState(0);
   const views = [<SubmitView />, <ResultView />];
 
   return (
-    <div className={styles.content}>
+    <div className={styles.pc_content}>
       <TestView />
       <div>
-        <TapNav view={view} setView={setView}></TapNav>
+        <Nav view={view} setView={setView}></Nav>
         {views[view]}
       </div>
     </div>
   );
-};
+}
+
+const Moblie_content = () => {
+  const [view, setView] = useState(0);
+  const views = [<TestView />, <SubmitView />, <ResultView />];
+
+  return (
+    <div className={styles.moblie_content}>
+      <div>
+        <Nav view={view} setView={setView}></Nav>
+        {views[view]}
+      </div>
+    </div>
+  );
+}
