@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import styles from "./style.module.scss";
 
@@ -8,9 +8,21 @@ import TestView from "./view/testView";
 import SubmitView from "./view/submitView";
 import ResultView from "./view/resultView";
 
+import { TestIdxContext } from "../contexts";
+
 export default () => {
+  const [ testIdx ] = useContext(TestIdxContext);
+  const [view, setView] = useState(0);
+  const views = [<SubmitView testIdx={testIdx}/>, <ResultView />];
+
   return (
-    <PC_content/>
+    <div className={styles.pc_content}>
+      <TestView />
+      <div>
+        <Nav view={view} setView={setView}></Nav>
+        {views[view]}
+      </div>
+    </div>
   );
 };
 
