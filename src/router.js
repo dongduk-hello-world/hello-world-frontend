@@ -7,6 +7,11 @@ import Signup from "./pages/account/signup";
 import Assignment, { loader as assignmentLoader } from "./pages/assignment";
 import NewAssignment from "./pages/newAssignment";
 
+import ClassRoom from "./pages/ClassRoom";
+import Lecture from "./pages/Lecture";
+import NewLecture from "./pages/Lecture/professor/Form";
+import Result from "./pages/Result";
+
 import ErrorPage from "./error-page";
 
 export default createBrowserRouter([
@@ -36,4 +41,24 @@ export default createBrowserRouter([
     element: <NewAssignment />,
     errorElement: <ErrorPage />,
   },
+  {
+    path: '/',
+    element: <Lecture />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: '/classes/:classId',
+    element: <ClassRoom />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: 'classes/add-class',
+    element: <NewLecture />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: 'result/:userId',
+    element: <Result />,
+    errorElement: <ErrorPage />,
+  }
 ]);
