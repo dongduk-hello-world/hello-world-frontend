@@ -14,21 +14,18 @@ export const loader = async ({ params }) => {
   return data;
 };
 
-const submitInit = (num) => {
-  const arr = [];
-  for(let i = 0; i < num; i++) {
-    arr[i] = {languageIdx: 0, code: ""};
-  }
-  return arr;
-};
-
 export default () => {
   const { tests } = useLoaderData();
   const [testIdx, setTestIdx] = useState(0);
-  const [submit, setSubmit] = useState(submitInit(tests.length));
+  const [submit, setSubmit] = useState(new Array(tests.length).fill({languageIdx: 0, code: ""}));
+  const [testNav, setTestNav] = useState(new Array(tests.length).fill(false));
 
   return (
-    <ContextProvider testIdxData={[testIdx, setTestIdx]} submitData={[submit, setSubmit]}>
+    <ContextProvider 
+      testIdxData={[testIdx, setTestIdx]} 
+      submitData={[submit, setSubmit]} 
+      testNavData={[testNav, setTestNav]}
+      >
        <div className={styles.assignment}>
         <Header />
         <Content />

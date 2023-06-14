@@ -5,6 +5,11 @@ export const loadAssignment = async ( assignmentId ) => {
     if(!data) {
         data = {
             assignmentId: assignmentId,
+            classId: 1,
+            name: "중간고사",
+            start_time: "",
+            end_time: "",
+            test_time: "",
             tests: [
                 { testId: 1, name: "문제 1", description: "# 문제 1"},
                 { testId: 2, name: "문제 2", description: "# 문제 2"},

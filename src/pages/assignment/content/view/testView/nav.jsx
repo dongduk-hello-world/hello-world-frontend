@@ -1,10 +1,6 @@
 import { useContext } from "react";
 import { Box, Tabs, Tab } from "@mui/material";
-import {
-  CheckCircleOutline,
-  RemoveCircleOutline,
-  RadioButtonUnchecked,
-} from "@mui/icons-material";
+import { Assignment } from "@mui/icons-material";
 
 import { TestIdxContext } from "../../../contexts";
 
@@ -19,7 +15,7 @@ export default ({ tests }) => {
     <Box
       sx={{
         maxHeight: { sm: 50 },
-        maxWidth: { xs: 320, sm: 880 },
+        width: { sm: 820 },
         bgcolor: "background.paper",
       }}
     >
@@ -34,7 +30,7 @@ export default ({ tests }) => {
           <Tab
             key={`testNav_${idx}`}
             label={`문제 ${idx + 1}`}
-            icon={ <RadioButtonUnchecked /> }
+            icon={ <Assignment /> }
             iconPosition="start"
           />
         ))}
