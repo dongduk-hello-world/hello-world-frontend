@@ -14,4 +14,4 @@ export const ContextProvider = ({ children, testIdxData, submitData }) => {
 };
 
 export const TestIdxContext = createContext(0, () => {});
-export const SubmitContext = createContext({}, () => {});
+export const SubmitContext = createContext([], () => {});

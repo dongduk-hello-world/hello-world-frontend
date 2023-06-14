@@ -13,7 +13,7 @@ import { TestIdxContext } from "../contexts";
 export default () => {
   const [ testIdx ] = useContext(TestIdxContext);
   const [view, setView] = useState(0);
-  const views = [<SubmitView testIdx={testIdx}/>, <ResultView />];
+  const views = [<SubmitView testIdx={testIdx}/>, <ResultView testIdx={testIdx}/>];
 
   return (
     <div className={styles.pc_content}>

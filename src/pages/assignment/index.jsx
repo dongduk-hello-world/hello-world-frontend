@@ -28,7 +28,10 @@ export default () => {
   const [submit, setSubmit] = useState(submitInit(tests.length));
 
   return (
-    <ContextProvider testIdxData={[testIdx, setTestIdx]} submitData={[submit, setSubmit]}>
+    <ContextProvider 
+      testIdxData={[testIdx, setTestIdx]} 
+      submitData={[submit, setSubmit]} 
+      >
        <div className={styles.assignment}>
         <Header />
         <Content />

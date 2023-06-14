@@ -24,6 +24,7 @@ export default ({ testIdx }) => {
   const [code, setCode] = useState(submitData[testIdx].code);
 
   useEffect(() => {
+    console.log(testIdx);
     setLanguageIdx(submitData[testIdx].languageIdx);
     setCode(submitData[testIdx].code);
   }, [testIdx]);
@@ -52,9 +53,10 @@ export default ({ testIdx }) => {
         variant="contained"
         size="large"
         onClick={() => {
-            let languageName = language[languageIdx].name;
-            if (languageName === "cpp") languageName = "c";
-            submit(tests[testIdx].testId, languageName, code);
+          let languageName = language[languageIdx].name;
+          if (languageName === "cpp") languageName = "c";
+          alert(tests[testIdx].testId + "\n" + languageName + "\n" + code);
+          submit(tests[testIdx].testId, languageName, code);
         }}
       >
         제출
