@@ -25,3 +25,29 @@ export const submit = async (testId, language, code) => {
     let data = await axiosPromise.post(`/tests/${testId}/submits`, {language, code});
     return data;
 };
+
+export const getResult = async (testId) => {
+    let data = await axiosPromise.get(`/tests/${testId}/submits`);
+    if(!data) {
+        const createData = (id, submitTime, language, errMsg, runTime, fileSize, score) => {
+            return { id, submitTime, language, errMsg, runTime, fileSize, score };
+        }
+        data = [];
+        const length = Math.floor(Math.random() * 20);
+        for (let i = 0; i < length; i++) {
+            data.push(createData(i, "2023-03-19 AM 11:00", "Java", null, "이정도", "이정도", 50));
+        }
+    }
+    return data;
+};
+
+export const getCode = async (testId, index) => {
+    let data = await axiosPromise.get(`/tests/${testId}/submits/${index}`);
+    if(!data) {
+        data = {
+            language: "java",
+            code: `printf("Hello World");`
+        }
+    }
+    return data;
+}
