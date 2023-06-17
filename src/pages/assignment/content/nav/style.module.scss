@@ -1,9 +1,6 @@
 .nav {
-  width: 300px;
-  height: 30px;
-
-  margin-left: 40px;
-  margin-bottom: 15px;
+  align-self: flex-start;
+  margin: 12px;
 
   button {
     background: lightgray;
@@ -24,7 +21,5 @@
   }
   > div > div > span {
     display: none;
-  }
-  > div {
   }
 }

@@ -1,55 +1,40 @@
-.pc_content {
-  width: 100%;
+.content {
+  width: 100vw;
+  height: calc(100vh - 64px);
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
 
-  margin: 20px 0px;
+  align-content: flex-start;
 
   > div {
-    width: 50%;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    height: 100%;
   }
-}
-
-.moblie_content {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  margin: 20px 0px;
-
-  > div {
-    width: 100%;
+  .pc_view {
+    width: calc(50% - 50px);
   }
-}
-
-.view {
-  position: relative;
-  border-radius: 25px;
-  border: 1px solid gray;
-  width: 90%;
-  height: 750px;
-  margin: 20px;
-
-  overflow-y: auto;
+  .moblie_view {
+    width: 95%;
+  }
 
   /* width */
-  &::-webkit-scrollbar {
+  *::-webkit-scrollbar {
     width: 20px;
   }
 
   /* Track */
-  &::-webkit-scrollbar-track {
+  *::-webkit-scrollbar-track {
     background: none;
   }
 
   /* Handle */
-  &::-webkit-scrollbar-thumb {
+  *::-webkit-scrollbar-thumb {
     background: #888;
     border-radius: 15px;
     background-clip: padding-box;
@@ -57,7 +42,7 @@
   }
 
   /* Handle on hover */
-  &::-webkit-scrollbar-thumb:hover {
+  *::-webkit-scrollbar-thumb:hover {
     background: #555;
     background-clip: padding-box;
     border: 5px solid transparent;

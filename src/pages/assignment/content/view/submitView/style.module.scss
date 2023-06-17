@@ -1,0 +1,15 @@
+.codeAreaBox {
+    height: calc(100% - 140px);
+
+    > div {
+        height: 100%;
+    }
+}
+
+.buttonBox {
+    text-align: right;
+
+    > button {
+        margin: 15px 20px;
+    }
+}

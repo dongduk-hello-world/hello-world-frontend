@@ -11,9 +11,9 @@ export default () => {
   const [ idx ] = useContext(TestIdxContext);
 
   return (
-    <div>
+    <>
       <Nav tests={tests}/>
       <Content test={tests[idx]} />
-    </div>
+    </>
   );
 };

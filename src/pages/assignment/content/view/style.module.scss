@@ -1,0 +1,9 @@
+.view {
+    position: relative;
+    border-radius: 25px;
+    border: 1px solid gray;
+    width: calc(100% - 30px);
+    height: calc(100vh - 150px);
+    margin-bottom: 50px;
+    overflow-y: auto;
+  }
