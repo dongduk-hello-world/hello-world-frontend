@@ -12,7 +12,7 @@ import IconButton from '@mui/material/IconButton';
 import UpdateIcon from '@mui/icons-material/Update';
 import Link from '@mui/material/Link';
 
-import styles from "../../style.module.scss";
+import styles from "../style.module.scss";
 
 import { getResult } from "../../../hooks";
 
@@ -77,8 +77,8 @@ export default ({ testIdx }) => {
             <IconButton size="large" onClick={refresh}
                 style={{
                     position: "fixed",
-                    bottom: "90px",
-                    right: "70px",
+                    bottom: "85px",
+                    right: "100px",
                     background: "#D3D3D3"
                 }}
             >

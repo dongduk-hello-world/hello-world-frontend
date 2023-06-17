@@ -5,7 +5,7 @@ import { githubLightInit } from "@uiw/codemirror-theme-github";
 export default ({ language, code, onChange }) => {
     return (
         <CodeMirror
-            height="620px"
+            height= "100%"
             value={code}
             theme={githubLightInit({
             settings: {

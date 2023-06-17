@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { Box } from "@mui/material";
 
-import styles from "../../style.module.scss";
+import styles from "../style.module.scss";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import remarkGfm from "remark-gfm";
 

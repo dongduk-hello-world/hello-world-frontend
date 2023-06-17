@@ -9,7 +9,8 @@ import LanguageSelect from "./languageSelect";
 import CodeArea from "./codeArea";
 import Button from "@mui/material/Button";
 
-import styles from "../../style.module.scss";
+import styles from "../style.module.scss";
+import styles_submit from "./style.module.scss";
 
 import { submit } from "../../../hooks";
 import { SubmitContext } from "../../../contexts";
@@ -38,7 +39,7 @@ export default ({ testIdx }) => {
           setSubmitData(submitData);
           setLanguageIdx(idx);
         }}/>
-      <div style={{ height: "84%" }}>
+      <div className={styles_submit.codeAreaBox}>
         <CodeArea 
           language={language[submitData[testIdx].languageIdx]}
           code={submitData[testIdx].code}
@@ -48,19 +49,20 @@ export default ({ testIdx }) => {
             setCode(code);
           }}/>
       </div>
-      <span style={{ display: "inline-block", width: "90%" }}></span>
-      <Button
-        variant="contained"
-        size="large"
-        onClick={() => {
-          let languageName = language[languageIdx].name;
-          if (languageName === "cpp") languageName = "c";
-          alert(tests[testIdx].testId + "\n" + languageName + "\n" + code);
-          submit(tests[testIdx].testId, languageName, code);
-        }}
-      >
-        제출
-      </Button>
+      <div className={styles_submit.buttonBox}>
+        <Button
+          variant="contained"
+          size="large"
+          onClick={() => {
+            let languageName = language[languageIdx].name;
+            if (languageName === "cpp") languageName = "c";
+            alert(tests[testIdx].testId + "\n" + languageName + "\n" + code);
+            submit(tests[testIdx].testId, languageName, code);
+          }}
+        >
+          제출
+        </Button>
+      </div>
     </div>
   );
 };

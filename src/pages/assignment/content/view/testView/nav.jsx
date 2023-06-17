@@ -1,8 +1,10 @@
 import { useContext } from "react";
-import { Box, Tabs, Tab } from "@mui/material";
+import { Tabs, Tab } from "@mui/material";
 import { Assignment } from "@mui/icons-material";
 
 import { TestIdxContext } from "../../../contexts";
+
+import styles from "./style.module.scss";
 
 export default ({ tests }) => {
   const [idx, setIdx] = useContext(TestIdxContext);
@@ -12,13 +14,7 @@ export default ({ tests }) => {
   };
 
   return (
-    <Box
-      sx={{
-        maxHeight: { sm: 50 },
-        width: { sm: 820 },
-        bgcolor: "background.paper",
-      }}
-    >
+    <div className={styles.nav}>
       <Tabs
         value={idx}
         onChange={handleChange}
@@ -35,6 +31,6 @@ export default ({ tests }) => {
           />
         ))}
       </Tabs>
-    </Box>
+    </div>
   );
 };
