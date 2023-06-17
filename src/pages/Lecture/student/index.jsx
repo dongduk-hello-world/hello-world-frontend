@@ -1,6 +1,5 @@
 import { useState } from "react";
-// import styles from "./style.module.scss";
-// import { useStyles } from "./styles";
+import styles from "./style.module.css";
 
 import * as React from 'react';
 import Box from '@mui/material/Box';
@@ -153,7 +152,7 @@ const LectureCard = () => {
 export default function TemporaryDrawer() {
 
   return (
-      <Grid item xs={8} pr={16}>
+      <Grid className={styles.container}>
         <Grid mb={8} mt={8}><Search /></Grid>
         <Grid mb={8} mr={8}><Filter /></Grid>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>

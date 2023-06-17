@@ -1,6 +1,12 @@
 import { useState } from "react";
 import styles from "./style.module.css";
 
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+
+import ScoreTable from './scoreTable.jsx'
+
 //작업중
 export default function ResultProfessor() {
 
@@ -17,13 +23,25 @@ export default function ResultProfessor() {
     );
   }
 
-  const Graph = () => {
+  // const Graph = () => {
 
-  }
+  // }
 
   return (
-    <div>
+    <div className={styles.container}>
       <TopBox />
+      <Grid container className={styles.container}>
+        <Grid xs={1} />
+        <Grid xs={4}>
+          {/* <Graph /> */}
+        </Grid>
+        <Grid xs={1} />
+        <Grid xs={5}>
+          
+        </Grid>
+        <Grid xs={1} />
+      </Grid>
+      <ScoreTable />
     </div>
   );
 }

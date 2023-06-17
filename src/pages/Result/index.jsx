@@ -5,6 +5,7 @@ import Grid from '@mui/material/Grid';
 
 import Sidebar from '../homeUI'
 import Student from './Student'
+import Professor from './Professor'
 
 export default function Lecture() {
   return (
@@ -13,7 +14,7 @@ export default function Lecture() {
         <Sidebar />
       </Grid>
       <Grid item xs={9}>
-        <Student />
+        <Professor />
       </Grid>
     </Grid>
   );
