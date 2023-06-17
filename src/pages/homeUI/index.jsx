@@ -27,27 +27,6 @@ export default function TemporaryDrawer() {
 
   let [lecture_list, setLecture_list] = useState([]);
 
-  // function setClassList(props) {
-  //   classList = props;
-  
-  //   for (let i = 0; i < Object.keys(classList).length; i++) {
-  //     setLecture_list(lecture_list => [...lecture_list, classList[i]['className']]);
-  //     console.log(lecture_list);
-  //   }
-
-  //   // console.log(lecture_list);
-  // }
-
-  // useEffect(() => {  
-  //   const userId = 1;
-  //   fetch('http://localhost:8080/users/' + userId + '/subjects')
-  //   .then(response => response.json())
-  //   .then(result => {
-  //     setClassList(result);
-  //   })
-  //   .catch(error => console.log('error', error));
-  // }, []);
-
   let name = "전유영"
   let grade = "1"
   let id = "20201015"
@@ -90,16 +69,6 @@ export default function TemporaryDrawer() {
   );
 
   return (
-    // <Grid container spacing={2}>
-    //   <Grid item xs={3}>
-    //     <span>{list()}</span>
-    //   </Grid>
-    //   <Grid item xs={9}>
-    //     {/* <LectureForm /> */}
-    //     {/* <ResultStudent /> */}
-    //     {/* <ClassRoom /> */}
-    //   </Grid>
-    // </Grid>
     <span>{list()}</span>
   );
 }
