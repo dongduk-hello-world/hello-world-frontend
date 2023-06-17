@@ -2,3 +2,17 @@
   padding-top: 2rem;
   padding-left: 2rem;
 }
+
+.joinButton {
+  cursor: pointer;
+  float: right;
+}
+
+.cardContent {
+  margin-top: 20px;
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+}

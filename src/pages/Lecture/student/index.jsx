@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./style.module.css";
 
 import * as React from 'react';
@@ -6,7 +6,6 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import IconButton from "@mui/material/IconButton";
@@ -16,14 +15,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-  >
-  </Box>
-);
+import Button from '@mui/material/Button';
 
 const Search = () => {
   const [keyword, setKeyword] = useState("");
@@ -121,30 +113,33 @@ const Filter = () => {
 }
 
 const LectureCard = () => {  
+  function joinClass() {
+    alert('join class');
+  }
+
   return (
     <Card 
       sx={{ maxWidth: 426, maxHeight: 228 }}
       gutterBottom
     >
-      <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          Word of the Day
-        </Typography>
+      <div className={styles.cardContainer}>
+      <CardActions>
+        <div onClick={joinClass} className={styles.joinButton}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="#989898" class="bi bi-plus-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+          </svg>  
+        </div>
+      </CardActions>
+      <CardContent className={styles.cardContent}>
         <Typography variant="h5" component="div">
-          be{bull}nev{bull}o{bull}lent
+        프로그래밍 논리의 이해
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          adjective
-        </Typography>
-        <Typography variant="body2">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
+          박수희 / 1분반
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small">Learn More</Button>
-      </CardActions>
+      </div>
     </Card>
   );
 }
