@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./style.module.scss";
 import { useStyles } from "./styles";
 
@@ -19,15 +19,51 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import Grid from '@mui/material/Grid';
+import { getSubjectList } from "./hooks";
+
+let classList;
 
 export default function TemporaryDrawer() {
+
+  let [lecture_list, setLecture_list] = useState([]);
+
+  // function setClassList(props) {
+  //   classList = props;
+  
+  //   for (let i = 0; i < Object.keys(classList).length; i++) {
+  //     setLecture_list(lecture_list => [...lecture_list, classList[i]['className']]);
+  //     console.log(lecture_list);
+  //   }
+
+  //   // console.log(lecture_list);
+  // }
+
+  // useEffect(() => {  
+  //   const userId = 1;
+  //   fetch('http://localhost:8080/users/' + userId + '/subjects')
+  //   .then(response => response.json())
+  //   .then(result => {
+  //     setClassList(result);
+  //   })
+  //   .catch(error => console.log('error', error));
+  // }, []);
 
   let name = "전유영"
   let grade = "1"
   let id = "20201015"
 
-  const lecture_list = ['데이터베이스프로그래밍', '소프트웨어시스템개발', '자료구조'];
   const classes = useStyles();
+
+  useEffect(() => {
+    const result = getSubjectList();
+    
+    const getData = () => {
+      result.then((nameList) => {
+        setLecture_list(nameList)
+      });
+    };
+    getData()
+  },[]);
   
   const list = () => (
     <Box className = {classes.box}>
