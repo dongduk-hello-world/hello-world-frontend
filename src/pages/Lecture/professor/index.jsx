@@ -134,6 +134,7 @@ const LectureCard = () => {
       sx={{ maxWidth: 426, maxHeight: 228 }}
       gutterBottom
     >
+      <div className={styles.cardContainer}>
       <div className={styles.CardActions}>
         <CardActions>
           <div onClick={joinClass} className={styles.joinButton}>
@@ -153,6 +154,7 @@ const LectureCard = () => {
             박수희 / 1분반
           </Typography>
         </CardContent>
+      </div>
       </div>
     </Card>
   );

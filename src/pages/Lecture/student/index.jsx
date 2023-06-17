@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import styles from "./style.module.css";
+import { useStyles } from "./styles";
 
 import * as React from 'react';
 import Box from '@mui/material/Box';
@@ -113,6 +114,8 @@ const Filter = () => {
 }
 
 const LectureCard = () => {  
+  const classes = useStyles();
+
   function joinClass() {
     alert('join class');
   }
@@ -123,8 +126,7 @@ const LectureCard = () => {
       gutterBottom
     >
       <div className={styles.cardContainer}>
-      <div className={styles.CardActions}>
-        <CardActions>
+        <CardActions className={classes.CardActions}>
           <div onClick={joinClass} className={styles.joinButton}>
             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#989898" class="bi bi-plus-circle" viewBox="0 0 16 16">
               <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -132,7 +134,6 @@ const LectureCard = () => {
             </svg>  
           </div>
         </CardActions>
-      </div>
       <CardContent className={styles.cardContent}>
         <Typography variant="h5" component="div">
         프로그래밍 논리의 이해

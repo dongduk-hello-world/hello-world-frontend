@@ -15,7 +15,3 @@
   display: flex;
   flex-direction: column;
 }
-
-.cardActions {
-  float: right;
-}
