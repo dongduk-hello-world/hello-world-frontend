@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useStyles } from "./styles";
+import styles from "./style.module.css";
 
 import * as React from 'react';
 import Box from '@mui/material/Box';
@@ -124,30 +125,35 @@ const Filter = () => {
 }
 
 const LectureCard = () => {  
+  function joinClass() {
+    alert('join class');
+  }
+
   return (
     <Card 
       sx={{ maxWidth: 426, maxHeight: 228 }}
       gutterBottom
     >
-      <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          Word of the Day
-        </Typography>
-        <Typography variant="h5" component="div">
-          be{bull}nev{bull}o{bull}lent
-        </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          adjective
-        </Typography>
-        <Typography variant="body2">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small"><a href="../index.jsx">Learn More</a></Button>
-      </CardActions>
+      <div className={styles.CardActions}>
+        <CardActions>
+          <div onClick={joinClass} className={styles.joinButton}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#989898" class="bi bi-plus-circle" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+            </svg>  
+          </div>
+        </CardActions>
+      </div>
+      <div>
+        <CardContent className={styles.cardContent}>
+          <Typography variant="h5" component="div">
+          프로그래밍 논리의 이해
+          </Typography>
+          <Typography sx={{ mb: 1.5 }} color="text.secondary">
+            박수희 / 1분반
+          </Typography>
+        </CardContent>
+      </div>
     </Card>
   );
 }
@@ -179,7 +185,7 @@ export default function TemporaryDrawer() {
   //main
   const ProfMain = () => {
     return (
-      <Grid>
+      <Grid className={styles.container}>
         <Grid mb={8} mt={8}><Search /></Grid>
         <Grid mb={8} mr={8}><NewLectureButton /></Grid>
         <Grid mb={8} mr={8}><Filter /></Grid>

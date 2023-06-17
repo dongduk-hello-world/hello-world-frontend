@@ -14,7 +14,7 @@ export default function Lecture() {
         <Sidebar />
       </Grid>
       <Grid item xs={9}>
-        <Student />
+        <Professor />
       </Grid>
     </Grid>
   );
