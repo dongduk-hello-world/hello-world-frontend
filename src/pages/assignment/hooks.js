@@ -10,16 +10,19 @@ export const loadAssignment = async ( assignmentId ) => {
             start_time: "",
             end_time: "",
             test_time: "",
-            tests: [ 1, 2, 3, 4 ],
         };
     }
 
-    for(let i = 0; i < data.tests.length; i++) {
-        let test = await axiosPromise.get(`/tests/${data.tests[i]}`);
+    let tests = await axiosPromise.get(`/assignments/${assignmentId}/tests`);
+    if(!tests) tests = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+    data.tests = [];
+    for(let i = 0; i < tests.length; i++) {
+        let test = await axiosPromise.get(`/tests/${tests[i]}`);
         if(!test) {
-            test = { testId: data.tests[i], name: `문제 ${i+1}`, description: `# 문제 ${i+1}` };
+            test = { testId: tests[i], name: `문제 ${i+1}`, description: `# 문제 ${i+1}` };
         }
-        data.tests[i] = test;
+        data.tests.push(test);
     }
 
     console.log(data);
