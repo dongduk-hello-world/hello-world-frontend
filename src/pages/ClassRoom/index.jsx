@@ -11,7 +11,7 @@ import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 
-import { getClassInfo } from "./hooks";
+import { getClassInfo, getStudents } from "./hooks";
 import Sidebar from '../homeUI'
 
 export default function ClassRoom() {
@@ -19,14 +19,10 @@ export default function ClassRoom() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  // const [classId, className, professor, divide, date] = getClassInfo();
+  //[classId, className, professor, divide, date]
   const [classInfo, setClassInfo] = useState([]);
-
-  const className="dd";
-  const professor="dd";
-  const divide="dd";
-  const date="dd";
-  const studentNum = 45;
+  const [studentList, setStudentList] = useState([[]]);
+  const [studentNum, setStudentNum] = useState(0);
 
   const hwName='hw1';
   const hwStartDate='0000/00/00';
@@ -40,6 +36,20 @@ export default function ClassRoom() {
       result.then((info) => {
         setClassInfo(info)
         console.log(classInfo);
+      });
+    };
+    getData()
+  },[]);
+
+  useEffect(() => {
+    const result = getStudents();
+
+    const getData = () => {
+      result.then((list) => {
+        for (let i = 0; i < list.length; i++) {
+          studentList[i] = list[i];
+        }
+        setStudentNum(list.length);
       });
     };
     getData()
@@ -82,7 +92,9 @@ export default function ClassRoom() {
     alert('학생 kick');
   }
 
-  const Item = () => {
+  const Item = (props) => {
+    const student = props.student;
+
     return (
       <li className={styles.item}>
         <Grid container>
@@ -93,7 +105,7 @@ export default function ClassRoom() {
             </svg>
           </Grid>
           <Grid xs={8}>
-            <span>김이름 / 20201111</span>
+            <span>{student[0]} / {student[1]}</span>
           </Grid>
           <Grid xs={2}>
             <svg xmlns="http://www.w3.org/2000/svg" onClick={kickStudent} width="16" height="16" fill="currentColor" class="bi bi-person-fill-slash" viewBox="0 0 16 16" className={styles.kick}>
@@ -108,12 +120,9 @@ export default function ClassRoom() {
   const ItemList = () => {
     return (
       <ul>
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
+        {studentList.map((student) => (
+          <Item student={student}/>
+        ))}
       </ul>
     );
   }
