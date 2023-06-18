@@ -11,7 +11,7 @@ import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 
-import { getClassInfo, getStudents } from "./hooks";
+import { getClassInfo, getStudents, getAssignments } from "./hooks";
 import Sidebar from '../homeUI'
 
 export default function ClassRoom() {
@@ -23,6 +23,7 @@ export default function ClassRoom() {
   const [classInfo, setClassInfo] = useState([]);
   const [studentList, setStudentList] = useState([[]]);
   const [studentNum, setStudentNum] = useState(0);
+  const [assignmentList, setAssignmentList] = useState([[]]);
 
   const hwName='hw1';
   const hwStartDate='0000/00/00';
@@ -50,6 +51,19 @@ export default function ClassRoom() {
           studentList[i] = list[i];
         }
         setStudentNum(list.length);
+      });
+    };
+    getData()
+  },[]);
+
+  useEffect(() => {
+    const result = getAssignments();
+
+    const getData = () => {
+      result.then((list) => {
+        for (let i = 0; i < list.length; i++) {
+          assignmentList[i] = list[i];
+        }
       });
     };
     getData()
@@ -167,7 +181,10 @@ export default function ClassRoom() {
     );
   }
 
-  const List = () => {
+  const Assignment = (props) => {
+    const assignment = props.assignment
+    console.log(assignment);
+
     return(
       <Box>
         <Paper sx={{maxWidth: 1000}}>
@@ -180,7 +197,7 @@ export default function ClassRoom() {
                 </svg>
               </Grid>
               <Grid xs={8}>
-                <div>{hwName}<br/>{hwStartDate}<br/>{hwEndDate}</div>
+                <div>{assignment['assignmentName']}<br/>{assignment['startTime']}<br/>{assignment['endTime']}</div>
               </Grid>
               <Grid xs={2} className={styles.submitIcon}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#31B404" class="bi bi-check" viewBox="0 0 16 16">
@@ -197,6 +214,16 @@ export default function ClassRoom() {
     );
   }
 
+  const AssignmentItems = () => {
+    return (
+      <div className={styles.assignmentList}>
+        {assignmentList.map((assignment) => (
+          <Assignment assignment={assignment} />
+        ))}
+      </div>
+    );
+  }
+
   return (
     <Grid container spacing={2}>
       <Grid item xs={3}>
@@ -206,7 +233,7 @@ export default function ClassRoom() {
         <Box className={styles.container}>
           <ClassInfo />
           <AddHWButton />
-          <List />
+          <AssignmentItems />
         </Box>
       </Grid>
     </Grid>
