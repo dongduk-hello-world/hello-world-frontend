@@ -81,7 +81,7 @@ export default function ClassRoom() {
         <Typography variant="h6" gutterBottom>
           {classInfo['professor']} / {classInfo['divide']}분반
         </Typography>
-        <div>개설일 : {classInfo['date']}</div>
+        <div>개설학기 : {classInfo['period']}</div>
         <span>수강생 수 : {studentNum}</span>
         <Button variant="text" onClick={handleOpen}>모두보기</Button>
       </Box>
