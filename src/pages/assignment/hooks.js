@@ -45,8 +45,14 @@ export const getCode = async (testId, index) => {
     let data = await axiosPromise.get(`/tests/${testId}/submits/${index}`);
     if(!data) {
         data = {
-            language: "java",
-            code: `printf("Hello World");`
+            language: "c",
+            code: 
+`#include <stdio.h>
+    
+int main(void) {
+    print("Hello World");
+}`,
+            error: `print()가 아니라 printf()지롱~`
         }
     }
     return data;

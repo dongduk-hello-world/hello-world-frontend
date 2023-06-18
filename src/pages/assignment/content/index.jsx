@@ -29,8 +29,8 @@ export default () => {
           <TestView />
         </div>
         <div className={styles.pc_view}>
-          <Nav view={view} setView={setView}></Nav>
-          {pc_views[view]}
+          <Nav view={view === 2 ? 1 : view} setView={setView}></Nav>
+          {pc_views[view === 2 ? 1 : view]}
         </div>
       </MediaQuery>
       <MediaQuery maxWidth={1200}>
@@ -43,32 +43,3 @@ export default () => {
     </div>
   );
 };
-
-const PC_content = () => {
-  const [view, setView] = useState(0);
-  const views = [<SubmitView />, <ResultView />];
-
-  return (
-    <div className={styles.pc_content}>
-      <TestView />
-      <div>
-        <Nav view={view} setView={setView}></Nav>
-        {views[view]}
-      </div>
-    </div>
-  );
-}
-
-const Moblie_content = () => {
-  const [view, setView] = useState(0);
-  const views = [<TestView />, <SubmitView />, <ResultView />];
-
-  return (
-    <div className={styles.moblie_content}>
-      <div>
-        <Nav view={view} setView={setView}></Nav>
-        {views[view]}
-      </div>
-    </div>
-  );
-}

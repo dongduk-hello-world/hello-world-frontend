@@ -11,34 +11,33 @@ import { python } from "@codemirror/lang-python";
 
 import { getCode } from "../../../hooks";
 
+import styles from "./style.module.scss";
+
 export default ({ testId, index, open, onClose }) => {
-    const [code, setCode] = useState("");
     const [languageIdx, setLanguageIdx] = useState(0);
     const language = [ c, java, python ];
 
+    const [code, setCode] = useState("");
+    const [error, setError] = useState(null);
+
     useEffect(() => {
         (async () => {
-            const { code, languageName } = await getCode(testId, index);
-            setCode(code);
+            const { languageName, code, error } = await getCode(testId, index);
+            
             if(languageName === "c") setLanguageIdx(0);
             if(languageName === "java") setLanguageIdx(1);
             if(languageName === "python") setLanguageIdx(2);
+
+            setCode(code);
+            setError(error);
         })();
     });
 
     return (
         <Modal open={open} onClose={onClose}>
-            <div style={{
-                position: "absolute",
-                width: "720px",
-                height: "820px",
-                top: "50%", left: "50%",
-                transform: "translate(-50%, -50%)",
-                backgroundColor: "white",
-                padding: "15px"
-            }}>
+            <div className={styles.modal}>
                 <CodeMirror
-                    height="820px"
+                    height={error ? "60vh" : "80vh"}
                     value={code}
                     theme={githubLightInit({
                     settings: {
@@ -48,6 +47,7 @@ export default ({ testId, index, open, onClose }) => {
                     })}
                     extensions={[language[languageIdx](), EditorView.editable.of(false), EditorState.readOnly.of(true)]}
                 />
+                {error && <div className={styles.error}>{error}</div>}
             </div>
         </Modal>
     );
