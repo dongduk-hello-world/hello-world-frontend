@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./style.module.scss";
 
 import * as React from 'react';
@@ -11,6 +11,7 @@ import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 
+import { getClassInfo } from "./hooks";
 import Sidebar from '../homeUI'
 
 export default function ClassRoom() {
@@ -18,15 +19,32 @@ export default function ClassRoom() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const className = '소프트웨어시스템개발';
-  const profName = '박창섭';
-  const divide = '1';
-  const date = '0000/00/00';
+  // const [classId, className, professor, divide, date] = getClassInfo();
+  const [classInfo, setClassInfo] = useState([]);
+
+  const className="dd";
+  const professor="dd";
+  const divide="dd";
+  const date="dd";
   const studentNum = 45;
 
   const hwName='hw1';
   const hwStartDate='0000/00/00';
   const hwEndDate='0000/00/00';
+
+///////////////////////////////////////
+  useEffect(() => {
+    const result = getClassInfo();
+
+    const getData = () => {
+      result.then((info) => {
+        setClassInfo(info)
+        console.log(classInfo);
+      });
+    };
+    getData()
+  },[]);
+///////////////////////////////////////
 
   const style = {
     position: 'absolute',
@@ -48,12 +66,12 @@ export default function ClassRoom() {
     return (
       <Box component="span" className={styles.infoContainer}>
         <Typography variant="h4" gutterBottom>
-          {className}
+          {classInfo['className']}
         </Typography>
         <Typography variant="h6" gutterBottom>
-          {profName} / {divide}분반
+          {classInfo['professor']} / {classInfo['divide']}분반
         </Typography>
-        <div>개설일 : {date}</div>
+        <div>개설일 : {classInfo['date']}</div>
         <span>수강생 수 : {studentNum}</span>
         <Button variant="text" onClick={handleOpen}>모두보기</Button>
       </Box>
