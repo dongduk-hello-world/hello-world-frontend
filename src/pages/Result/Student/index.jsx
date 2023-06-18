@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./style.module.css";
 import $ from 'jquery';
 
@@ -12,12 +12,29 @@ import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 
+import { getResult } from "../hooks";
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 export default function ResultStudent() {
 
   const testName = '중간고사'
+  const [score, setScore] = useState(0);
+  const [totalScore, setTotalScore] = useState(0);
+
+//////////////////////////////
+useEffect(() => {
+  const result = getResult();
+
+  const getData = () => {
+    result.then((result) => {
+      setScore(result[1]['score']);
+      setTotalScore(result[0]['totalScore']);
+    });
+  };
+  getData()
+},[]);
+//////////////////////////////
 
   const TopBox = () => {
     return (
@@ -31,9 +48,13 @@ export default function ResultStudent() {
   }
 
   const Graph = () => {
+
     return (
       <div class='graphContainer'>
-        <CircularProgressbar value={250/300*100} text={`250/300`} />
+        <CircularProgressbar 
+          value={Number(score) / Number(totalScore) * 100} 
+          text={`${score}/${totalScore}`} 
+        />
       </div>
     );
   }
