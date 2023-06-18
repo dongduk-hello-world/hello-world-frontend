@@ -25,7 +25,7 @@ export default ({ tests }) => {
         {tests.map((val, idx) => (
           <Tab
             key={`testNav_${idx}`}
-            label={`문제 ${idx + 1}`}
+            label={val.name}
             icon={ <Assignment /> }
             iconPosition="start"
           />
