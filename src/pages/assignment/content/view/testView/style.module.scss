@@ -2,7 +2,7 @@
   width: calc(100% - 80px);
   
   button {
-    width: 120px;
+    min-width: 120px;
   }
 
   @media (max-width: 1200px) {

@@ -23,18 +23,116 @@
         width: 50%;
         height: 100%;
 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
         .nav {
-            width: 100%;
+            width: calc(100% - 100px);
             height: 75px;
-            
+
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+
+            button {
+              min-width: 120px;
+              height: 75px;
+              font-size: 16px !important;
+            }
         }
-        .box {
+        .box, .disabledBox{
             width: calc(100% - 50px);
             height: calc(100% - 100px);
             margin: 25px;
             margin-top: 0px;
             border: 1px solid gray;
             border-radius: 25px;
+
+            overflow-y: auto;
+        }
+        .disabledBox {
+          background-color: rgba(135, 206, 235, 0.2);
         }
     }
+
+      /* width */
+  *::-webkit-scrollbar {
+    width: 20px;
   }
+
+  /* Track */
+  *::-webkit-scrollbar-track {
+    background: none;
+  }
+
+  /* Handle */
+  *::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 15px;
+    background-clip: padding-box;
+    border: 7px solid transparent;
+  }
+
+  /* Handle on hover */
+  *::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    background-clip: padding-box;
+    border: 5px solid transparent;
+  }
+
+  [class="cm-theme"] {
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    background: rgb(250, 250, 250);
+  }
+}
+
+.assignmentInputs {
+  padding: 40px;
+  
+  > div {
+    margin-bottom: 20px;
+    
+    > label {
+      display: block;
+
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 50px;
+      color: #111111;
+    }
+    > span {
+      display: block;
+
+      font-size: 15px;
+      margin-bottom: 10px;
+      color: gray;
+    }
+  }
+}
+
+.markdown {
+  position: relative;
+
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  padding: 10px;
+
+ 
+  .markdownContent {
+    height: calc(100% - 80px);
+    overflow-y: scroll;
+
+    > div {
+      height: 98%;
+    }
+  }
+
+  .deleteButton {
+    position: absolute;
+    top: 44px;
+    right: 50px;
+    transform: translateY(-50%);
+  }
+}
