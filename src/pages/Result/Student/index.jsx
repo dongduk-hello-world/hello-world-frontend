@@ -21,6 +21,7 @@ export default function ResultStudent() {
   const testName = '중간고사'
   const [score, setScore] = useState(0);
   const [totalScore, setTotalScore] = useState(0);
+  const [scoreList, setScoreList] = useState([]);
 
 //////////////////////////////
 useEffect(() => {
@@ -30,6 +31,8 @@ useEffect(() => {
     result.then((result) => {
       setScore(result[1]['score']);
       setTotalScore(result[0]['totalScore']);
+      setScoreList(result[2]['tests']);
+      console.log(scoreList);
     });
   };
   getData()
@@ -59,7 +62,9 @@ useEffect(() => {
     );
   }
 
-  const Item = () => {
+  const Item = (props) => {
+    const score = props.score;
+
     return (
       <Grid container>
         <Grid xs={1}>
@@ -69,12 +74,12 @@ useEffect(() => {
         </Grid>
         <Grid xs={8}>
           <span>
-            문제 이름
+            {score[0]}
           </span>
         </Grid>
         <Grid sx={3}>
           <span>
-            30 / 50
+            {score[2]} / {score[1]}
           </span>
         </Grid>
       </Grid>
@@ -84,6 +89,10 @@ useEffect(() => {
   const ItemList = () => {
     return (
       <ul class='ul'>
+        {scoreList.map((score) => (
+          <li className={styles.listItem}><Item score={score}/></li>
+        ))}
+        {/* <li className={styles.listItem}><Item /></li>
         <li className={styles.listItem}><Item /></li>
         <li className={styles.listItem}><Item /></li>
         <li className={styles.listItem}><Item /></li>
@@ -93,8 +102,7 @@ useEffect(() => {
         <li className={styles.listItem}><Item /></li>
         <li className={styles.listItem}><Item /></li>
         <li className={styles.listItem}><Item /></li>
-        <li className={styles.listItem}><Item /></li>
-        <li className={styles.listItem}><Item /></li>
+        <li className={styles.listItem}><Item /></li> */}
       </ul>
     );
   }
