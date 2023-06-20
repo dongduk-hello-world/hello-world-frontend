@@ -15,10 +15,10 @@ export default {
         );
     },
 
-    get: (uri, data, defaultValue) => {
+    get: (uri, defaultValue) => {
         return new Promise((resolve) =>
           axios
-            .get(uri, data)
+            .get(uri)
             .then((response) => {
                 resolve(response.data);
             })
