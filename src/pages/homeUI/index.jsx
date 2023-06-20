@@ -41,7 +41,10 @@ export default function TemporaryDrawer() {
       result.then((list) => {
         console.log(list);
         for (let i = 0; i < Object.keys(list).length; i++) {
-          lecture_list[i] = list[i];
+          if (lecture_list.length <= Object.keys(list).length) {
+            setLecture_list(lecture_list => [...lecture_list, list[i]]);
+            // lecture_list[i] = list[i];
+          }
         }
       });
     };
@@ -59,7 +62,7 @@ export default function TemporaryDrawer() {
       <Divider />
       <List>
         {lecture_list.map((lecture) => (
-          <ListItem key={lecture['classId']}>
+          <ListItem key={Number(lecture['classId'])}>
             <ListItemButton>
               <ListItemIcon>
                 <SchoolIcon />
