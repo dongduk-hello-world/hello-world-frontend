@@ -25,6 +25,14 @@ export const loadAssignment = async ( assignmentId ) => {
         data.tests.push(test);
     }
 
+    let classData = await axiosPromise.get(`/classes/${data.classId}`);
+    if(!classData) {
+        classData = {
+            className: "알고리즘"
+        }
+    }
+    data.classData = classData;
+
     console.log(data);
 
     return data;

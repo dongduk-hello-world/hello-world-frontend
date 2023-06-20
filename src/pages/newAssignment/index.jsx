@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLoaderData } from "react-router-dom";
 import { AppBar, Toolbar, Button } from "@mui/material";
 
 import Nav from "./nav";
@@ -9,9 +10,17 @@ import TestcaseInput from "./testcaseInput";
 import styles from "./style.module.scss";
 
 import { ContextProvider } from "./contexts";
-import { submit } from "./hooks";
+import { loadClassData, submit } from "./hooks";
+
+
+export const loader = async ({ params }) => {
+    const classId = params.classId;
+    const data = await loadClassData(classId);
+    return data;
+};
 
 export default () => {
+    const { className } = useLoaderData(); 
     const [formData, setFormData] = useState({});
     const [testIdx, setTestIdx] = useState(0);
 
@@ -20,7 +29,7 @@ export default () => {
             <form>
                 <AppBar className={styles.header}>
                     <Toolbar position="fixed">
-                    <div>알고리즘: 중간고사</div>
+                    <div>{className}: {formData.name}</div>
                     <Button color="secondary" variant="contained" 
                         onClick={() => {
                             if(window.confirm("시험을 생성합니다.")) submit(formData);
