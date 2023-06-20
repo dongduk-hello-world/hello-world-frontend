@@ -1,19 +1,27 @@
 import axiosPromise from "../../services/axiosPromise";
 
+import dayjs from 'dayjs';
+
 export const loadAssignment = async ( assignmentId ) => {
+    const curDay = dayjs();
     let { assignment } = await axiosPromise.get(`/assignments/${assignmentId}`, 
         {
             assignment: {
                 assignmentId: assignmentId,
                 classId: 1,
                 name: "중간고사",
-                start_time: "",
-                end_time: "",
-                test_time: "",
+                "start-time": `${curDay.$y}-${curDay.$M}-${curDay.$D} ${curDay.$H}:${curDay.$m}`,
+                "end-time": `${curDay.$y}-${curDay.$M}-${curDay.$D} ${curDay.$H+1}:${curDay.$m}`,
+                "test-time": "00:01",
             }
         });
-    
     let data = assignment;
+
+    // endTime 구하기
+    const testTime = data["test-time"].split(":").map(Number);
+    const endTime1 = curDay.add(testTime[0], "hour").add(testTime[1], "minute");
+    const endTime2 = dayjs(data["end-time"]);
+    data.endTime = endTime1.isAfter(dayjs(endTime2)) ? endTime1 : endTime2;
 
     let { tests } = await axiosPromise.get(`/assignments/${assignmentId}/tests`, 
         { tests: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] });
