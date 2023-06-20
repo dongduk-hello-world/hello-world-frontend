@@ -1,5 +1,10 @@
 import { useContext, useState, useEffect, useRef } from "react";
-import { TextField } from '@mui/material';
+
+import { TextField, IconButton } from '@mui/material';
+import { Delete, AddCircleRounded } from '@mui/icons-material';
+
+import CodeMirror from "@uiw/react-codemirror";
+import { githubLightInit } from "@uiw/codemirror-theme-github";
 
 import styles from "./style.module.scss";
 
@@ -21,6 +26,11 @@ export default ({ idx }) => {
         }
         setTestcases(formData.tests[idx].testcases);
     }, [idx]);
+
+    const create = () => {
+        formData.tests[idx].testcases.push({ input: "1", output: "[1, 2, 3, 4]" });
+        setFormData({...formData});
+    }
     
     return (
         <div className={styles.box}>
@@ -58,7 +68,60 @@ export default ({ idx }) => {
                     />
                 </div>
                 <div className={styles.testcaseList}>
-
+                    {testcases.map((tc, i) => (
+                        <div
+                            className={styles.testcase}
+                            key={`testcase_${idx}_${i}`}>
+                            <IconButton
+                                onClick={() => {
+                                    formData.tests[idx].testcases.splice(i, 1);
+                                    setFormData({...formData});
+                                }}>
+                                <Delete/>
+                            </IconButton>
+                            <div>
+                                <label>입력</label>
+                                <CodeMirror 
+                                    value={tc.input}
+                                    theme={githubLightInit({
+                                        settings: {
+                                            fontFamily: `"Fira Code", "Fira Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace`,
+                                            background: "rgb(250, 250, 250)",
+                                        },
+                                    })}
+                                    basicSetup={{
+                                        lineNumbers: false,
+                                    }}
+                                    onChange={(value, viewUpdate) => {
+                                        formData.tests[idx].testcases[i].input = value;
+                                        setFormData({...formData});
+                                    }}
+                                />
+                            </div>
+                            <div>
+                                <label>출력</label>
+                                <CodeMirror 
+                                    value={tc.output}
+                                    theme={githubLightInit({
+                                        settings: {
+                                            fontFamily: `"Fira Code", "Fira Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace`,
+                                            background: "rgb(250, 250, 250)",
+                                        },
+                                    })}
+                                    basicSetup={{
+                                        lineNumbers: false,
+                                    }}
+                                    onChange={(value, viewUpdate) => {
+                                        formData.tests[idx].testcases[i].output = value;
+                                        setFormData({...formData});
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    ))}
+                    <IconButton onClick={create}>
+                        <AddCircleRounded />
+                    </IconButton>
                 </div>
             </div>
         </div>

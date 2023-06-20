@@ -15,9 +15,10 @@ export default ({ idx, setIdx }) => {
             name: `문제 ${tests.length+1}`,
             description: `# 문제 ${tests.length+1}`,
             score: 0,
-            testcases: []
+            testcases: [{ input: "1", output: "[1, 2, 3, 4]" }]
         });
         setFormData({...formData, tests});
+        setIdx(tests.length);
     }
 
     return (

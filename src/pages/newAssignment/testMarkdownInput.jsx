@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 
-import { Tabs, Tab, Button } from "@mui/material";
-import { Edit, Visibility } from "@mui/icons-material";
+import { Tabs, Tab, IconButton } from "@mui/material";
+import { Edit, Visibility, Delete } from "@mui/icons-material";
 
 import CodeMirror from "@uiw/react-codemirror";
 import { githubLightInit } from "@uiw/codemirror-theme-github";
@@ -39,10 +39,12 @@ export default ({ idx, onDelete }) => {
                     <Tab label="미리 보기" icon={<Visibility />} iconPosition="start" />
                 </Tabs>
                 <div className={styles.deleteButton}>
-                    <Button variant="contained" color="error" 
-                        onClick={() => {
-                            if(window.confirm("문항을 삭제하면 복구할 수 없습니다.")) onDelete();
-                        }}>문항 삭제</Button>
+                <IconButton   
+                    onClick={() => {
+                        if(window.confirm("문항을 삭제하면 복구할 수 없습니다.")) onDelete();
+                    }}>
+                    <Delete/>
+                </IconButton> 
                 </div>
                 <div className={styles.markdownContent}>
                 { view === 0 

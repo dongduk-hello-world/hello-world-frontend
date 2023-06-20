@@ -76,8 +76,8 @@ export default () => {
                     <TextField 
                         variant="outlined"
                         value={formData.tests.reduce((acc, cur) => acc + cur.score, 0)}
-                        readonly
-                    />    
+                        readOnly
+                    />
                 </div>
             </div>
         </div>
