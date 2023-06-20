@@ -79,6 +79,7 @@ export default ({ idx }) => {
                                 }}>
                                 <Delete/>
                             </IconButton>
+                            <span>테스트 케이스 #{i+1}</span>
                             <div>
                                 <label>입력</label>
                                 <CodeMirror 
