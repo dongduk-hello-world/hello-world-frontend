@@ -13,6 +13,7 @@ import UpdateIcon from '@mui/icons-material/Update';
 import Link from '@mui/material/Link';
 
 import styles from "../style.module.scss";
+import highStyles from "./style.module.scss";
 
 import { getResult } from "../../../hooks";
 
@@ -20,19 +21,34 @@ import CodeModal from "./codeModal";
 
 export default ({ testIdx }) => {
     const { tests } = useLoaderData();
+    const [highScore, setHighScore] = useState({});
     const [rows, setRows] = useState([]);
     const [codeModal, setCodeModal] = useState([]);
 
     const refresh = async () => {
         const testId = tests[testIdx].testId;
-        setRows([...await getResult(testId)]);
-        setCodeModal([...new Array(rows.length).fill(false)]);
+        const result = await getResult(testId);
+        setHighScore(result.highScore);
+        setRows(result.submits);
+        setCodeModal([...new Array(rows.length+1).fill(false)]);
     };
 
     useEffect(() => refresh, [testIdx]);
 
     return (
         <div className={styles.view}>
+            <div className={highStyles.highScore}>
+                <span>성적은 제출된 결과들 중에서 최고점으로 반영됩니다.</span>
+                <label>현재 최고 점수: {highScore.score}</label>
+                <Link onClick={() => {
+                    codeModal[rows.length] = true;
+                    setCodeModal([...codeModal]);
+                }}>코드 보기</Link>
+                <CodeModal 
+                    open={codeModal[rows.length]} 
+                    onClose={() => setCodeModal([...new Array(rows.length+1).fill(false)])}
+                    highScore={highScore.code} />
+            </div>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 500 }} aria-label="simple table">
                 <TableHead>

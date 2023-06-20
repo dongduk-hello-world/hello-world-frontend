@@ -43,7 +43,7 @@ const createData = (id, submitTime, language, errMsg, runTime, fileSize, score) 
 
 export const getResult = async (testId) => {
     let defaultData = {};
-    defaultData.highScore = { score: 500, code: {
+    defaultData.highScore = { score: "500/500", code: {
         language: "c", 
         code:
 `#include <stdio.h>

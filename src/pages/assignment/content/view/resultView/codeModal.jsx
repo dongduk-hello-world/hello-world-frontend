@@ -13,7 +13,7 @@ import { getCode } from "../../../hooks";
 
 import styles from "./style.module.scss";
 
-export default ({ testId, index, open, onClose }) => {
+export default ({ testId, index, open, onClose, highScore }) => {
     const [languageIdx, setLanguageIdx] = useState(0);
     const language = [ c, java, python ];
 
@@ -21,16 +21,29 @@ export default ({ testId, index, open, onClose }) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        (async () => {
-            const { languageName, code, error } = await getCode(testId, index);
-            
-            if(languageName === "c") setLanguageIdx(0);
-            if(languageName === "java") setLanguageIdx(1);
-            if(languageName === "python") setLanguageIdx(2);
+        if(open) {
+            if (highScore != null) {
+                if(highScore.language === "c") setLanguageIdx(0);
+                if(highScore.language === "java") setLanguageIdx(1);
+                if(highScore.language === "python") setLanguageIdx(2);
 
-            setCode(code);
-            setError(error);
-        })();
+                setCode(highScore.code);
+                setError(highScore.error);
+            }
+            else {
+                (async () => {
+                    const { language, code, error } = await getCode(testId, index);
+                    
+                    if(language === "c") setLanguageIdx(0);
+                    if(language === "java") setLanguageIdx(1);
+                    if(language === "python") setLanguageIdx(2);
+
+                    setCode(code);
+                    setError(error);
+                })();
+            }
+        }
+        
     });
 
     return (
@@ -45,6 +58,7 @@ export default ({ testId, index, open, onClose }) => {
                         background: "rgb(250, 250, 250)",
                     },
                     })}
+                    basicSetup={{ highlightActiveLine: false }}
                     extensions={[language[languageIdx](), EditorView.editable.of(false), EditorState.readOnly.of(true)]}
                 />
                 {error && <div className={styles.error}>{error}</div>}
