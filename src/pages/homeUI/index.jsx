@@ -18,6 +18,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import SchoolIcon from '@mui/icons-material/School';
 import Grid from '@mui/material/Grid';
 import { getSubjectList } from "./hooks";
 
@@ -25,7 +26,7 @@ let classList;
 
 export default function TemporaryDrawer() {
 
-  let [lecture_list, setLecture_list] = useState([]);
+  let [lecture_list, setLecture_list] = useState([[]]);
 
   let name = "전유영"
   let grade = "1"
@@ -37,8 +38,11 @@ export default function TemporaryDrawer() {
     const result = getSubjectList();
     
     const getData = () => {
-      result.then((nameList) => {
-        setLecture_list(nameList)
+      result.then((list) => {
+        console.log(list);
+        for (let i = 0; i < Object.keys(list).length; i++) {
+          lecture_list[i] = list[i];
+        }
       });
     };
     getData()
@@ -54,13 +58,13 @@ export default function TemporaryDrawer() {
       </div>
       <Divider />
       <List>
-        {lecture_list.map((text, index) => (
-          <ListItem key={text} disablePadding className = {classes.list}>
+        {lecture_list.map((lecture) => (
+          <ListItem key={lecture['classId']}>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                <SchoolIcon />
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={lecture['className']} />
             </ListItemButton>
           </ListItem>
         ))}
