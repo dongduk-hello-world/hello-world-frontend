@@ -8,6 +8,20 @@
   padding: 15px;
 }
 
-/* .itemListWrap {
+/*sidebar*/
+body {
+  margin-right: 0px;
+}
 
-} */
+.info {
+  margin-bottom: 10px;
+}
+
+.Box {
+  width: auto;
+  box-shadow: 15px 0px 5px -2px rgba(0, 0, 0, 0.14);
+}
+
+.card {
+  margin-bottom: 20px;
+}

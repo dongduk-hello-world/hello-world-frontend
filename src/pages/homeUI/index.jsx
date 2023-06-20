@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./style.module.scss";
 import { useStyles } from "./styles";
 
@@ -26,6 +27,8 @@ let classList;
 
 export default function TemporaryDrawer() {
 
+  const navigate = useNavigate();
+
   let [lecture_list, setLecture_list] = useState([[]]);
 
   let name = "전유영"
@@ -50,33 +53,34 @@ export default function TemporaryDrawer() {
     };
     getData()
   },[]);
-  
-  const list = () => (
-    <Box className = {classes.box}>
-      <div className={styles.info}>
-        <h1>{name}</h1><br/>
-        <div>
-          <span>{grade}학년</span>/<span>{id}</span>
-        </div>
-      </div>
-      <Divider />
-      <List>
-        {lecture_list.map((lecture) => (
-          <ListItem key={Number(lecture['classId'])}>
-            <ListItemButton>
-              <ListItemIcon>
-                <SchoolIcon />
-              </ListItemIcon>
-              <ListItemText primary={lecture['className']} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
 
   return (
-    <span>{list()}</span>
+    <span>
+      <Box className = {classes.box}>
+        <div className={styles.info}>
+          <h1>{name}</h1><br/>
+          <div>
+            <span>{grade}학년</span>/<span>{id}</span>
+          </div>
+        </div>
+        <Divider />
+        <List>
+          {lecture_list.map((lecture) => (
+            <ListItem 
+              key={Number(lecture['classId'])}
+              onClick={() => {navigate(`/classes/${lecture['classId']}`)}}
+            >
+              <ListItemButton>
+                <ListItemIcon>
+                  <SchoolIcon />
+                </ListItemIcon>
+                <ListItemText primary={lecture['className']} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+      </Box>  
+    </span>
   );
 }
 
