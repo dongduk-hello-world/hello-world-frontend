@@ -9,18 +9,11 @@ import { FormDataContext } from "./contexts";
 export default ({ idx, setIdx }) => {
     const [formData, setFormData] = useContext(FormDataContext);
 
-    useEffect(() => {
-        if(!formData.tests) {
-            testCreate();
-        }
-    });
-
     const testCreate = () => {
         let tests = formData.tests;
-        if(!tests) tests = [];
         tests.push({
             name: `문제 ${tests.length+1}`,
-            description: "",
+            description: `# 문제 ${tests.length+1}`,
             score: 0,
             testcases: []
         });

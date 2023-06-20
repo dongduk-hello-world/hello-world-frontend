@@ -35,8 +35,8 @@ export default ({ idx, onDelete }) => {
         <div className={styles.box}>
             <div className={styles.markdown}>
                 <Tabs value={view} onChange={(event, newValue) => setView(newValue)}>
-                    <Tab label="제출" icon={<Edit />} iconPosition="start" />
-                    <Tab label="기록" icon={<Visibility />} iconPosition="start" />
+                    <Tab label="문항 작성" icon={<Edit />} iconPosition="start" />
+                    <Tab label="미리 보기" icon={<Visibility />} iconPosition="start" />
                 </Tabs>
                 <div className={styles.deleteButton}>
                     <Button variant="contained" color="error" 

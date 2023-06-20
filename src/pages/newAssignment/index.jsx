@@ -9,6 +9,7 @@ import TestcaseInput from "./testcaseInput";
 import styles from "./style.module.scss";
 
 import { ContextProvider } from "./contexts";
+import { submit } from "./hooks";
 
 export default () => {
     const [formData, setFormData] = useState({});
@@ -20,6 +21,12 @@ export default () => {
                 <AppBar className={styles.header}>
                     <Toolbar position="fixed">
                     <div>알고리즘: 중간고사</div>
+                    <Button color="secondary" variant="contained" 
+                        onClick={() => {
+                            if(window.confirm("시험을 생성합니다.")) submit(formData);
+                        }}>
+                        시험 생성
+                    </Button>
                     </Toolbar>
                 </AppBar>
                 <div className={styles.content}>
