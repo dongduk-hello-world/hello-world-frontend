@@ -129,7 +129,9 @@ export default (props) => {
 
           console.log(data);
 
-          setErrPassword(vaildatePassword(data.password));
+          const errPassword = vaildatePassword(data.password);
+          setErrPassword(errPassword);
+
           if (errPassword != "") {
             console.log("비번 실패1");
             return;
@@ -137,17 +139,23 @@ export default (props) => {
 
           console.log(data.password != form.passwordComfirm.value);
 
+          let errPasswordComfirm = "";
+
           if (data.password != form.passwordComfirm.value) {
-            setErrPasswordComfirm("비밀번호가 일치하지 않습니다.");
-          }
+            errPasswordComfirm = "비밀번호가 일치하지 않습니다.";
+            setErrPasswordComfirm(errPasswordComfirm);
+            return;
+          } 
+          setErrPasswordComfirm(errPasswordComfirm);
+          
           if (errPasswordComfirm != "") {
             console.log("비번 실패2");
             return;
           }
-
           console.log("비번 통과2");
 
-          setErrName(vaildateName(data.name));
+          const errName = vaildateName(data.name);
+          setErrName(errName);
           if (errName != "") return;
 
           console.log("이름 통과");

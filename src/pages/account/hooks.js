@@ -22,6 +22,7 @@ export const signup = async ({ email, password, name }) => {
 
 
   const fail = await axiosPromise.post("/users", { email, password: sha256(password).toString(), name, type }, true);
+  alert(fail);
   if (fail) {
     alert("회원가입에 실패했습니다.");
     return false;
