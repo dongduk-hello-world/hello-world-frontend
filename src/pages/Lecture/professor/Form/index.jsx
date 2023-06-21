@@ -30,10 +30,6 @@ export default function CreateClassForm() {
         setDivide(event.target.value);
     }
 
-    function formSubmit() {
-        console.log("ddd");
-    }
-
     return ( 
         // <FormControl>
         <Container maxWidth="sm" className={styles.formContainer}>
