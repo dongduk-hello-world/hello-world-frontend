@@ -54,9 +54,12 @@ export default (props) => {
             if (errEmail != "") return;
 
             const result = await findUserByemail(email);
-            //if (result === "") {
-            if (true) {
-              sendMail(email);
+            if (!result) {
+              if (true) {
+                sendMail(email);
+              }
+            } else {
+              alert("이미 가입된 이메일입니다.");
             }
           }}
         >

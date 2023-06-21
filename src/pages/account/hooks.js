@@ -2,8 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import axiosPromise from "../../services/axiosPromise";
 
 export const login = async (data) => {
-  const result = await axiosPromise.post("/login", data);
-  if (!result) {
+  const fail = await axiosPromise.post("/login", data, true);
+  if (fail) {
     alert("로그인에 실패했습니다");
     return false;
   }
@@ -11,8 +11,10 @@ export const login = async (data) => {
 };
 
 export const signup = async (data) => {
-  const result = await axiosPromise.post("/users", data);
-  if (!result) {
+  console.log("signup ", data);
+  
+  const fail = await axiosPromise.post("/users", data, true);
+  if (fail) {
     alert("회원가입에 실패했습니다.");
     return false;
   }
@@ -46,13 +48,14 @@ export const useEmailAuth = () => {
 };
 
 export const findUserByemail = async (email) => {
-  const result = await axiosPromise.get(`/email/${email}`);
+  const result = await axiosPromise.get(`/email/${email}`, false);
+  console.log(result);
   return result;
 };
 
 export const changePassword = async (userId, password) => {
-  const result = await axiosPromise.put(`/users/${userId}/password`, { password });
-  return result;
+  const fail = await axiosPromise.put(`/users/${userId}/password`, { password }, true);
+  return !fail;
 };
 
 export const vaildateEmail = (email) => {
