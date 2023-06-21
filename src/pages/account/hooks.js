@@ -63,7 +63,8 @@ export const findUserByemail = async (email) => {
 };
 
 export const changePassword = async (userId, password) => {
-  const fail = await axiosPromise.put(`/users/${userId}/password`, { password }, true);
+  console.log(sha256(password).toString());
+  const fail = await axiosPromise.put(`/users/${userId}/password`, { password: sha256(password).toString() }, true);
   return !fail;
 };
 

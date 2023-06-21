@@ -10,9 +10,9 @@ export const ContextProvider = ({ children, formData }) => {
         data = {
             classId: 1, // (임시)
             name: "테스트 이름",
-            startTime: `${curDay.$y}-${curDay.$M}-${curDay.$D} ${curDay.$H}:${curDay.$m}`,
-            endTime: `${curDay.$y}-${curDay.$M}-${curDay.$D} ${curDay.$H+1}:${curDay.$m}`,
-            testTime: "01:00",
+            start_time: `${curDay.$y}-${curDay.$M}-${curDay.$D} ${curDay.$H}:${curDay.$m}`,
+            end_time: `${curDay.$y}-${curDay.$M}-${curDay.$D} ${curDay.$H+1}:${curDay.$m}`,
+            test_time: "01:00",
             tests: [{
                 name: `문제 1`,
                 description: "# 문제 1",

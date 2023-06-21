@@ -9,6 +9,7 @@ import { loadAssignment } from "./hooks";
 import { ContextProvider } from "./contexts";
 
 export const loader = async ({ params }) => {
+  // if(!sessionStorage.getItem("userId")) return redirect("/account");
   const assignmentId = params.assignmentId;
   const data = await loadAssignment(assignmentId);
   return data;

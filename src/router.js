@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, redirect } from "react-router-dom";
 
 import Account from "./pages/account";
 import Login from "./pages/account/login";
@@ -17,6 +17,11 @@ import StudentResult from "./pages/Result/Student";
 import ProfessorResult from "./pages/Result/Professor";
 
 import ErrorPage from "./error-page";
+
+const checkLogin = () => {
+  // if(!sessionStorage.getItem("userId")) return redirect("/account");
+  return null;
+}
 
 export default createBrowserRouter([
   {
@@ -49,6 +54,7 @@ export default createBrowserRouter([
   {
     path: '/',
     element: <Lecture />,
+    loader: checkLogin,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -66,21 +72,25 @@ export default createBrowserRouter([
   {
     path: '/classes/:classId',
     element: <ClassRoom />,
+    loader: checkLogin,
     errorElement: <ErrorPage />,
   },
   {
     path: 'classes/add-class',
     element: <NewLecture />,
+    loader: checkLogin,
     errorElement: <ErrorPage />,
   },
   {
     path: 'result/:userId/professor',
     element: <ProfessorResult />,
+    loader: checkLogin,
     errorElement: <ErrorPage />
   },
   {
     path: 'result/:userId/student',
     element: <StudentResult />,
+    loader: checkLogin,
     errorElement: <ErrorPage />
   },
   // {
