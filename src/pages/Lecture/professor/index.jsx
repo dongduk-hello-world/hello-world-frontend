@@ -165,11 +165,13 @@ export default function TemporaryDrawer() {
   const navigate = useNavigate();
 
   const [isMain, setMain] = useState(true);
+
+  const type = "교수"
   
   function newLectrue() {
     console.log("click!");
     setMain(false);
-    navigate('/classes/add-class')
+    navigate('/classes/add-class', {state: {type: {type}}})
   } 
 
   // new Lecture Button
