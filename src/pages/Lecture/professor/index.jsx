@@ -100,9 +100,8 @@ const Filter = () => {
               id="demo-simple-select"
               label="Age"
             >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+              <MenuItem value={1}>1학기</MenuItem>
+              <MenuItem value={2}>2학기</MenuItem>
             </Select>
           </FormControl>
         </Box>
@@ -114,9 +113,9 @@ const Filter = () => {
               id="demo-simple-select"
               label="Age"
             >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+              <MenuItem value={'C'}>C</MenuItem>
+              <MenuItem value={'Java'}>Java</MenuItem>
+              <MenuItem value={'Python'}>Python</MenuItem>
             </Select>
           </FormControl>
         </Box>
