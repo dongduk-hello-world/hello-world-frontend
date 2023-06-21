@@ -20,8 +20,8 @@ const MenuProps = {
 };
 
 const names = [
-  'C99',
-  'C++',
+  'C',
+  'Java',
   'python',
 ];
 

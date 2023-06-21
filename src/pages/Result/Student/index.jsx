@@ -13,6 +13,8 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 
 import { getResult } from "../hooks";
+import Sidebar from '../../homeUI'
+
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
@@ -92,17 +94,6 @@ useEffect(() => {
         {scoreList.map((score) => (
           <li className={styles.listItem}><Item score={score}/></li>
         ))}
-        {/* <li className={styles.listItem}><Item /></li>
-        <li className={styles.listItem}><Item /></li>
-        <li className={styles.listItem}><Item /></li>
-        <li className={styles.listItem}><Item /></li>
-        <li className={styles.listItem}><Item /></li>
-        <li className={styles.listItem}><Item /></li>
-        <li className={styles.listItem}><Item /></li>
-        <li className={styles.listItem}><Item /></li>
-        <li className={styles.listItem}><Item /></li>
-        <li className={styles.listItem}><Item /></li>
-        <li className={styles.listItem}><Item /></li> */}
       </ul>
     );
   }
@@ -113,19 +104,26 @@ useEffect(() => {
   });
 
   return (
-    <div className={styles.container}>
-      <TopBox />
-      <Grid container className={styles.container}>
-        <Grid xs={1} />
-        <Grid xs={4}>
-          <Graph />
-        </Grid>
-        <Grid xs={1} />
-        <Grid xs={5}>
-          <ItemList />
-        </Grid>
-        <Grid xs={1} />
+    <Grid container spacing={2}>
+      <Grid item xs={3} minHeight="100vh">
+        <Sidebar />
       </Grid>
-    </div>
+      <Grid item xs={9}>
+        <div className={styles.container}>
+          <TopBox />
+          <Grid container className={styles.container}>
+            <Grid xs={1} />
+            <Grid xs={4}>
+              <Graph />
+            </Grid>
+            <Grid xs={1} />
+            <Grid xs={5}>
+              <ItemList />
+            </Grid>
+            <Grid xs={1} />
+          </Grid>
+        </div>
+      </Grid>
+    </Grid>
   );
 }

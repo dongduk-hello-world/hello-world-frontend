@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useStyles } from "./styles";
 import styles from "./style.module.css";
+import { useNavigate } from "react-router-dom";
 
 import * as React from 'react';
 import Box from '@mui/material/Box';
@@ -19,7 +20,6 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 import LectureForm from "./Form";
-
 
 const bull = (
   <Box
@@ -162,14 +162,17 @@ const LectureCard = () => {
 
 export default function TemporaryDrawer() {
   
+  const navigate = useNavigate();
+
   const [isMain, setMain] = useState(true);
   
   function newLectrue() {
     console.log("click!");
     setMain(false);
+    navigate('/classes/add-class')
   } 
 
-  //new Lecture Button
+  // new Lecture Button
   const NewLectureButton = () => {
     const classes = useStyles();
   
@@ -179,7 +182,7 @@ export default function TemporaryDrawer() {
         <Button 
           variant="contained"
           onClick={newLectrue}
-        >Contained</Button>
+        >생성하기</Button>
       </Box>
     );
   }

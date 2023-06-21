@@ -117,7 +117,10 @@ const LectureCard = () => {
   const classes = useStyles();
 
   function joinClass() {
-    alert('join class');
+    if (window.confirm('해당 클래스에 참여할까요?')) {
+      alert('참가하였습니다.');
+      window.location.reload();
+    }
   }
 
   return (

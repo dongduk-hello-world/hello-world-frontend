@@ -175,7 +175,7 @@ export default function ClassRoom() {
           className={styles.button}
           onClick={addHW}
         >
-          Contained
+          시험 추가
         </Button>
       </div>
     );

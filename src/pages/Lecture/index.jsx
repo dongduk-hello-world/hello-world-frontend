@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Outlet } from "react-router-dom";
 
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
@@ -14,7 +15,7 @@ export default function Lecture() {
         <Sidebar />
       </Grid>
       <Grid item xs={9}>
-        <Student />
+        <Outlet />
       </Grid>
     </Grid>
   );
