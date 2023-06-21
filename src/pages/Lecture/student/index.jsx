@@ -75,9 +75,9 @@ const Filter = () => {
               id="demo-simple-select"
               label="Age"
             >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+              <MenuItem value={'박수희'}>박수희</MenuItem>
+              <MenuItem value={'박창섭'}>박창섭</MenuItem>
+              <MenuItem value={'한혁'}>한혁</MenuItem>
             </Select>
           </FormControl>
         </Box>

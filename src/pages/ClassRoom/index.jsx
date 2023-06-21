@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 import styles from "./style.module.scss";
 
 import * as React from 'react';
@@ -15,6 +17,10 @@ import { getClassInfo, getStudents, getAssignments } from "./hooks";
 import Sidebar from '../homeUI'
 
 export default function ClassRoom() {
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -31,7 +37,10 @@ export default function ClassRoom() {
 
 ///////////////////////////////////////
   useEffect(() => {
-    const result = getClassInfo();
+
+    const classId = location.classId['classId'];
+
+    const result = getClassInfo(classId);
 
     const getData = () => {
       result.then((info) => {

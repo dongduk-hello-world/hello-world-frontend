@@ -68,7 +68,7 @@ export default function TemporaryDrawer() {
           {lecture_list.map((lecture) => (
             <ListItem 
               key={Number(lecture['classId'])}
-              onClick={() => {navigate(`/classes/${lecture['classId']}`)}}
+              onClick={() => {navigate(`/classes/${lecture['classId']}`, {classId: lecture['classId']})}}
             >
               <ListItemButton>
                 <ListItemIcon>
