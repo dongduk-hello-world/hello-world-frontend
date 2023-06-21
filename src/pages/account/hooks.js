@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import axiosPromise from "../../services/axiosPromise";
 
-export const login = async (data) => {
-  const fail = await axiosPromise.post("/login", data, true);
+import sha256 from 'crypto-js/sha256';
+
+export const login = async ({ email, password }) => {
+  const fail = await axiosPromise.post("/login", { email, password: sha256(password) }, true);
   if (fail) {
     alert("로그인에 실패했습니다");
     return false;
@@ -10,10 +12,8 @@ export const login = async (data) => {
   return true;
 };
 
-export const signup = async (data) => {
-  console.log("signup ", data);
-  
-  const fail = await axiosPromise.post("/users", data, true);
+export const signup = async ({ email, password, name }) => {
+  const fail = await axiosPromise.post("/users", { email, password: sha256(password), name }, true);
   if (fail) {
     alert("회원가입에 실패했습니다.");
     return false;
