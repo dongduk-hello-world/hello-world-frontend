@@ -47,7 +47,8 @@ export default (props) => {
               password: form.password.value,
             };
 
-            setErrEmail(vaildateEmail(data.email));
+            const errEmail = vaildateEmail(data.email);
+            setErrEmail(errEmail);
             if (errEmail != "") return;
 
             const result = await login(data);
