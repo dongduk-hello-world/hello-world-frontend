@@ -4,10 +4,12 @@ import axiosPromise from "../../services/axiosPromise";
 import sha256 from 'crypto-js/sha256';
 
 export const login = async ({ email, password }) => {
-  const fail = await axiosPromise.post("/login", { email, password: sha256(password).toString() }, true);
-  if (fail) {
+  const userId = await axiosPromise.post("/login", { email, password: sha256(password).toString() }, false);
+  if (!userId) {
     alert("로그인에 실패했습니다");
     return false;
+  } else {
+    sessionStorage.setItem('userId', userId);
   }
   return true;
 };
