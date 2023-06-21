@@ -57,8 +57,11 @@ export default ({ open, onClose }) => {
               if (errEmail != "") return;
 
               _userId = await findUserByemail(email);
-              if (_userId != "") {
+              console.log(_userId);
+              if (_userId) {
                 sendMail(email);
+              } else {
+                alert("해당 이메일로 가입된 정보를 찾을 수 없습니다.");
               }
             }}
           >

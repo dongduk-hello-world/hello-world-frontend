@@ -5,7 +5,7 @@ import Login from "./pages/account/login";
 import Signup from "./pages/account/signup";
 
 import Assignment, { loader as assignmentLoader } from "./pages/assignment";
-import NewAssignment from "./pages/newAssignment";
+import NewAssignment, { loader as newAssignmentLoader } from "./pages/newAssignment";
 
 import ClassRoom from "./pages/ClassRoom";
 import Lecture from "./pages/Lecture";
@@ -41,8 +41,9 @@ export default createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/newAssignment",
+    path: "/newAssignment/:classId",
     element: <NewAssignment />,
+    loader: newAssignmentLoader,
     errorElement: <ErrorPage />,
   },
   {
