@@ -4,7 +4,7 @@ import axiosPromise from "../../services/axiosPromise";
 import sha256 from 'crypto-js/sha256';
 
 export const login = async ({ email, password }) => {
-  const fail = await axiosPromise.post("/login", { email, password: sha256(password) }, true);
+  const fail = await axiosPromise.post("/login", { email, password: sha256(password).toString() }, true);
   if (fail) {
     alert("로그인에 실패했습니다");
     return false;
@@ -13,7 +13,13 @@ export const login = async ({ email, password }) => {
 };
 
 export const signup = async ({ email, password, name }) => {
-  const fail = await axiosPromise.post("/users", { email, password: sha256(password), name }, true);
+  let type = "";
+  const id = email.split('@')[0];
+  if(id.length === 8 && !isNaN(Number(id))) type = "학생";
+  else type = "교수";
+
+
+  const fail = await axiosPromise.post("/users", { email, password: sha256(password).toString(), name, type }, true);
   if (fail) {
     alert("회원가입에 실패했습니다.");
     return false;
