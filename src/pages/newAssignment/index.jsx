@@ -14,6 +14,7 @@ import { loadClassData, submit } from "./hooks";
 
 
 export const loader = async ({ params }) => {
+    // if(!sessionStorage.getItem("userId")) return redirect("/account");
     const classId = params.classId;
     const data = await loadClassData(classId);
     return data;
