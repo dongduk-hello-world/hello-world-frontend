@@ -40,20 +40,30 @@ export default () => {
                         <div>
                             <span>응시 시작</span>
                             <DateTimePicker
-                                defaultValue={dayjs(formData.startTime)}
+                                defaultValue={dayjs(formData.start_time)}
                                 onChange={(value) => {
-                                    update("startTime", 
-                                        `${value.$y}-${value.$M}-${value.$D} ${value.$H}:${value.$m}`);
+                                    const M = value.$M < 10 ? "0"+value.$M : value.$M;
+                                    const D = value.$D < 10 ? "0"+value.$D : value.$D;
+                                    const H = value.$H < 10 ? "0"+value.$H : value.$H;
+                                    const m = value.$m < 10 ? "0"+value.$m : value.$m;
+
+                                    update("start_time", 
+                                        `${value.$y}-${M}-${D} ${H}:${m}`);
                                 }}
                             />
                         </div>
                         <div>
                             <span>응시 종료</span>
                             <DateTimePicker 
-                                 defaultValue={dayjs(formData.endTime)}
+                                 defaultValue={dayjs(formData.end_time)}
                                  onChange={(value) => {
-                                     update("endTime", 
-                                         `${value.$y}-${value.$M}-${value.$D} ${value.$H}:${value.$m}`);
+                                    const M = value.$M < 10 ? "0"+value.$M : value.$M;
+                                    const D = value.$D < 10 ? "0"+value.$D : value.$D;
+                                    const H = value.$H < 10 ? "0"+value.$H : value.$H;
+                                    const m = value.$m < 10 ? "0"+value.$m : value.$m;
+
+                                    update("end_time", 
+                                        `${value.$y}-${M}-${D} ${H}:${m}`);
                                  }}/>
                         </div>
                     </LocalizationProvider>
@@ -63,9 +73,12 @@ export default () => {
                     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale='en-gb'>
                         <TimePicker 
                             views={['hours', 'minutes']} 
-                            defaultValue={dayjs(`0000-00-00 ${formData.testTime}`)}
+                            defaultValue={dayjs(`0000-00-00 ${formData.test_time}`)}
                             onChange={(value) => {
-                                update("testTime", `${value.$H}:${value.$m}`);
+                                const H = value.$H < 10 ? "0"+value.$H : value.$H;
+                                const m = value.$m < 10 ? "0"+value.$m : value.$m;
+
+                                update("test_time", `${H}:${m}`);
                             }}
                         />
                     </LocalizationProvider>
