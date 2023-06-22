@@ -19,13 +19,6 @@ import Sidebar from '../../homeUI'
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-export const loader = async ({ params }) => {
-  // if(!sessionStorage.getItem("userId")) return redirect("/account");
-  const userId = params.userId;
-  // const data = await loadAssignment(assignmentId);
-  return userId;
-};
-
 export default function ResultStudent() {
   const { user, assignment, result } = useLoaderData();
 
