@@ -38,7 +38,8 @@ export default function ClassRoom() {
 ///////////////////////////////////////
   useEffect(() => {
 
-    const classId = location.classId['classId'];
+    const classId = Number(location.pathname.split('/')[2]);
+    // console.log(location.pathname.split('/')[2]);
 
     const result = getClassInfo(classId);
 
