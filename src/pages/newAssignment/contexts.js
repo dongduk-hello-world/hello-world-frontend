@@ -4,14 +4,14 @@ import dayjs from 'dayjs';
 
 import { setFormat } from "./hooks";
 
-export const ContextProvider = ({ children, formData }) => {
+export const ContextProvider = ({ children, formData, classId }) => {
     let [data, setData] = formData;
 
     if(Object.keys(data).length === 0) {
         const curDay = dayjs();
         console.log(curDay.toString(), curDay);
         data = {
-            classId: 1, // (임시)
+            classId: classId,
             name: "테스트 이름",
             start_time: setFormat(curDay),
             end_time:setFormat(curDay.add(1, 'hour')),

@@ -27,7 +27,7 @@ export default () => {
     const [testIdx, setTestIdx] = useState(0);
 
     return (
-        <ContextProvider formData={[formData, setFormData]}>
+        <ContextProvider classId={classId} formData={[formData, setFormData]}>
             <form>
                 <AppBar className={styles.header}>
                     <Toolbar position="fixed">
