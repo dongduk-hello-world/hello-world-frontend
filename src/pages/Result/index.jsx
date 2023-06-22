@@ -15,7 +15,7 @@ export const loader = async ({ params }) => {
 
         data.user = user;
         data.assignment = await getAssignmentInfo(assignmentId);
-        data.result = await getResult(assignmentId, user.userId);
+        data.result = await getResult(assignmentId, user.user_id);
 
         console.log(data);
         return data;
@@ -32,7 +32,7 @@ export const loader = async ({ params }) => {
 
         if(studentList.length > 0) {
             for(let i = 0; i < studentList.length; i++) {
-                const result = await getResult(assignmentId, studentList[i].userId);
+                const result = await getResult(assignmentId, studentList[i].user_id);
                 if(result) data.results.push(result);
             }
         } else {
@@ -43,6 +43,7 @@ export const loader = async ({ params }) => {
                 });
             }
         }
+        console.log(data);
         return data;
     }
 
