@@ -28,5 +28,5 @@ export const setFormat = (value) => {
     const m = value.$m < 10 ? "0"+(value.$m).toString() : value.$m;
     const s = value.$s < 10 ? "0"+(value.$s).toString() : value.$s;
 
-    return `${value.$y}/${M}/${D} ${H}:${m}:${s}`;
+    return `${value.$y}/${M}/${D}T${H}:${m}:${s}`;
 }
