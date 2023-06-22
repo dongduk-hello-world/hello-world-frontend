@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useStyles } from "./styles";
 import styles from "./style.module.css";
 import { useNavigate } from "react-router-dom";
+import $ from 'jquery';
 
 import * as React from 'react';
 import Box from '@mui/material/Box';
@@ -20,6 +21,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 import LectureForm from "./Form";
+import { filter } from "lodash";
 
 const bull = (
   <Box
@@ -71,6 +73,32 @@ const Search = () => {
 
 //교수, 기간, 언어
 const Filter = () => {
+
+  const [professorValue, setProfessorValue] = useState('');
+  const [semesterValue, setSemesterValue] = useState('');
+  const [languageValue, setLanguageValue] = useState('');
+
+  function filter() {
+    console.log("Dafs");
+    console.log(professorValue)
+    console.log(semesterValue)
+    console.log(languageValue)
+  }
+
+  function filterProfessor(e) {
+    setProfessorValue(e.target.value);
+    console.log(professorValue)
+    filter();
+  }
+  function filterSemester(e) {
+    setSemesterValue(e.target.value);
+    filter();
+  }
+  function filterLanguage(e) {
+    setLanguageValue(e.target.value);
+    filter();
+  }
+
   return (
     <Grid 
       container 
@@ -80,43 +108,53 @@ const Filter = () => {
     >
         <Box sx={{ maxWidth: 150, minWidth: 100 }}>
           <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">교수</InputLabel>
+            <InputLabel id="professor-select-label">교수</InputLabel>
             <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              label="Age"
+              labelId="professor-select-label"
+              id="professor-select"
+              value={professorValue}
+              onChange={filterProfessor}
             >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+              <MenuItem value={''}>None</MenuItem>
+              <MenuItem value={'박수희'} onClick={() => filterProfessor}>박수희</MenuItem>
+              <MenuItem value={'박창섭'}>박창섭</MenuItem>
+              <MenuItem value={'한혁'}>한혁</MenuItem>
+            </Select>
+            {/* <select onChange={filterProfessor}>
+              <option value='박수희'></option>
+              <option value='박창섭'></option>
+              <option value='한혁'></option>
+            </select> */}
+          </FormControl>
+        </Box>
+        <Box sx={{ maxWidth: 150, minWidth: 100 }}>
+          <FormControl fullWidth>
+            <InputLabel id="semester-select-label">학기</InputLabel>
+            <Select
+              labelId="semester-select-label"
+              id="semester-select"
+              value={semesterValue}
+              // onChange={filterSemester}
+            >
+              <MenuItem value={''}>None</MenuItem>
+              <MenuItem value={'1'}>1학기</MenuItem>
+              <MenuItem value={'2'}>2학기</MenuItem>
             </Select>
           </FormControl>
         </Box>
         <Box sx={{ maxWidth: 150, minWidth: 100 }}>
           <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">학기</InputLabel>
+            <InputLabel id="language-select-label">언어</InputLabel>
             <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              label="Age"
+              labelId="language-select-label"
+              id="language-select"
+              value={languageValue}
+              // onChange={filterLanguage}
             >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
-            </Select>
-          </FormControl>
-        </Box>
-        <Box sx={{ maxWidth: 150, minWidth: 100 }}>
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">언어</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              label="Age"
-            >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+              <MenuItem value={''}>None</MenuItem>
+              <MenuItem value={'C'}>C</MenuItem>
+              <MenuItem value={'Java'}>Java</MenuItem>
+              <MenuItem value={'Python'}>Python</MenuItem>
             </Select>
           </FormControl>
         </Box>
@@ -165,11 +203,13 @@ export default function TemporaryDrawer() {
   const navigate = useNavigate();
 
   const [isMain, setMain] = useState(true);
+
+  const type = "교수"
   
   function newLectrue() {
     console.log("click!");
     setMain(false);
-    navigate('/classes/add-class')
+    navigate('/classes/add-class', {state: {type: {type}}})
   } 
 
   // new Lecture Button

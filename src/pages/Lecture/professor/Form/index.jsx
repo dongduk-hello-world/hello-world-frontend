@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 
 import Container from '@mui/material/Container';
 import InputLabel from '@mui/material/InputLabel';
@@ -16,6 +18,9 @@ import LanguageSelect from "./languageSelect.jsx";
 
 export default function CreateClassForm() {
 
+    const navigate = useNavigate();
+    const location = useLocation();
+
     const [year, setYear] = useState('');
     const [semester, setSemester] = useState('');
     const [divide, setDivide] = useState('');
@@ -30,8 +35,13 @@ export default function CreateClassForm() {
         setDivide(event.target.value);
     }
 
-    function formSubmit() {
-        console.log("ddd");
+    const type = location.state.type['type'];
+    function moveToBack() {
+        console.log('back');
+        if (type == '교수')
+            navigate('/professor')
+        if (type == '학생')
+            navigate('/student')
     }
 
     return ( 
@@ -121,7 +131,7 @@ export default function CreateClassForm() {
                 </Box>
                 <Stack spacing={2} direction="row">
                     <Button variant="contained" type="submit">제출</Button>
-                    <Button variant="outlined">취소</Button>
+                    <Button variant="outlined" onClick={moveToBack}>취소</Button>
                 </Stack>
             </form>
         </Container>

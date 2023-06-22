@@ -1,20 +1,17 @@
 import { useState, useEffect, useRef } from "react";
 import axiosPromise from "../../services/axiosPromise";
 
-export const getClassInfo = async () => {
-  const classId = 1
+export const getClassInfo = async (classId) => {
   const result = await axiosPromise.get(`/classes/${classId}`);
   return result;
 }
 
-export const getStudents = async () => {
-  const classId = 1
+export const getStudents = async (classId) => {
   const result = await axiosPromise.get(`/classes/${classId}/students`);
   return result;
 }
 
-export const getAssignments = async () => {
-  const classId = 1;
+export const getAssignments = async (classId) => {
   const result = await axiosPromise.get(`/classes/${classId}/assignments`);
   return result;
 }
