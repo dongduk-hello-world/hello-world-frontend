@@ -16,6 +16,7 @@ export default () => {
       autoplay: true,
       path: "https://assets10.lottiefiles.com/packages/lf20_xafe7wbh.json",
     });
+    sessionStorage.clear();
   });
 
   return (

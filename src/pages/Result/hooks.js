@@ -1,14 +1,4 @@
-import { useState, useEffect, useRef } from "react";
 import axiosPromise from "../../services/axiosPromise";
-
-export const getLoginedUser = async () => {
-  const userId = sessionStorage.getItem('userId');
-  const result = await axiosPromise.get(`/users/${userId}`, {
-    userId: userId,
-    type: "학생"
-  });
-  return result;
-}
 
 export const getSubjectList = async () => {
   const userId = 1
@@ -19,6 +9,12 @@ export const getSubjectList = async () => {
   //   nameList.push(result[i]['className']);
   // }
   // console.log(nameList);
+  return result;
+}
+
+export const getLoginedUser = async () => {
+  const userId = sessionStorage.getItem('userId');
+  const result = await axiosPromise.get(`/users/${userId}`, { userId: 10, type: "학생" });
   return result;
 }
 
