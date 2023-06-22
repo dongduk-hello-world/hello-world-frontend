@@ -39,15 +39,20 @@ export default ({ testIdx }) => {
         <div className={styles.view}>
             <div className={highStyles.highScore}>
                 <span>성적은 제출된 결과들 중에서 최고점으로 반영됩니다.</span>
-                <label>현재 최고 점수: {highScore.score}</label>
-                <Link onClick={() => {
-                    codeModal[rows.length] = true;
-                    setCodeModal([...codeModal]);
-                }}>코드 보기</Link>
-                <CodeModal 
-                    open={codeModal[rows.length]} 
-                    onClose={() => setCodeModal([...new Array(rows.length+1).fill(false)])}
-                    highScore={highScore.code} />
+                {
+                    highScore.score > 0 && (
+                    <>
+                        <label>현재 최고 점수: {highScore.score}</label>
+                        <Link onClick={() => {
+                            codeModal[rows.length] = true;
+                            setCodeModal([...codeModal]);
+                        }}>코드 보기</Link>
+                        <CodeModal 
+                            open={codeModal[rows.length]} 
+                            onClose={() => setCodeModal([...new Array(rows.length+1).fill(false)])}
+                            highScore={highScore.code} />
+                    </>)
+                }
             </div>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 500 }} aria-label="simple table">
