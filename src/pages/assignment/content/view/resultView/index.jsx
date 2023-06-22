@@ -21,7 +21,7 @@ import CodeModal from "./codeModal";
 
 export default ({ testIdx }) => {
     const { tests } = useLoaderData();
-    const [highScore, setHighScore] = useState({});
+    const [highScore, setHighScore] = useState(null);
     const [rows, setRows] = useState([]);
     const [codeModal, setCodeModal] = useState([]);
 
@@ -29,21 +29,25 @@ export default ({ testIdx }) => {
         const testId = tests[testIdx].testId;
         const result = await getResult(testId);
         setHighScore(result.highScore);
+        console.log(result.highScore.score);
         setRows(result.submits);
-        setCodeModal([...new Array(rows.length+1).fill(false)]);
     };
-
-    useEffect(() => refresh, [testIdx]);
+    useEffect(() => { refresh() });
+    useEffect(() => { 
+        refresh();
+        setCodeModal([...new Array(rows.length+1).fill(false)]);
+    }, [testIdx]);
 
     return (
         <div className={styles.view}>
             <div className={highStyles.highScore}>
                 <span>성적은 제출된 결과들 중에서 최고점으로 반영됩니다.</span>
                 {
-                    highScore.score > 0 && (
+                    highScore && (
                     <>
                         <label>현재 최고 점수: {highScore.score}</label>
                         <Link onClick={() => {
+                            console.log(highScore.score);
                             codeModal[rows.length] = true;
                             setCodeModal([...codeModal]);
                         }}>코드 보기</Link>

@@ -51,6 +51,8 @@ printf("Hello World");
 
     let data = await axiosPromise.get(`/tests/${testId}/submits`, defaultData);
 
+    console.log(data);
+    console.log(data.highScore.score);
     return data;
 };
 
@@ -66,7 +68,7 @@ int main(void) {
 }`,
             error: `print()가 아니라 printf()지롱~` 
         });
-    
+
     return data;
 }
 
