@@ -10,6 +10,7 @@ export const login = async ({ email, password }) => {
     return false;
   } else {
     sessionStorage.setItem('userId', userId);
+    console.log(sessionStorage.getItem('userId'));
   }
   return true;
 };
