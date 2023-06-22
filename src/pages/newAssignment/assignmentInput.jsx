@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
-import { TextField } from '@mui/material';
-
+import { IconButton, TextField } from '@mui/material';
+import { HourglassFull } from '@mui/icons-material';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
 import 'dayjs/locale/en-gb';
@@ -41,6 +41,7 @@ export default () => {
                             <span>응시 시작</span>
                             <DateTimePicker
                                 defaultValue={dayjs(formData.start_time)}
+                                minDateTime={dayjs().subtract(1, "minute")}
                                 onChange={(value) => {
                                     const M = value.$M+1 < 10 ? "0"+(value.$M+1) : value.$M+1;
                                     const D = value.$D < 10 ? "0"+value.$D : value.$D;
@@ -56,6 +57,7 @@ export default () => {
                             <span>응시 종료</span>
                             <DateTimePicker 
                                  defaultValue={dayjs(formData.end_time)}
+                                 minDateTime={dayjs(formData.start_time)}
                                  onChange={(value) => {
                                     const M = value.$M+1 < 10 ? "0"+value.$M : value.$M+1;
                                     const D = value.$D < 10 ? "0"+value.$D : value.$D;
@@ -69,7 +71,7 @@ export default () => {
                     </LocalizationProvider>
                 </div>
                 <div>
-                    <label>응시 시간</label>
+                    <label>응시 시간 </label>
                     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale='en-gb'>
                         <TimePicker 
                             views={['hours', 'minutes']} 
@@ -81,6 +83,7 @@ export default () => {
                                 update("test_time", `${H}:${m}`);
                             }}
                         />
+                        
                     </LocalizationProvider>
                 </div>
                 <div>
