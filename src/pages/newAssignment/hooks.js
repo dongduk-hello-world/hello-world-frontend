@@ -17,5 +17,6 @@ export const submit = (data) => {
         alert("응시 시작은 응시 종료보다 빨라야 합니다. \n응시 가능 시간을 다시 확인해주세요.");
         return;
     }
+    console.log(data);
     axiosPromise.post('/assignments', data);
 };

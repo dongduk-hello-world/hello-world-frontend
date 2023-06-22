@@ -36,7 +36,7 @@ export default () => {
                         onClick={() => {
                             if(window.confirm("시험을 생성합니다.")) {
                                 submit(formData);
-                                navigate(`/classes/${classId}`, {replace: true});
+                                // navigate(`/classes/${classId}`, {replace: true});
                             }
                         }}>
                         시험 생성
