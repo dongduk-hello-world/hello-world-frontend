@@ -8,6 +8,7 @@ export const loadClassData = async (classId) => {
             className: "알고리즘"
         }
     }
+    console.log(classData);
     return classData;
 };
 

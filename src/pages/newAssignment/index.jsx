@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { AppBar, Toolbar, Button } from "@mui/material";
 
 import Nav from "./nav";
@@ -21,7 +21,8 @@ export const loader = async ({ params }) => {
 };
 
 export default () => {
-    const { className } = useLoaderData(); 
+    const navigate = useNavigate();
+    const { classId, className } = useLoaderData(); 
     const [formData, setFormData] = useState({});
     const [testIdx, setTestIdx] = useState(0);
 
@@ -33,7 +34,10 @@ export default () => {
                     <div>{className}: {formData.name}</div>
                     <Button color="secondary" variant="contained" 
                         onClick={() => {
-                            if(window.confirm("시험을 생성합니다.")) submit(formData);
+                            if(window.confirm("시험을 생성합니다.")) {
+                                submit(formData);
+                                navigate(`/classes/${classId}`, {replace: true});
+                            }
                         }}>
                         시험 생성
                     </Button>
