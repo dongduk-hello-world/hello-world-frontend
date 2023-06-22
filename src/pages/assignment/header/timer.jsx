@@ -11,7 +11,7 @@ var duration = require('dayjs/plugin/duration')
 dayjs.extend(duration)
 
 export default () => {
-  const { endTime } = useLoaderData();
+  const { testEndTime } = useLoaderData();
   const [ interval, settedInterval ] = useState(false);
   const [ timer, setTimer ] = useState("--:--:--");
 
@@ -21,7 +21,7 @@ export default () => {
 
       const id = setInterval(() => {
         const cur = dayjs();
-        const duration = dayjs.duration(endTime.diff(cur));
+        const duration = dayjs.duration(testEndTime.diff(cur));
 
         let hours = duration.$d.days*24 + duration.$d.hours;
         if(hours < 10) hours = "0" + hours;

@@ -41,17 +41,17 @@ export default () => {
                         <div>
                             <span>응시 시작</span>
                             <DateTimePicker
-                                defaultValue={dayjs(formData.start_time)}
+                                defaultValue={dayjs(formData.startTime)}
                                 minDateTime={dayjs().subtract(1, "minute")}
-                                onChange={(value) => update("start_time",  setFormat(value))}
+                                onChange={(value) => update("startTime",  setFormat(value))}
                             />
                         </div>
                         <div>
                             <span>응시 종료</span>
                             <DateTimePicker 
-                                 defaultValue={dayjs(formData.end_time)}
-                                 minDateTime={dayjs(formData.start_time)}
-                                 onChange={(value) => update("end_time", setFormat(value))}/>
+                                 defaultValue={dayjs(formData.endTime)}
+                                 minDateTime={dayjs(formData.startTime)}
+                                 onChange={(value) => update("endTime", setFormat(value))}/>
                         </div>
                     </LocalizationProvider>
                 </div>
@@ -60,12 +60,12 @@ export default () => {
                     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale='en-gb'>
                         <TimePicker 
                             views={['hours', 'minutes']} 
-                            defaultValue={dayjs(`0000-00-00 ${formData.test_time}`)}
+                            defaultValue={dayjs(`0000-00-00 ${formData.testTime}`)}
                             onChange={(value) => {
                                 const H = value.$H < 10 ? "0"+value.$H : value.$H;
                                 const m = value.$m < 10 ? "0"+value.$m : value.$m;
 
-                                update("test_time", `${H}:${m}`);
+                                update("testTime", `${H}:${m}`);
                             }}
                         />
                     </LocalizationProvider>

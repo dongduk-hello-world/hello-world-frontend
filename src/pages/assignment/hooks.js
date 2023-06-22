@@ -8,10 +8,10 @@ export const loadAssignment = async ( assignmentId ) => {
     let data = assignment;
 
     // endTime 구하기
-    const testTime = data.test_time.split(":").map(Number);
+    const testTime = data.testTime.split(":").map(Number);
     const endTime1 = curDay.add(testTime[0], "hour").add(testTime[1], "minute");
-    const endTime2 = dayjs(data.end_time);
-    data.endTime = endTime1.isBefore(dayjs(endTime2)) ? endTime1 : endTime2;
+    const endTime2 = dayjs(data.endTime);
+    data.testEndTime = endTime1.isBefore(dayjs(endTime2)) ? endTime1 : endTime2;
 
     data.lecture = await axiosPromise.get(`/classes/${data.classId}`);
 

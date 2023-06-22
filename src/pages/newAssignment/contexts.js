@@ -13,9 +13,9 @@ export const ContextProvider = ({ children, formData, classId }) => {
         data = {
             classId: classId,
             name: "테스트 이름",
-            start_time: setFormat(curDay),
-            end_time:setFormat(curDay.add(1, 'hour')),
-            test_time: "01:00",
+            startTime: setFormat(curDay),
+            endTime:setFormat(curDay.add(1, 'hour')),
+            testTime: "01:00",
             tests: [{
                 name: `문제 1`,
                 description: "# 문제 1",
