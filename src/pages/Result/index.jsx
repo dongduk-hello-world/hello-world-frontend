@@ -27,10 +27,10 @@ export const loader = async ({ params }) => {
         data.assignment = await getAssignmentInfo(assignmentId);
         
         const studentList = await getStudents(data.assignment.classId);
-        data.result = [];
+        data.results = [];
         for(let i = 0; i < studentList.length; i++) {
             const result = await getResult(assignmentId, studentList[i].userId);
-            if(result) data.result.push(result);
+            if(result) data.results.push(result);
         }
         
         return data;

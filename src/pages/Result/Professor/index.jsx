@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { useLoaderData } from "react-router-dom";
+
 import styles from "./style.module.css";
 
 import Typography from '@mui/material/Typography';
@@ -35,6 +37,7 @@ const TopBox = () => {
 
 //작업중
 export default function ResultProfessor() {
+  const { user, assignment, results } = useLoaderData(); // 요거 갖다가 화면에 뿌리면 됌
 
   const Sidebar = () => {
 
