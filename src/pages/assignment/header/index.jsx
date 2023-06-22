@@ -7,12 +7,12 @@ import styles from "./style.module.scss";
 import { AppBar, Toolbar, Button } from "@mui/material";
 
 export default () => {
-  const { name, classData } = useLoaderData();
+  const { name, lecture } = useLoaderData();
 
   return (
     <AppBar className={styles.header}>
       <Toolbar position="fixed">
-        <div>{classData.className}: {name}</div>
+        <div>{lecture.name}: {name}</div>
         <div>
           <Timer />
           <Button color="secondary" variant="contained">
