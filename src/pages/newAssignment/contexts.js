@@ -7,11 +7,12 @@ export const ContextProvider = ({ children, formData }) => {
 
     if(Object.keys(data).length === 0) {
         const curDay = dayjs();
+        console.log(curDay.toString(), curDay);
         data = {
             classId: 1, // (임시)
             name: "테스트 이름",
-            start_time: `${curDay.$y}-${curDay.$M}-${curDay.$D} ${curDay.$H}:${curDay.$m}`,
-            end_time: `${curDay.$y}-${curDay.$M}-${curDay.$D} ${curDay.$H+1}:${curDay.$m}`,
+            start_time: `${curDay.$y}-${curDay.$M+1}-${curDay.$D} ${curDay.$H}:${curDay.$m}`,
+            end_time: `${curDay.$y}-${curDay.$M+1}-${curDay.$D} ${curDay.$H+1}:${curDay.$m}`,
             test_time: "01:00",
             tests: [{
                 name: `문제 1`,

@@ -12,13 +12,13 @@ import Lecture from "./pages/Lecture";
 import ProfessorLecture from "./pages/Lecture/professor";
 import StudentLecture from "./pages/Lecture/student";
 import NewLecture from "./pages/Lecture/professor/Form";
-// import Result from "./pages/Result";
-import StudentResult from "./pages/Result/Student";
-import ProfessorResult from "./pages/Result/Professor";
+import Result, { loader as resultLoader } from "./pages/Result";
+// import StudentResult, { loader as studentResultLoader } from "./pages/Result/Student";
+// import ProfessorResult from "./pages/Result/Professor";
 
 import ErrorPage from "./error-page";
 
-const checkLogin = () => {
+const checkLogin = () => { 
   // if(!sessionStorage.getItem("userId")) return redirect("/account");
   return null;
 }
@@ -82,15 +82,9 @@ export default createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: 'result/:userId/professor',
-    element: <ProfessorResult />,
-    loader: checkLogin,
-    errorElement: <ErrorPage />
-  },
-  {
-    path: 'result/:userId/student',
-    element: <StudentResult />,
-    loader: checkLogin,
+    path: 'result/:assignmentId',
+    element: <Result />,
+    loader: resultLoader,
     errorElement: <ErrorPage />
   },
   // {

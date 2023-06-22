@@ -8,35 +8,27 @@ export const loadAssignment = async ( assignmentId ) => {
         {
             assignment: {
                 assignmentId: assignmentId,
-                classId: 1,
+                lectureId: 1,
                 name: "중간고사",
-                "start-time": `${curDay.$y}-${curDay.$M}-${curDay.$D} ${curDay.$H}:${curDay.$m}`,
-                "end-time": `${curDay.$y}-${curDay.$M}-${curDay.$D} ${curDay.$H+1}:${curDay.$m}`,
-                "test-time": "00:01",
+                start_time: `${curDay.$y}-${curDay.$M}-${curDay.$D} ${curDay.$H}:${curDay.$m}`,
+                end_time: `${curDay.$y}-${curDay.$M}-${curDay.$D} ${curDay.$H+1}:${curDay.$m}`,
+                test_time: "00:01",
             }
         });
     let data = assignment;
 
     // endTime 구하기
-    const testTime = data["test-time"].split(":").map(Number);
+    const testTime = data.test_time.split(":").map(Number);
     const endTime1 = curDay.add(testTime[0], "hour").add(testTime[1], "minute");
-    const endTime2 = dayjs(data["end-time"]);
+    const endTime2 = dayjs(data.end_time);
     data.endTime = endTime1.isAfter(dayjs(endTime2)) ? endTime1 : endTime2;
 
-    let { tests } = await axiosPromise.get(`/assignments/${assignmentId}/tests`, 
-        { tests: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] });
+    let { tests } = await axiosPromise.get(`/assignments/${assignmentId}/tests`,
+        { tests: [{ testId: 1, name: `문제 1`, description: `# 문제 1` }, { testId: 2, name: `문제 2`, description: `# 문제 2` } ] });
 
-    data.tests = [];
-    for(let i = 0; i < tests.length; i++) {
-        let test = await axiosPromise.get(`/tests/${tests[i]}`, { testId: tests[i], name: `문제 ${i+1}`, description: `# 문제 ${i+1}` });
-        data.tests.push(test);
-    }
-
-    let classData = await axiosPromise.get(`/classes/${data.classId}`, { className: "알고리즘" });
-    data.classData = classData;
+    data.tests = tests;
 
     console.log(data);
-
     return data;
 };
 

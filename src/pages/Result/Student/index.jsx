@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { useLoaderData } from "react-router-dom";
+
 import styles from "./style.module.css";
 import $ from 'jquery';
 
@@ -12,41 +14,22 @@ import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 
-import { getResult } from "../hooks";
 import Sidebar from '../../homeUI'
 
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 export default function ResultStudent() {
+  const { user, assignment, result } = useLoaderData();
 
-  const testName = '중간고사'
-  const [score, setScore] = useState(0);
-  const [totalScore, setTotalScore] = useState(0);
-  const [scoreList, setScoreList] = useState([]);
-
-//////////////////////////////
-useEffect(() => {
-  const result = getResult();
-
-  const getData = () => {
-    result.then((result) => {
-      setScore(result[1]['score']);
-      setTotalScore(result[0]['totalScore']);
-      setScoreList(result[2]['tests']);
-      console.log(scoreList);
-    });
-  };
-  getData()
-},[]);
-//////////////////////////////
+  const { score, totalScore, tests } = result;
 
   const TopBox = () => {
     return (
       <Grid container>
         <Grid xs={1} />
         <Grid sx={11}>
-          <Typography variant="h4" gutterBottom>{testName} 결과</Typography>
+          <Typography variant="h4" gutterBottom>{assignment.name} 결과</Typography>
         </Grid>
       </Grid>
     );
@@ -64,9 +47,7 @@ useEffect(() => {
     );
   }
 
-  const Item = (props) => {
-    const score = props.score;
-
+  const Item = ({ test }) => {
     return (
       <Grid container>
         <Grid xs={1}>
@@ -76,12 +57,12 @@ useEffect(() => {
         </Grid>
         <Grid xs={8}>
           <span>
-            {score[0]}
+            {test.name}
           </span>
         </Grid>
         <Grid sx={3}>
           <span>
-            {score[2]} / {score[1]}
+            {test.score} / {test.maxScore}
           </span>
         </Grid>
       </Grid>
@@ -91,8 +72,8 @@ useEffect(() => {
   const ItemList = () => {
     return (
       <ul class='ul'>
-        {scoreList.map((score) => (
-          <li className={styles.listItem}><Item score={score}/></li>
+        {tests.map((test) => (
+          <li className={styles.listItem}><Item test={test}/></li>
         ))}
       </ul>
     );
