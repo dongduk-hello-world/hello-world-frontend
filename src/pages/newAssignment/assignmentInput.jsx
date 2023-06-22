@@ -42,7 +42,7 @@ export default () => {
                             <DateTimePicker
                                 defaultValue={dayjs(formData.start_time)}
                                 onChange={(value) => {
-                                    const M = value.$M < 10 ? "0"+value.$M : value.$M;
+                                    const M = value.$M+1 < 10 ? "0"+(value.$M+1) : value.$M+1;
                                     const D = value.$D < 10 ? "0"+value.$D : value.$D;
                                     const H = value.$H < 10 ? "0"+value.$H : value.$H;
                                     const m = value.$m < 10 ? "0"+value.$m : value.$m;
@@ -57,7 +57,7 @@ export default () => {
                             <DateTimePicker 
                                  defaultValue={dayjs(formData.end_time)}
                                  onChange={(value) => {
-                                    const M = value.$M < 10 ? "0"+value.$M : value.$M;
+                                    const M = value.$M+1 < 10 ? "0"+value.$M : value.$M+1;
                                     const D = value.$D < 10 ? "0"+value.$D : value.$D;
                                     const H = value.$H < 10 ? "0"+value.$H : value.$H;
                                     const m = value.$m < 10 ? "0"+value.$m : value.$m;
