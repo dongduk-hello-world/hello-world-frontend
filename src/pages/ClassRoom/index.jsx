@@ -52,7 +52,7 @@ export default function ClassRoom() {
   },[]);
 
   useEffect(() => {
-    const result = getStudents(classId);
+    const result = getStudents(1);
 
     const getData = () => {
       result.then((list) => {
@@ -66,7 +66,7 @@ export default function ClassRoom() {
   },[]);
 
   useEffect(() => {
-    const result = getAssignments(classId);
+    const result = getAssignments(1);
 
     const getData = () => {
       result.then((list) => {

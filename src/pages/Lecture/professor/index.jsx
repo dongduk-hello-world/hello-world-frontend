@@ -120,11 +120,6 @@ const Filter = () => {
               <MenuItem value={'박창섭'}>박창섭</MenuItem>
               <MenuItem value={'한혁'}>한혁</MenuItem>
             </Select>
-            {/* <select onChange={filterProfessor}>
-              <option value='박수희'></option>
-              <option value='박창섭'></option>
-              <option value='한혁'></option>
-            </select> */}
           </FormControl>
         </Box>
         <Box sx={{ maxWidth: 150, minWidth: 100 }}>
