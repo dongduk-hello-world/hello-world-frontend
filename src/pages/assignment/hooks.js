@@ -78,3 +78,8 @@ int main(void) {
     
     return data;
 }
+
+export const close = async (assignmentId) => {
+    const userId = sessionStorage.getItem('userId');
+    await axiosPromise.post(`/assignments/${assignmentId}/results/${userId}`);
+}
