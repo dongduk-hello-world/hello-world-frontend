@@ -52,30 +52,30 @@ export default function ClassRoom() {
   },[]);
 
   useEffect(() => {
-    const result = getStudents(classId);
+    // const result = getStudents(classId);
 
-    const getData = () => {
-      result.then((list) => {
-        for (let i = 0; i < list.length; i++) {
-          studentList[i] = list[i];
-        }
-        setStudentNum(list.length);
-      });
-    };
-    getData()
+    // const getData = () => {
+    //   result.then((list) => {
+    //     for (let i = 0; i < list.length; i++) {
+    //       studentList[i] = list[i];
+    //     }
+    //     setStudentNum(list.length);
+    //   });
+    // };
+    // getData()
   },[]);
 
   useEffect(() => {
-    const result = getAssignments(classId);
+    // const result = getAssignments(classId);
 
-    const getData = () => {
-      result.then((list) => {
-        for (let i = 0; i < list.length; i++) {
-          assignmentList[i] = list[i];
-        }
-      });
-    };
-    getData()
+    // const getData = () => {
+    //   result.then((list) => {
+    //     for (let i = 0; i < list.length; i++) {
+    //       assignmentList[i] = list[i];
+    //     }
+    //   });
+    // };
+    // getData()
   },[]);
 ///////////////////////////////////////
 
