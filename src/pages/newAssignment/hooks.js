@@ -20,3 +20,13 @@ export const submit = (data) => {
     console.log(data);
     axiosPromise.post('/assignments', data);
 };
+
+export const setFormat = (value) => {
+    const M = value.$M+1 < 10 ? "0"+(value.$M+1).toString() : value.$M+1;
+    const D = value.$D < 10 ? "0"+(value.$D).toString() : value.$D;
+    const H = value.$H < 10 ? "0"+(value.$H).toString() : value.$H;
+    const m = value.$m < 10 ? "0"+(value.$m).toString() : value.$m;
+    const s = value.$s < 10 ? "0"+(value.$s).toString() : value.$s;
+
+    return `${value.$y}/${M}/${D} ${H}:${m}:${s}`;
+}

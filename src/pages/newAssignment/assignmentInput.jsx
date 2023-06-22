@@ -13,6 +13,7 @@ import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import styles from "./style.module.scss";
 
 import { FormDataContext } from "./contexts";
+import { setFormat } from "./hooks";
 
 export default () => {
     const [formData, setFormData] = useContext(FormDataContext);
@@ -42,16 +43,7 @@ export default () => {
                             <DateTimePicker
                                 defaultValue={dayjs(formData.start_time)}
                                 minDateTime={dayjs().subtract(1, "minute")}
-                                onChange={(value) => {
-                                    const M = value.$M+1 < 10 ? "0"+(value.$M+1).toString() : value.$M+1;
-                                    const D = value.$D < 10 ? "0"+(value.$D).toString() : value.$D;
-                                    const H = value.$H < 10 ? "0"+(value.$H).toString() : value.$H;
-                                    const m = value.$m < 10 ? "0"+(value.$m).toString() : value.$m;
-                                    const s = value.$s < 10 ? "0"+(value.$s).toString() : value.$s;
-
-                                    update("start_time", 
-                                        `${value.$y}-${M}-${D} ${H}:${m}:${s}`);
-                                }}
+                                onChange={(value) => update("start_time",  setFormat(value))}
                             />
                         </div>
                         <div>
@@ -59,16 +51,7 @@ export default () => {
                             <DateTimePicker 
                                  defaultValue={dayjs(formData.end_time)}
                                  minDateTime={dayjs(formData.start_time)}
-                                 onChange={(value) => {
-                                    const M = value.$M+1 < 10 ? "0"+(value.$M+1).toString() : value.$M+1;
-                                    const D = value.$D < 10 ? "0"+(value.$D).toString() : value.$D;
-                                    const H = value.$H < 10 ? "0"+(value.$H).toString() : value.$H;
-                                    const m = value.$m < 10 ? "0"+(value.$m).toString() : value.$m;
-                                    const s = value.$s < 10 ? "0"+(value.$s).toString() : value.$s;
-
-                                    update("end_time", 
-                                        `${value.$y}-${M}-${D} ${H}:${m}:${s}`);
-                                 }}/>
+                                 onChange={(value) => update("end_time", setFormat(value))}/>
                         </div>
                     </LocalizationProvider>
                 </div>
