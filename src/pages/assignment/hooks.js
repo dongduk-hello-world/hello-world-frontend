@@ -4,17 +4,7 @@ import dayjs from 'dayjs';
 
 export const loadAssignment = async ( assignmentId ) => {
     const curDay = dayjs();
-    let { assignment } = await axiosPromise.get(`/assignments/${assignmentId}`, 
-        {
-            assignment: {
-                assignmentId: assignmentId,
-                lectureId: 1,
-                name: "중간고사",
-                start_time: `${curDay.$y}-${curDay.$M}-${curDay.$D} ${curDay.$H}:${curDay.$m}`,
-                end_time: `${curDay.$y}-${curDay.$M}-${curDay.$D} ${curDay.$H+1}:${curDay.$m}`,
-                test_time: "00:01",
-            }
-        });
+    let { assignment } = await axiosPromise.get(`/assignments/${assignmentId}`);
     let data = assignment;
 
     // endTime 구하기
@@ -23,8 +13,9 @@ export const loadAssignment = async ( assignmentId ) => {
     const endTime2 = dayjs(data.end_time);
     data.endTime = endTime1.isAfter(dayjs(endTime2)) ? endTime1 : endTime2;
 
-    let { tests } = await axiosPromise.get(`/assignments/${assignmentId}/tests`,
-        { tests: [{ testId: 1, name: `문제 1`, description: `# 문제 1` }, { testId: 2, name: `문제 2`, description: `# 문제 2` } ] });
+    data.lecture = await axiosPromise.get(`/classes/${data.classId}`);
+
+    let { tests } = await axiosPromise.get(`/assignments/${assignmentId}/tests`);
 
     data.tests = tests;
 
