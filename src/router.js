@@ -13,6 +13,7 @@ import Lecture from "./pages/Lecture";
 import ProfessorLecture from "./pages/Lecture/professor";
 import StudentLecture from "./pages/Lecture/student";
 import NewLecture from "./pages/Lecture/professor/Form";
+import HomeUI from "./pages/homeUI";
 import Result, { loader as resultLoader } from "./pages/Result";
 
 import ErrorPage from "./error-page";
@@ -83,6 +84,12 @@ export default createBrowserRouter([
   {
     path: 'result/:assignmentId',
     element: <Result />,
+    loader: resultLoader,
+    errorElement: <ErrorPage />
+  },
+  {
+    path: 'test/:userId',
+    element: <HomeUI />,
     loader: resultLoader,
     errorElement: <ErrorPage />
   },

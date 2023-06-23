@@ -38,20 +38,18 @@ export default function TemporaryDrawer() {
   const classes = useStyles();
 
   useEffect(() => {
-    const result = getSubjectList();
+    const result = getSubjectList(10);
     
-    const getData = () => {
       result.then((list) => {
         console.log(list);
         for (let i = 0; i < Object.keys(list).length; i++) {
+          console.log(list['classes'][i]);
           if (lecture_list.length <= Object.keys(list).length) {
-            setLecture_list(lecture_list => [...lecture_list, list[i]]);
+            setLecture_list(lecture_list => [...lecture_list, list['classes'][i]]);
             // lecture_list[i] = list[i];
           }
         }
       });
-    };
-    getData()
   },[]);
 
   return (
@@ -67,14 +65,14 @@ export default function TemporaryDrawer() {
         <List>
           {lecture_list.map((lecture) => (
             <ListItem 
-              key={Number(lecture['classId'])}
-              onClick={() => {navigate(`/classes/${lecture['classId']}`, {state: lecture['classId']})}}
+              key={Number(lecture['lecture_id'])}
+              onClick={() => {navigate(`/classes/${lecture['lecture_id']}`, {state: lecture['lecture_id']})}}
             >
               <ListItemButton>
                 <ListItemIcon>
                   <SchoolIcon />
                 </ListItemIcon>
-                <ListItemText primary={lecture['className']} />
+                <ListItemText primary={lecture['name']} />
               </ListItemButton>
             </ListItem>
           ))}

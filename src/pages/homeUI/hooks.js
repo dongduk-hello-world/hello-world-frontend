@@ -3,6 +3,7 @@ import axiosPromise from "../../services/axiosPromise";
 
 export const getSubjectList = async (userId) => {
   const result = await axiosPromise.get(`/users/${userId}/subjects`);
+  // console.log(result);
   return result;
 }
 
