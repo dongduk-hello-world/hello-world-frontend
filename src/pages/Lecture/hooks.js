@@ -13,5 +13,6 @@ export const getLectureLsit = async () => {
 
 export const joinLecture = async (classId) => {
   const userId = sessionStorage.getItem('userId');
+  console.log("Ddddd" + userId);
   const result = await axiosPromise.post(`/classes/${classId}/students/${userId}`);
 }

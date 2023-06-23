@@ -29,7 +29,7 @@ export default function TemporaryDrawer(props) {
 
   const navigate = useNavigate();
 
-  let [lecture_list, setLecture_list] = useState([[]]);
+  let [lecture_list, setLecture_list] = useState([]);
   const user_info = props.data;
 
   console.log(user_info);
@@ -66,9 +66,6 @@ export default function TemporaryDrawer(props) {
           </div>
         </div>
         <Divider />
-        {lecture_list[0].length == 0 ? 
-          <div></div>
-            :
           <List>
             {lecture_list.map((lecture) => (
               <ListItem 
@@ -84,7 +81,6 @@ export default function TemporaryDrawer(props) {
               </ListItem>
             ))}
           </List>
-        }
       </Box>  
     </span>
   );

@@ -23,7 +23,6 @@ export const loader = async () => {
 };
 
 export default function Lecture() {
-  let result;
   let { user } = useLoaderData();
 
   return (
