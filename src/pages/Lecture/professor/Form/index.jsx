@@ -37,13 +37,14 @@ export default function CreateClassForm() {
         setDivide(event.target.value);
     }
 
-    const type = location.state.type['type'];
+    // const type = location.state.type['type'];
     function moveToBack() {
-        console.log('back');
-        if (type == '교수')
-            navigate('/professor')
-        if (type == '학생')
-            navigate('/student')
+        navigate('/');
+        // console.log('back');
+        // if (type == '교수')
+        //     navigate('/professor')
+        // if (type == '학생')
+        //     navigate('/student')
     }
 
     const SubmitForm = () => {
