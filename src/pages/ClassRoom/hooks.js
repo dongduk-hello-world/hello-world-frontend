@@ -7,3 +7,7 @@ export const getUser = async (userId) => {
   return result;
 }
 
+export const getAssignments = async (classId) => {
+  const result = await axiosPromise.get(`/classes/${classId}/assignments`);
+  return result;
+}
