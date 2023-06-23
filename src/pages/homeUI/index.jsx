@@ -29,7 +29,7 @@ export default function TemporaryDrawer(props) {
 
   const navigate = useNavigate();
 
-  let [lecture_list, setLecture_list] = useState(null);
+  let [lecture_list, setLecture_list] = useState([]);
   const user_info = props.data;
 
   console.log(user_info);
@@ -68,7 +68,7 @@ export default function TemporaryDrawer(props) {
         </div>
         <Divider />
           <List>
-            {lecture_list && lecture_list.map((lecture) => (
+            {lecture_list[0] && lecture_list.map((lecture) => (
               <ListItem 
                 key={Number(lecture['lecture_id'])}
                 onClick={() => {navigate(`/classes/${lecture['lecture_id']}`, {state: lecture['lecture_id']})}}

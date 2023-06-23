@@ -15,6 +15,8 @@ export const loader = async ({ params }) => {
 
   const assignmentId = params.assignmentId;
   const data = await loadAssignment(assignmentId);
+  
+  console.log(data);
   return data;
 };
 
