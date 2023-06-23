@@ -52,6 +52,19 @@ const axiosPromise = {
         );
     },
 
+    delete: (uri) => {
+        console.log(uri);
+        return new Promise(() =>
+            axios
+                .delete(`http://localhost:8080${uri}`)
+                .then(function (response) {
+                    console.log(JSON.stringify(response.data));
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+        );
+    }
 }
 
 export default axiosPromise;

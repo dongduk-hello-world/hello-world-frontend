@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useLoaderData } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
 import styles from "./style.module.scss";
+import axios from 'axios';
 
 import * as React from 'react';
 import Box from '@mui/material/Box';
@@ -60,9 +61,8 @@ export default function ClassRoom() {
   useEffect(() => {
     // classId = Number(location.pathname.split('/')[2]);
     const result = getStudents(classId);
-    // console.log(result);
 
-    // const getData = () => {
+    console.log(result);
       result.then((list) => {
         for (let i = 0; i < list.length; i++) {
           studentList[i] = list[i];
@@ -70,8 +70,7 @@ export default function ClassRoom() {
         setStudentNum(list.length);
         console.log(studentList);
       });
-    // };
-    // getData()
+
   },[]);
 
   useEffect(() => {
@@ -124,8 +123,19 @@ export default function ClassRoom() {
     console.log(props);
     const user_id = props;
   
-    alert(user_id, '학생 kick');
-    const res = deleteStudent(Number(classId), Number(user_id));
+    let result = window.confirm(user_id + '학생 kick');
+    if (result) {
+      console.log(typeof(classId))
+      console.log(typeof(user_id))
+
+      axios.delete(`http://localhost:8080/classes/${classId}/students/${user_id}`)
+          .then (function (response) {
+            console.log(JSON.stringify(response.data));
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
+    }
   }
 
   const Item = (props) => {
@@ -154,13 +164,19 @@ export default function ClassRoom() {
   }
 
   const ItemList = () => {
-    return (
-      <ul>
-        {studentList.map((student) => (
-          <Item student={student}/>
-        ))}
-      </ul>
-    );
+    // console.log(studentList[0]);
+    // console.log(studentList.value);
+    if (studentList.value == undefined)
+      return '수강중인 학생이 없어요.';
+    else {
+      return (
+        <ul>
+          {studentList.map((student) => (
+            <Item student={student}/>
+          ))}
+        </ul>
+      );
+    }
   }
 
   const AddHWButton = () => {

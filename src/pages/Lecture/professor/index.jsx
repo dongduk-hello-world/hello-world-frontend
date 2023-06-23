@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useStyles } from "./styles";
 import styles from "./style.module.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLoaderData } from "react-router-dom";
 import $ from 'jquery';
 
 import * as React from 'react';
@@ -21,16 +21,15 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 import LectureForm from "./Form";
-import { filter } from "lodash";
-import { Grid3x3 } from "@mui/icons-material";
 
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-  >
-  </Box>
-);
+export const loader = async ({ params }) => {
+  
+  // console.log("classid is ", classId);
+
+  // result = getClassInfo(classId);
+  // setClassData(result);
+  // console.log(result);
+}
 
 const Search = () => {
   const [keyword, setKeyword] = useState("");
