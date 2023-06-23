@@ -1,12 +1,13 @@
 
 import { redirect, useLoaderData } from "react-router-dom";
 import { getLoginedUser, getResult, getAssignmentInfo, getStudents } from "./hooks";
+import { isLogin } from "../../services/axiosPromise";
 
 import StudentResult from "./Student";
 import ProfessorResult from "./Professor";
 
 export const loader = async ({ params }) => {
-//  if(!(await isLogin())) return redirect("/account");
+    if(!(await isLogin())) return redirect("/account");
     const assignmentId = params.assignmentId;
     const user = await getLoginedUser();
 

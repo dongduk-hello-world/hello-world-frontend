@@ -29,10 +29,6 @@ export const submit = async (testId, language, code) => {
     return data;
 };
 
-const createData = (id, submitTime, language, errMsg, runTime, fileSize, score) => {
-    return { id, submitTime, language, errMsg, runTime, fileSize, score };
-};
-
 export const getResult = async (testId) => {
     let data = await axiosPromise.get(`/tests/${testId}/submits`);
 
