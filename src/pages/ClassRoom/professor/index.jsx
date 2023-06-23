@@ -17,17 +17,8 @@ import Fade from '@mui/material/Fade';
 import { getClassInfo, getStudents, getAssignments, deleteStudent } from "./hooks";
 import Sidebar from '../../homeUI'
 
-export const loader = async ({ params }) => {
-  
-  // console.log("classid is ", classId);
-
-  // result = getClassInfo(classId);
-  // setClassData(result);
-  // console.log(result);
-}
-
 export default function ClassRoom() {
-
+  const { lecture, assignmentList } = useLoaderData(); 
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -40,7 +31,6 @@ export default function ClassRoom() {
   const [classInfo, setClassInfo] = useState([]);
   const [studentList, setStudentList] = useState([[]]);
   const [studentNum, setStudentNum] = useState(0);
-  const [assignmentList, setAssignmentList] = useState([[]]);
 
   const hwName='hw1';
   const hwStartDate='0000/00/00';
@@ -217,12 +207,15 @@ export default function ClassRoom() {
     );
   }
 
-  const Assignment = (props) => {
-    const assignment = props.assignment
-    console.log(assignment);
+  const Assignment = ({ assignment }) => {
+    const navigate = useNavigate();
 
     return(
-      <Box>
+      <Box onClick={() => {
+        if(window.confirm(`${assignment.name}를 응시할까요?`)) {
+          navigate(`/assignment/${assignment.assignment_id}`);
+        }
+      }}>
         <Paper sx={{maxWidth: 1000}}>
           <Box>
             <Grid container>
@@ -233,7 +226,7 @@ export default function ClassRoom() {
                 </svg>
               </Grid>
               <Grid xs={8}>
-                <div>{assignment['assignmentName']}<br/>{assignment['startTime']}<br/>{assignment['endTime']}</div>
+                <div>{assignment.name}<br/>{assignment.start_time}<br/>{assignment.end_time}</div>
               </Grid>
               <Grid xs={2} className={styles.submitIcon}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#31B404" class="bi bi-check" viewBox="0 0 16 16">

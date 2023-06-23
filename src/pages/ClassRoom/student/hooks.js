@@ -25,7 +25,7 @@ export const deleteStudent = async (classId, userId) => {
   // console.log(result);
   // return result;
 
-  const class_id = Number(classId)
+  const class_id = Number(classId);
   const user_id = Number(userId);
 
   var axios = require('axios');
