@@ -17,6 +17,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
+import { Grid3x3 } from "@mui/icons-material";
 
 const Search = () => {
   const [keyword, setKeyword] = useState("");
@@ -156,16 +157,16 @@ export default function TemporaryDrawer() {
         <Grid mb={8} mt={8}><Search /></Grid>
         <Grid mb={8} mr={8}><Filter /></Grid>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          <Grid item xs={6} mb={4}>
+          <Grid item>
             <LectureCard>1</LectureCard>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item>
             <LectureCard>2</LectureCard>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item>
             <LectureCard>3</LectureCard>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item>
             <LectureCard>4</LectureCard>
           </Grid>
         </Grid>

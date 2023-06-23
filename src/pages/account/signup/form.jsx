@@ -54,12 +54,9 @@ export default (props) => {
             if (errEmail != "") return;
 
             const result = await findUserByemail(email);
-            if (!result) {
-              if (true) {
-                sendMail(email);
-              }
-            } else {
-              alert("이미 가입된 이메일입니다.");
+            //if (result === "") {
+            if (true) {
+              sendMail(email);
             }
           }}
         >
@@ -129,9 +126,7 @@ export default (props) => {
 
           console.log(data);
 
-          const errPassword = vaildatePassword(data.password);
-          setErrPassword(errPassword);
-
+          setErrPassword(vaildatePassword(data.password));
           if (errPassword != "") {
             console.log("비번 실패1");
             return;
@@ -139,23 +134,17 @@ export default (props) => {
 
           console.log(data.password != form.passwordComfirm.value);
 
-          let errPasswordComfirm = "";
-
           if (data.password != form.passwordComfirm.value) {
-            errPasswordComfirm = "비밀번호가 일치하지 않습니다.";
-            setErrPasswordComfirm(errPasswordComfirm);
-            return;
-          } 
-          setErrPasswordComfirm(errPasswordComfirm);
-          
+            setErrPasswordComfirm("비밀번호가 일치하지 않습니다.");
+          }
           if (errPasswordComfirm != "") {
             console.log("비번 실패2");
             return;
           }
+
           console.log("비번 통과2");
 
-          const errName = vaildateName(data.name);
-          setErrName(errName);
+          setErrName(vaildateName(data.name));
           if (errName != "") return;
 
           console.log("이름 통과");

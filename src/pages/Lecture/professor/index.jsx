@@ -22,6 +22,7 @@ import Select from '@mui/material/Select';
 
 import LectureForm from "./Form";
 import { filter } from "lodash";
+import { Grid3x3 } from "@mui/icons-material";
 
 const bull = (
   <Box
@@ -230,16 +231,17 @@ export default function TemporaryDrawer() {
         <Grid mb={8} mr={8}><NewLectureButton /></Grid>
         <Grid mb={8} mr={8}><Filter /></Grid>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          <Grid item xs={6} mb={4}>
+          {/* {} */}
+          <Grid item>
             <LectureCard>1</LectureCard>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item>
             <LectureCard>2</LectureCard>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item>
             <LectureCard>3</LectureCard>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item>
             <LectureCard>4</LectureCard>
           </Grid>
         </Grid>
