@@ -25,15 +25,18 @@ import { getSubjectList } from "./hooks";
 
 let classList;
 
-export default function TemporaryDrawer() {
+export default function TemporaryDrawer(props) {
 
   const navigate = useNavigate();
 
   let [lecture_list, setLecture_list] = useState([[]]);
+  const user_info = props.data;
 
-  let name = "전유영"
-  let grade = "1"
-  let id = "20201015"
+  console.log(user_info);
+
+  // let name = "전유영"
+  // let grade = "1"
+  // let id = "20201015"
 
   const classes = useStyles();
 
@@ -57,9 +60,9 @@ export default function TemporaryDrawer() {
     <span>
       <Box className = {classes.box}>
         <div className={styles.info}>
-          <h1>{name}</h1><br/>
+          <h1>{user_info['name']}</h1><br/>
           <div>
-            <span>{grade}학년</span>/<span>{id}</span>
+            <span>{user_info['email']}</span>
           </div>
         </div>
         <Divider />

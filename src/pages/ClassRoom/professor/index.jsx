@@ -264,18 +264,11 @@ export default function ClassRoom() {
   }
 
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={3}>
-        <Sidebar />
-      </Grid>
-      <Grid item xs={9}>
         <Box className={styles.container}>
-          {/* <ClassInfo /> */}
-          {/* <AddHWButton />
-          <AssignmentItems /> */}
+          <ClassInfo />
+          <AddHWButton />
+          <AssignmentItems />
         </Box>
-      </Grid>
-    </Grid>
   );
 }
 
