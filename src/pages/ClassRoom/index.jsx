@@ -164,9 +164,9 @@ export default function ClassRoom() {
   }
 
   const ItemList = () => {
-    // console.log(studentList[0]);
+    // console.log(studentList[0] == null);
     // console.log(studentList.value);
-    if (studentList.value == undefined)
+    if (studentList[0] == undefined)
       return '수강중인 학생이 없어요.';
     else {
       return (

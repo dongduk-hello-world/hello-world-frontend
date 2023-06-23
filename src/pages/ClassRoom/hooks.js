@@ -10,6 +10,7 @@ export const getClassInfo = async (classId) => {
 
 export const getStudents = async (classId) => {
   const result = await axiosPromise.get(`/classes/${classId}/students`);
+  console.log("수강생 리스트");
   console.log(result);
   return result;
 }
