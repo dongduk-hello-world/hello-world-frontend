@@ -65,11 +65,11 @@ export default function ClassRoom() {
     console.log(result);
       result.then((list) => {
         console.log(list[0]);
-        // for (let i = 0; i < list.length; i++) {
-        //   studentList[i] = list[i];
-        // }
-        // setStudentNum(list.length);
-        // console.log(studentList);
+        for (let i = 0; i < list.length; i++) {
+          studentList[i] = list[i];
+        }
+        setStudentNum(list.length);
+        console.log(studentList);
       });
 
   },[]);

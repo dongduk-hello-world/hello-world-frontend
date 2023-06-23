@@ -34,7 +34,7 @@ export default function Lecture() {
         <Sidebar data={data}/>
       </Grid>
       <Grid item xs={9}>
-        {data['type'] == '학생' ? <Student /> : <Professor />}
+        {data['type'] == '학생' ? <Professor /> : <Professor />}
       </Grid>
     </Grid>
   );

@@ -65,26 +65,23 @@ export default function ClassRoom() {
     console.log(result);
       result.then((list) => {
         console.log(list[0]);
-        // for (let i = 0; i < list.length; i++) {
-        //   studentList[i] = list[i];
-        // }
-        // setStudentNum(list.length);
-        // console.log(studentList);
+        for (let i = 0; i < list.length; i++) {
+          studentList[i] = list[i];
+        }
+        setStudentNum(list.length);
+        console.log(studentList);
       });
 
   },[]);
 
   useEffect(() => {
-    // const result = getAssignments(classId);
-
-    // const getData = () => {
-    //   result.then((list) => {
-    //     for (let i = 0; i < list.length; i++) {
-    //       assignmentList[i] = list[i];
-    //     }
-    //   });
-    // };
-    // getData()
+    const result = getAssignments(classId);
+        result.then((list) => {
+         for (let i = 0; i < list.length; i++) {
+           assignmentList[i] = list[i];
+          //  console.log(assignmentList[i]);
+         }
+       });
   },[]);
 ///////////////////////////////////////
 
