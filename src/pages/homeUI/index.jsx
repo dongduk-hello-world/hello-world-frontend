@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./style.module.scss";
 import { useStyles } from "./styles";
+import { useLoaderData, redirect } from "react-router-dom";
 
 // import LectureProf from "./professor";
 // import LectureStudent from "./student";
@@ -23,13 +24,40 @@ import SchoolIcon from '@mui/icons-material/School';
 import Button from '@mui/material/Button';
 import { getSubjectList } from "./hooks";
 
+import { isLogin } from "../../services/axiosPromise";
+
 let classList;
+
+export const loader = async ({ params }) => {
+  if(!(await isLogin())) return redirect("/account");
+
+  const userId = Number(sessionStorage.getItem('userId'));
+  let data;
+
+  const result = getSubjectList(userId);
+  console.log("sidebar 실행");
+  result.then((list) => {
+    console.log(list);
+    for (let i = 0; i < Object.keys(list['classes']).length; i++) {
+      // console.log(list['classes'][i]);
+      // console.log(Object.keys(list['classes']).length);
+      data.put(list['classes'][i]);
+      console.log(list['classes'][i]);
+    }
+    console.log("data");
+    console.log(data);
+  });
+
+  return data;
+};
+
 
 export default function TemporaryDrawer(props) {
 
   const navigate = useNavigate();
+  const { tests } = useLoaderData();
+  console.log(tests);
 
-  let [lecture_list, setLecture_list] = useState([]);
   const user_info = props.data;
 
   console.log(user_info);
@@ -39,22 +67,6 @@ export default function TemporaryDrawer(props) {
   // let id = "20201015"
 
   const classes = useStyles();
-
-  useEffect(() => {
-    const userId = Number(sessionStorage.getItem('userId'));
-
-    const result = getSubjectList(userId);
-    console.log("sidebar 실행");
-      result.then((list) => {
-        console.log(list);
-        for (let i = 0; i < Object.keys(list).length; i++) {
-          console.log(list['classes'][i]);
-          if (lecture_list.length <= Object.keys(list).length) {
-            setLecture_list(lecture_list => [...lecture_list, list['classes'][i]]);
-          }
-        }
-      });
-  },[]);
 
   return (
     <span>
@@ -68,7 +80,7 @@ export default function TemporaryDrawer(props) {
         </div>
         <Divider />
           <List>
-            {lecture_list[0] && lecture_list.map((lecture) => (
+            {/* {lecture_list.map((lecture) => (
               <ListItem 
                 key={Number(lecture['lecture_id'])}
                 onClick={() => {navigate(`/classes/${lecture['lecture_id']}`, {state: lecture['lecture_id']})}}
@@ -80,7 +92,7 @@ export default function TemporaryDrawer(props) {
                   <ListItemText primary={lecture['name']} />
                 </ListItemButton>
               </ListItem>
-            ))}
+            ))} */}
           </List>
       </Box>  
     </span>

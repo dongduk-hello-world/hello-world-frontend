@@ -16,6 +16,7 @@ import ProfessorLecture from "./pages/Lecture/professor";
 import StudentLecture from "./pages/Lecture/student";
 import NewLecture from "./pages/Lecture/professor/Form";
 import HomeUI from "./pages/homeUI";
+import Home, { loader as homeLoader } from "./pages/homeUI";
 import Result, { loader as resultLoader } from "./pages/Result";
 
 import ErrorPage from "./error-page";
@@ -62,11 +63,13 @@ export default createBrowserRouter([
       {
         path: "professor",
         element: <ProfessorLecture />,
+        loader: homeLoader,
         errorElement: <ErrorPage />,
       },
       {
         path: "student",
         element: <StudentLecture />,
+        loader: homeLoader,
         errorElement: <ErrorPage />,
       },
     ]

@@ -123,7 +123,7 @@ const LectureCard = ({ lecture }) => {
     if (window.confirm('해당 클래스에 참여할까요?')) {
       joinLecture(lecture.classId);
       alert('참가하였습니다.');
-      // window.location.reload();
+      window.location.replace("/");
     }
   }
 
