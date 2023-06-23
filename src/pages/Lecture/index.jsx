@@ -17,7 +17,7 @@ export const loader = async () => {
   const data = {};
   data.user = await getUser(userId);
 
-  data.lectureList = await getLectureLsit();
+  data.lectureList = (await getLectureLsit()).classes;
   console.log(data);
   return data;
 };

@@ -157,10 +157,8 @@ const Filter = () => {
   );
 }
 
-const LectureCard = () => {  
-  function joinClass() {
-    alert('join class');
-  }
+const LectureCard = ({ lecture }) => {  
+  const classes = useStyles();
 
   return (
     <Card 
@@ -168,33 +166,29 @@ const LectureCard = () => {
       gutterBottom
     >
       <div className={styles.cardContainer}>
-      <div className={styles.CardActions}>
-        <CardActions>
-          <div onClick={joinClass} className={styles.joinButton}>
+        <CardActions className={classes.CardActions}>
+          <div className={styles.joinButton}>
             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#989898" class="bi bi-plus-circle" viewBox="0 0 16 16">
               <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
               <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
             </svg>  
           </div>
         </CardActions>
-      </div>
-      <div>
-        <CardContent className={styles.cardContent}>
-          <Typography variant="h5" component="div">
-          프로그래밍 논리의 이해
-          </Typography>
-          <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            박수희 / 1분반
-          </Typography>
-        </CardContent>
-      </div>
+      <CardContent className={styles.cardContent}>
+        <Typography variant="h5" component="div">
+          {lecture.className}
+        </Typography>
+        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+          {lecture.professor} / {lecture.divide}분반
+        </Typography>
+      </CardContent>
       </div>
     </Card>
   );
 }
 
 export default function TemporaryDrawer() {
-  
+  const { lectureList } = useLoaderData();
   const navigate = useNavigate();
 
   const [isMain, setMain] = useState(true);
@@ -230,19 +224,13 @@ export default function TemporaryDrawer() {
         <Grid mb={8} mr={8}><NewLectureButton /></Grid>
         <Grid mb={8} mr={8}><Filter /></Grid>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          {/* {} */}
-          <Grid item>
-            <LectureCard>1</LectureCard>
-          </Grid>
-          <Grid item>
-            <LectureCard>2</LectureCard>
-          </Grid>
-          <Grid item>
-            <LectureCard>3</LectureCard>
-          </Grid>
-          <Grid item>
-            <LectureCard>4</LectureCard>
-          </Grid>
+        {
+            lectureList.map((lecture, idx) => (
+              <Grid item>
+                <LectureCard lecture={lecture}/>
+              </Grid>
+            ))
+          }
         </Grid>
       </Grid>
     );

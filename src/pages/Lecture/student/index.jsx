@@ -163,7 +163,7 @@ export default function TemporaryDrawer() {
         <Grid mb={8} mr={8}><Filter /></Grid>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           {
-            lectureList.classes.map((lecture, idx) => (
+            lectureList.map((lecture, idx) => (
               <Grid item>
                 <LectureCard lecture={lecture}/>
               </Grid>
