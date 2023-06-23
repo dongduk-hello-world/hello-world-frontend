@@ -14,14 +14,10 @@ import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 
-import { getClassInfo, getAssignments, getStudents} from "./hooks";
 import Sidebar from '../../homeUI'
 
-
-
 export default function ClassRoom() {
-
-
+  const { lecture, assignmentList } = useLoaderData(); 
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -29,57 +25,6 @@ export default function ClassRoom() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  //[classId, className, professor, divide, date]
-  const [classInfo, setClassInfo] = useState([]);
-  const [studentList, setStudentList] = useState([[]]);
-  const [studentNum, setStudentNum] = useState(0);
-  const [assignmentList, setAssignmentList] = useState([[]]);
-
-  const hwName='hw1';
-  const hwStartDate='0000/00/00';
-  const hwEndDate='0000/00/00';
-  const classId = Number(location.pathname.split('/')[2]);;
-
-///////////////////////////////////////
-  useEffect(() => {
-    // classId = Number(location.pathname.split('/')[2]);
-
-    const result = getClassInfo(classId);
-    result.then((info) => {
-        setClassInfo(info)
-        console.log(classInfo);
-    });
-  },[]);
-
-  useEffect(() => {
-    // classId = Number(location.pathname.split('/')[2]);
-    const result = getStudents(classId);
-
-    console.log(result);
-      result.then((list) => {
-        console.log(list[0]);
-        // for (let i = 0; i < list.length; i++) {
-        //   studentList[i] = list[i];
-        // }
-        // setStudentNum(list.length);
-        // console.log(studentList);
-      });
-
-  },[]);
-
-  useEffect(() => {
-    // const result = getAssignments(classId);
-
-    // const getData = () => {
-    //   result.then((list) => {
-    //     for (let i = 0; i < list.length; i++) {
-    //       assignmentList[i] = list[i];
-    //     }
-    //   });
-    // };
-    // getData()
-  },[]);
-///////////////////////////////////////
 
   const style = {
     position: 'absolute',
@@ -97,27 +42,23 @@ export default function ClassRoom() {
     return (
       <Box component="span" className={styles.infoContainer}>
         <Typography variant="h4" gutterBottom>
-          {classInfo['className']}
+          {lecture.className}
         </Typography>
         <Typography variant="h6" gutterBottom>
-          {classInfo['professor']} / {classInfo['divide']}분반
+          {lecture.professor} / {lecture.divide}분반
         </Typography>
-        <div>개설학기 : {classInfo['period']}</div>
-        <span>수강생 수 : {studentNum}</span>
+        <div>개설학기 : {lecture.period}</div>
+        <span>수강생 수 : {lecture.studentNum}</span>
       </Box>
     );
   }
 
   function kickStudent(props) {
-    console.log(props);
-    const user_id = props;
+    const user_id = sessionStorage.getItem('userId');
   
     let result = window.confirm(user_id + '학생 kick');
     if (result) {
-      console.log(typeof(classId))
-      console.log(typeof(user_id))
-
-      axios.delete(`http://localhost:8080/classes/${classId}/students/${user_id}`)
+      axios.delete(`http://localhost:8080/classes/${lecture.classId}/students/${user_id}`)
           .then (function (response) {
             console.log(JSON.stringify(response.data));
           })
@@ -168,12 +109,15 @@ export default function ClassRoom() {
   //   }
   // }
 
-  const Assignment = (props) => {
-    const assignment = props.assignment
-    console.log(assignment);
+  const Assignment = ({ assignment }) => {
+    const navigate = useNavigate();
 
     return(
-      <Box>
+      <Box onClick={() => {
+        if(window.confirm(`${assignment.name}를 응시할까요?`)) {
+          navigate(`/assignment/${assignment.assignment_id}`);
+        }
+      }}>
         <Paper sx={{maxWidth: 1000}}>
           <Box>
             <Grid container>
@@ -184,7 +128,7 @@ export default function ClassRoom() {
                 </svg>
               </Grid>
               <Grid xs={8}>
-                <div>{assignment['assignmentName']}<br/>{assignment['startTime']}<br/>{assignment['endTime']}</div>
+                <div>{assignment.name}<br/>{assignment.start_time}<br/>{assignment.end_time}</div>
               </Grid>
               <Grid xs={2} className={styles.submitIcon}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#31B404" class="bi bi-check" viewBox="0 0 16 16">
