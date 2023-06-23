@@ -1,12 +1,13 @@
 
 import { redirect, useLoaderData } from "react-router-dom";
 import { getLoginedUser, getResult, getAssignmentInfo, getStudents } from "./hooks";
+import { isLogin } from "../../services/axiosPromise";
 
 import StudentResult from "./Student";
 import ProfessorResult from "./Professor";
 
 export const loader = async ({ params }) => {
-//  if(!(await isLogin())) return redirect("/account");
+    if(!(await isLogin())) return redirect("/account");
     const assignmentId = params.assignmentId;
     const user = await getLoginedUser();
 
@@ -33,7 +34,11 @@ export const loader = async ({ params }) => {
         if(studentList.length > 0) {
             for(let i = 0; i < studentList.length; i++) {
                 const result = await getResult(assignmentId, studentList[i].user_id);
-                if(result) data.results.push(result);
+                
+                if(result) {
+                    result.user = studentList[i];
+                    data.results.push(result);
+                }
             }
         } else {
              for(let i = 0; i < 10; i++) {

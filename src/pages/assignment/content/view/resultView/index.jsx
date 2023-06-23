@@ -54,7 +54,7 @@ export default ({ testIdx }) => {
                         <CodeModal 
                             open={highscoreModal} 
                             onClose={() => setHighScoreModal(false)}
-                            highScore={highScore.code} />
+                            result={highScore.code} />
                     </>)
                 }
             </div>
@@ -92,8 +92,9 @@ export default ({ testIdx }) => {
                             }}>코드 보기</Link>
                         </TableCell>
                         <CodeModal 
-                            open={codeModal[i]} onClose={() => setCodeModal([...new Array(rows.length).fill(false)])}
-                            highScore={row}/>
+                            open={codeModal[i]} 
+                            onClose={() => setCodeModal([...new Array(rows.length).fill(false)])}
+                            result={row}/>
                     </TableRow>
                     ))}
                 </TableBody>

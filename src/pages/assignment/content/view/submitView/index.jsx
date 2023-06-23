@@ -56,7 +56,6 @@ export default ({ testIdx }) => {
           onClick={() => {
             let languageName = language[languageIdx].name;
             if (languageName === "cpp") languageName = "c";
-            alert(tests[testIdx].testId + "\n" + languageName + "\n" + code);
             submit(tests[testIdx].testId, languageName, code);
           }}
         >

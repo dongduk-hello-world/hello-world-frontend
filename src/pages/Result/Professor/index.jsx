@@ -50,21 +50,21 @@ export default function ResultProfessor() {
     const classes = useStyles();
 
     useEffect(() => {
-      const result = getSubjectList();
+      // const result = getSubjectList();
       
-      const getData = () => {
-        result.then((list) => {
-          console.log(list);
-          for (let i = 0; i < Object.keys(list).length; i++) {
-            // if (lecture_list.length <= Object.keys(list).length) {
-              setLecture_list(lecture_list => [...lecture_list, list[i]]);
-              // lecture_list[i] = list[i];
-            // }
-          }
-        });
-      };
+      // const getData = () => {
+      //   result.then((list) => {
+      //     console.log(list);
+      //     for (let i = 0; i < Object.keys(list).length; i++) {
+      //       // if (lecture_list.length <= Object.keys(list).length) {
+      //         setLecture_list(lecture_list => [...lecture_list, list[i]]);
+      //         // lecture_list[i] = list[i];
+      //       // }
+      //     }
+      //   });
+      // };
 
-      getData()
+      // getData()
     },[]);
 
     return (
@@ -112,7 +112,7 @@ export default function ResultProfessor() {
             </Grid>
             <Grid xs={1} /> */}
           </Grid>
-          <ScoreTable />
+          <ScoreTable rows={results}/>
         </div>
       </Grid>
     </Grid>
