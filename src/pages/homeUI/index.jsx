@@ -38,7 +38,9 @@ export default function TemporaryDrawer() {
   const classes = useStyles();
 
   useEffect(() => {
-    const result = getSubjectList(10);
+    const userId = Number(sessionStorage.getItem('userId'));
+
+    const result = getSubjectList(userId);
     console.log("sidebar 실행");
       result.then((list) => {
         console.log(list);
