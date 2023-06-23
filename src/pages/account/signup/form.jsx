@@ -151,7 +151,7 @@ export default (props) => {
 
           const result = await signup(data);
           if (result) {
-            navigate("/account");
+            navigate("/account", {replace: true}); 
           }
         }}
       >
