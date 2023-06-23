@@ -159,8 +159,11 @@ export default function TemporaryDrawer() {
 
   return (
       <Grid className={styles.container}>
-        <Grid mb={8} mt={8}><Search /></Grid>
-        <Grid mb={8} mr={8}><Filter /></Grid>
+        <Typography variant="h5" component="div">
+          강의에 가입해보세요!
+        </Typography>
+        {/* <Grid mb={8} mt={8}><Search /></Grid>
+        <Grid mb={8} mr={8}><Filter /></Grid> */}
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           {
             lectureList.map((lecture, idx) => (
