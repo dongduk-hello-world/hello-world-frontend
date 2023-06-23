@@ -1,6 +1,6 @@
 
 import { redirect, useLoaderData } from "react-router-dom";
-import { getLoginedUser, getResult, getAssignmentInfo, getStudents } from "./hooks";
+import { getLoginedUser, getResult, getAssignmentInfo, getStudents, getCodeData } from "./hooks";
 import { isLogin } from "../../services/axiosPromise";
 
 import StudentResult from "./Student";
@@ -27,7 +27,6 @@ export const loader = async ({ params }) => {
 
         data.user = user;
         data.assignment = await getAssignmentInfo(assignmentId);
-        
         const studentList = await getStudents(data.assignment.classId);
         data.results = [];
 
@@ -37,17 +36,14 @@ export const loader = async ({ params }) => {
                 
                 if(result) {
                     result.user = studentList[i];
+                    for(let i = 0; i < result.tests.length; i++) {
+                        result.tests[i].codeData = await getCodeData(assignmentId, result.user.user_id, result.tests[i].testId);
+                    }
                     data.results.push(result);
                 }
             }
-        } else {
-             for(let i = 0; i < 10; i++) {
-                data.results.push({
-                    user: { userId: 10, name: "홍길동", email: "2222222@dongduk.ac.kr", type: "학생" },
-                    totalScore: 100, score: 50, tests: [{ name: "문제 1", maxScore: 50, score: 25 }, { name: "문제 2", maxScore: 50, score: 25}]
-                });
-            }
         }
+        data.results = data.results.sort((a, b) => a.score - b.score);
         console.log(data);
         return data;
     }

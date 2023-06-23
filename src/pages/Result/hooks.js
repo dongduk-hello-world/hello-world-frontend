@@ -14,24 +14,27 @@ export const getSubjectList = async () => {
 
 export const getLoginedUser = async () => {
   const userId = sessionStorage.getItem('userId');
-  const result = await axiosPromise.get(`/users/${userId}`, { userId: 10, type: "학생" });
+  const result = await axiosPromise.get(`/users/${userId}`);
   return result;
 }
 
 export const getAssignmentInfo = async (assignmentId) => {
-  const { assignment } = await axiosPromise.get(`/assignments/${assignmentId}`, { assignment: { classId: 20001, name: "중간고사" } });
+  const { assignment } = await axiosPromise.get(`/assignments/${assignmentId}`);
   return assignment;
 }
 
 export const getResult = async (assignmentId, userId) => {
   console.log(userId);
-  const result = await axiosPromise.get(`/assignments/${assignmentId}/results/${userId}`, {
-    totalScore: 100, score: 50, tests: [{ name: "문제 1", maxScore: 50, score: 25 }, { name: "문제 2", maxScore: 50, score: 25}]
-  });
+  const result = await axiosPromise.get(`/assignments/${assignmentId}/results/${userId}`);
   return result;
 }
 
 export const getStudents = async (classId) => {
   const students = await axiosPromise.get(`/classes/${classId}/students`, []);
   return students;
+}
+
+export const getCodeData = async (assignmentId, userId, testId) => {
+  const codeData = await axiosPromise.get(`/assignments/${assignmentId}/results/${userId}/code/${testId}`, { language: "c", code: "code" });
+  return codeData;
 }

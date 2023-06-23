@@ -11,23 +11,27 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
+import Link from '@mui/material/Link';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
-function Row({ row }) {
+
+import CodeModal from "./codeModal";
+
+function Row({ row, idx }) {
   const { user, score, totalScore, tests } = row;
   const [open, setOpen] = React.useState(false);
+  const [ codeModal, setCodeModal ] = React.useState(new Array(tests.length).fill(false));
 
   return (
     <React.Fragment>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
         <TableCell component="th" scope="row">
-          1
+        {idx}
         </TableCell>
         <TableCell>{user.name}</TableCell>
         <TableCell>{user.email.split('@')[0]}</TableCell>
         <TableCell>{score} / {totalScore}</TableCell>
-        <TableCell>버튼</TableCell>
         <TableCell>
           <IconButton
             aria-label="expand row"
@@ -55,17 +59,27 @@ function Row({ row }) {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {tests.map((test) => (
-                    <TableRow>
+                  {tests.map((test, i) => (
+                    <TableRow key={`scoreTable_cell_${user.user_id}_${i}`}>
                       <TableCell component="th" scope="row">
                         {test.testName}
                       </TableCell>
                       <TableCell>{test.maxScore}</TableCell>
                       <TableCell align="right">{test.score}</TableCell>
                       <TableCell align="right">
-                        {'버튼'}
+                        <Link 
+                          onClick={() => {
+                            codeModal[i] = true;
+                            setCodeModal([...codeModal]);
+                          }}>
+                          코드 보기
+                        </Link>
                       </TableCell>
-                    </TableRow>
+                      <CodeModal 
+                        open={codeModal[i]} 
+                        onClose={() => setCodeModal(new Array(tests.length).fill(false))}
+                        result={test.codeData} />
+                    </TableRow>            
                   ))}
                 </TableBody>
               </Table>
@@ -87,13 +101,12 @@ export default function ScoreTable({ rows }) {
             <TableCell>학생이름</TableCell>
             <TableCell>학번</TableCell>
             <TableCell>총점</TableCell>
-            <TableCell>소스코드보기</TableCell>
             <TableCell>문제별 점수확인</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row, i) => (
-            <Row key={`assignment_result${i}`} row={row} />
+            <Row key={`assignment_result${i}`} row={row} idx={i+1}/>
           ))}
         </TableBody>
       </Table>
