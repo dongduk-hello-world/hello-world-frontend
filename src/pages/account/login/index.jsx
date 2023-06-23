@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useNavigationType } from "react-router-dom";
 
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -12,6 +12,7 @@ import Modal from "./modal";
 
 export default (props) => {
   const navigate = useNavigate();
+  const navigationType = useNavigationType();
 
   const [modal, setModal] = useState(false);
 
@@ -52,7 +53,10 @@ export default (props) => {
             if (errEmail != "") return;
 
             const result = await login(data);
-            if (result) navigate("/");
+            if (result) {
+              if(navigationType === "PUSH") navigate(-1);
+              else navigate("/");
+            }
           }}
         >
           로그인

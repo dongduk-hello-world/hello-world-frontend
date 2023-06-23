@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate, redirect } from "react-router-dom";
 import { AppBar, Toolbar, Button } from "@mui/material";
 
 import Nav from "./nav";
@@ -12,9 +12,11 @@ import styles from "./style.module.scss";
 import { ContextProvider } from "./contexts";
 import { loadClassData, submit } from "./hooks";
 
+import { isLogin } from "../../services/axiosPromise";
 
 export const loader = async ({ params }) => {
-    // if(!sessionStorage.getItem("userId")) return redirect("/account");
+    if(!(await isLogin())) return redirect("/account");
+
     const classId = params.classId;
     const data = await loadClassData(classId);
     return data;
@@ -27,7 +29,7 @@ export default () => {
     const [testIdx, setTestIdx] = useState(0);
 
     return (
-        <ContextProvider formData={[formData, setFormData]}>
+        <ContextProvider classId={classId} formData={[formData, setFormData]}>
             <form>
                 <AppBar className={styles.header}>
                     <Toolbar position="fixed">

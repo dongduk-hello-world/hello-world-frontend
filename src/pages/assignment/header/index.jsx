@@ -15,7 +15,7 @@ export default () => {
   return (
     <AppBar className={styles.header}>
       <Toolbar position="fixed">
-        <div>{lecture.name}: {name}</div>
+        <div>{lecture.className}: {name}</div>
         <div>
           <Timer />
           <Button 
@@ -23,7 +23,7 @@ export default () => {
             variant="contained"
             onClick={async () => {
               close(assignmentId);
-              navigate(`/classes/${lecture.lecture_id}`, {replace: true}); // url 이동
+              navigate(`/classes/${lecture.classId}`, {replace: true}); // url 이동
             }}
             >
             시험 종료

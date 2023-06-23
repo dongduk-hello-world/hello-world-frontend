@@ -21,35 +21,39 @@ import CodeModal from "./codeModal";
 
 export default ({ testIdx }) => {
     const { tests } = useLoaderData();
-    const [highScore, setHighScore] = useState({});
+    const [highScore, setHighScore] = useState(null);
     const [rows, setRows] = useState([]);
     const [codeModal, setCodeModal] = useState([]);
+    const [highscoreModal, setHighScoreModal] = useState(false);
 
     const refresh = async () => {
         const testId = tests[testIdx].testId;
         const result = await getResult(testId);
         setHighScore(result.highScore);
+        console.log(result.highScore.score);
         setRows(result.submits);
-        setCodeModal([...new Array(rows.length+1).fill(false)]);
     };
-
-    useEffect(() => refresh, [testIdx]);
+    // useEffect(() => { refresh() });
+    useEffect(() => { 
+        refresh();
+        setCodeModal([...new Array(rows.length).fill(false)]);
+        setHighScoreModal(false);
+    }, [testIdx]);
 
     return (
         <div className={styles.view}>
             <div className={highStyles.highScore}>
                 <span>성적은 제출된 결과들 중에서 최고점으로 반영됩니다.</span>
                 {
-                    highScore.score > 0 && (
+                    highScore && highScore.score && (
                     <>
                         <label>현재 최고 점수: {highScore.score}</label>
                         <Link onClick={() => {
-                            codeModal[rows.length] = true;
-                            setCodeModal([...codeModal]);
+                            setHighScoreModal(true);
                         }}>코드 보기</Link>
                         <CodeModal 
-                            open={codeModal[rows.length]} 
-                            onClose={() => setCodeModal([...new Array(rows.length+1).fill(false)])}
+                            open={highscoreModal} 
+                            onClose={() => setHighScoreModal(false)}
                             highScore={highScore.code} />
                     </>)
                 }
@@ -74,7 +78,7 @@ export default ({ testIdx }) => {
                         sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                     >
                         <TableCell component="th" scope="row">
-                        {row.id}
+                        {i}
                         </TableCell>
                         <TableCell align="center">{row.submitTime}</TableCell>
                         <TableCell align="center">{row.language}</TableCell>
@@ -89,7 +93,7 @@ export default ({ testIdx }) => {
                         </TableCell>
                         <CodeModal 
                             open={codeModal[i]} onClose={() => setCodeModal([...new Array(rows.length).fill(false)])}
-                            testId={tests[testIdx].testId} index={i}/>
+                            highScore={row}/>
                     </TableRow>
                     ))}
                 </TableBody>

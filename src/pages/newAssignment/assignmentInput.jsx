@@ -13,6 +13,7 @@ import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import styles from "./style.module.scss";
 
 import { FormDataContext } from "./contexts";
+import { setFormat } from "./hooks";
 
 export default () => {
     const [formData, setFormData] = useContext(FormDataContext);
@@ -40,35 +41,17 @@ export default () => {
                         <div>
                             <span>응시 시작</span>
                             <DateTimePicker
-                                defaultValue={dayjs(formData.start_time)}
+                                defaultValue={dayjs(formData.startTime)}
                                 minDateTime={dayjs().subtract(1, "minute")}
-                                onChange={(value) => {
-                                    const M = value.$M+1 < 10 ? "0"+(value.$M+1).toString() : value.$M+1;
-                                    const D = value.$D < 10 ? "0"+(value.$D).toString() : value.$D;
-                                    const H = value.$H < 10 ? "0"+(value.$H).toString() : value.$H;
-                                    const m = value.$m < 10 ? "0"+(value.$m).toString() : value.$m;
-                                    const s = value.$s < 10 ? "0"+(value.$s).toString() : value.$s;
-
-                                    update("start_time", 
-                                        `${value.$y}-${M}-${D} ${H}:${m}:${s}`);
-                                }}
+                                onChange={(value) => update("startTime",  setFormat(value))}
                             />
                         </div>
                         <div>
                             <span>응시 종료</span>
                             <DateTimePicker 
-                                 defaultValue={dayjs(formData.end_time)}
-                                 minDateTime={dayjs(formData.start_time)}
-                                 onChange={(value) => {
-                                    const M = value.$M+1 < 10 ? "0"+(value.$M+1).toString() : value.$M+1;
-                                    const D = value.$D < 10 ? "0"+(value.$D).toString() : value.$D;
-                                    const H = value.$H < 10 ? "0"+(value.$H).toString() : value.$H;
-                                    const m = value.$m < 10 ? "0"+(value.$m).toString() : value.$m;
-                                    const s = value.$s < 10 ? "0"+(value.$s).toString() : value.$s;
-
-                                    update("end_time", 
-                                        `${value.$y}-${M}-${D} ${H}:${m}:${s}`);
-                                 }}/>
+                                 defaultValue={dayjs(formData.endTime)}
+                                 minDateTime={dayjs(formData.startTime)}
+                                 onChange={(value) => update("endTime", setFormat(value))}/>
                         </div>
                     </LocalizationProvider>
                 </div>
@@ -77,12 +60,12 @@ export default () => {
                     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale='en-gb'>
                         <TimePicker 
                             views={['hours', 'minutes']} 
-                            defaultValue={dayjs(`0000-00-00 ${formData.test_time}`)}
+                            defaultValue={dayjs(`0000-00-00 ${formData.testTime}`)}
                             onChange={(value) => {
                                 const H = value.$H < 10 ? "0"+value.$H : value.$H;
                                 const m = value.$m < 10 ? "0"+value.$m : value.$m;
 
-                                update("test_time", `${H}:${m}`);
+                                update("testTime", `${H}:${m}`);
                             }}
                         />
                     </LocalizationProvider>

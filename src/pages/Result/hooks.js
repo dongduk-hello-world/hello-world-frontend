@@ -24,6 +24,7 @@ export const getAssignmentInfo = async (assignmentId) => {
 }
 
 export const getResult = async (assignmentId, userId) => {
+  console.log(userId);
   const result = await axiosPromise.get(`/assignments/${assignmentId}/results/${userId}`, {
     totalScore: 100, score: 50, tests: [{ name: "문제 1", maxScore: 50, score: 25 }, { name: "문제 2", maxScore: 50, score: 25}]
   });

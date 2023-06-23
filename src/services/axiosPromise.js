@@ -1,6 +1,15 @@
 import axios from "axios";
 
-export default {
+export const isLogin = async () => {
+    const userId_front = sessionStorage.getItem("userId");
+    const userId_back = await axiosPromise.get("/login");
+
+    console.log(userId_front, userId_back, userId_front == userId_back);
+    if(userId_front && userId_front == userId_back) return userId_front;
+    return null; 
+}
+
+const axiosPromise = {
     post: (uri, data, defaultValue) => {
         return new Promise((resolve) =>
           axios
@@ -43,17 +52,6 @@ export default {
         );
     },
 
-    delete: (uri) => {
-
-        return new Promise(() =>
-            axios
-                .delete(uri)
-                .then(function (response) {
-                    console.log(JSON.stringify(response.data));
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-        );
-    }
 }
+
+export default axiosPromise;

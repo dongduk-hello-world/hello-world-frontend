@@ -2,28 +2,20 @@ import { createContext } from "react";
 
 import dayjs from 'dayjs';
 
-const setFormat = (value) => {
-    const M = value.$M+1 < 10 ? "0"+(value.$M+1).toString() : value.$M+1;
-    const D = value.$D < 10 ? "0"+(value.$D).toString() : value.$D;
-    const H = value.$H < 10 ? "0"+(value.$H).toString() : value.$H;
-    const m = value.$m < 10 ? "0"+(value.$m).toString() : value.$m;
-    const s = value.$s < 10 ? "0"+(value.$s).toString() : value.$s;
+import { setFormat } from "./hooks";
 
-    return `${value.$y}-${M}-${D} ${H}:${m}:${s}`;
-}
-
-export const ContextProvider = ({ children, formData }) => {
+export const ContextProvider = ({ children, formData, classId }) => {
     let [data, setData] = formData;
 
     if(Object.keys(data).length === 0) {
         const curDay = dayjs();
         console.log(curDay.toString(), curDay);
         data = {
-            classId: 1, // (임시)
+            classId: classId,
             name: "테스트 이름",
-            start_time: setFormat(curDay),
-            end_time:setFormat(curDay.add(1, 'hour')),
-            test_time: "01:00",
+            startTime: setFormat(curDay),
+            endTime:setFormat(curDay.add(1, 'hour')),
+            testTime: "01:00",
             tests: [{
                 name: `문제 1`,
                 description: "# 문제 1",

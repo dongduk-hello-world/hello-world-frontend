@@ -31,6 +31,11 @@ export const signup = async ({ email, password, name }) => {
   return true;
 };
 
+export const logout = async () => {
+  await axiosPromise.get(`/login/logout`);
+  
+}
+
 let authcode;
 export const useEmailAuth = () => {
   const [state, setState] = useState(0);
