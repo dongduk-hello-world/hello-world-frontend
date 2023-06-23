@@ -12,7 +12,7 @@ export default (props) => {
       <hr />
       <Form />
       <span>
-        계정이 이미 있으신가요? <Link to="/account">로그인</Link>
+        계정이 이미 있으신가요? <Link to="/account" replace={true}>로그인</Link>
       </span>
     </div>
   );
