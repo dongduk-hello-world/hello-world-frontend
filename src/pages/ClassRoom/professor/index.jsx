@@ -15,7 +15,7 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 
 import { getClassInfo, getStudents, getAssignments, deleteStudent } from "./hooks";
-import Sidebar from '../homeUI'
+import Sidebar from '../../homeUI'
 
 export const loader = async ({ params }) => {
   
@@ -64,11 +64,12 @@ export default function ClassRoom() {
 
     console.log(result);
       result.then((list) => {
-        for (let i = 0; i < list.length; i++) {
-          studentList[i] = list[i];
-        }
-        setStudentNum(list.length);
-        console.log(studentList);
+        console.log(list[0]);
+        // for (let i = 0; i < list.length; i++) {
+        //   studentList[i] = list[i];
+        // }
+        // setStudentNum(list.length);
+        // console.log(studentList);
       });
 
   },[]);
@@ -113,7 +114,7 @@ export default function ClassRoom() {
           {classInfo['professor']} / {classInfo['divide']}분반
         </Typography>
         <div>개설학기 : {classInfo['period']}</div>
-        <span>수강생 수 : {studentNum}</span>
+        {/* <span>수강생 수 : {studentNum}</span> */}
         <Button variant="text" onClick={handleOpen}>모두보기</Button>
       </Box>
     );
@@ -138,46 +139,46 @@ export default function ClassRoom() {
     }
   }
 
-  const Item = (props) => {
-    const student = props.student;
+  // const Item = (props) => {
+  //   const student = props.student;
 
-    return (
-      <li className={styles.item}>
-        <Grid container>
-          <Grid xs={2}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-              <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-            </svg>
-          </Grid>
-          <Grid xs={8}>
-            <span>{student['name']} / {student['email'].split('@')[0]}</span>
-          </Grid>
-          <Grid xs={2}>
-            <svg xmlns="http://www.w3.org/2000/svg" onClick={(e) => kickStudent(student['user_id'], e)} width="16" height="16" fill="currentColor" class="bi bi-person-fill-slash" viewBox="0 0 16 16" className={styles.kick}>
-              <path d="M13.879 10.414a2.501 2.501 0 0 0-3.465 3.465l3.465-3.465Zm.707.707-3.465 3.465a2.501 2.501 0 0 0 3.465-3.465Zm-4.56-1.096a3.5 3.5 0 1 1 4.949 4.95 3.5 3.5 0 0 1-4.95-4.95ZM11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 8c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Z"/>
-            </svg>
-          </Grid>
-        </Grid>
-      </li>
-    );
-  }
+  //   return (
+  //     <li className={styles.item}>
+  //       <Grid container>
+  //         <Grid xs={2}>
+  //           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+  //             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+  //             <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+  //           </svg>
+  //         </Grid>
+  //         <Grid xs={8}>
+  //           <span>{student['name']} / {student['email'].split('@')[0]}</span>
+  //         </Grid>
+  //         <Grid xs={2}>
+  //           <svg xmlns="http://www.w3.org/2000/svg" onClick={(e) => kickStudent(student['user_id'], e)} width="16" height="16" fill="currentColor" class="bi bi-person-fill-slash" viewBox="0 0 16 16" className={styles.kick}>
+  //             <path d="M13.879 10.414a2.501 2.501 0 0 0-3.465 3.465l3.465-3.465Zm.707.707-3.465 3.465a2.501 2.501 0 0 0 3.465-3.465Zm-4.56-1.096a3.5 3.5 0 1 1 4.949 4.95 3.5 3.5 0 0 1-4.95-4.95ZM11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 8c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Z"/>
+  //           </svg>
+  //         </Grid>
+  //       </Grid>
+  //     </li>
+  //   );
+  // }
 
-  const ItemList = () => {
-    // console.log(studentList[0] == null);
-    // console.log(studentList.value);
-    if (studentList[0] == undefined)
-      return '수강중인 학생이 없어요.';
-    else {
-      return (
-        <ul>
-          {studentList.map((student) => (
-            <Item student={student}/>
-          ))}
-        </ul>
-      );
-    }
-  }
+  // const ItemList = () => {
+  //   // console.log(studentList[0] == null);
+  //   // console.log(studentList.value);
+  //   if (studentList[0] == undefined)
+  //     return '수강중인 학생이 없어요.';
+  //   else {
+  //     return (
+  //       <ul>
+  //         {studentList.map((student) => (
+  //           <Item student={student}/>
+  //         ))}
+  //       </ul>
+  //     );
+  //   }
+  // }
 
   const AddHWButton = () => {
     return (
@@ -201,7 +202,7 @@ export default function ClassRoom() {
                 학생 리스트
               </Typography>
               <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-                <ItemList />
+                {/* <ItemList /> */}
               </Typography>
             </Box>
           </Fade>
@@ -269,9 +270,9 @@ export default function ClassRoom() {
       </Grid>
       <Grid item xs={9}>
         <Box className={styles.container}>
-          <ClassInfo />
-          <AddHWButton />
-          <AssignmentItems />
+          {/* <ClassInfo /> */}
+          {/* <AddHWButton />
+          <AssignmentItems /> */}
         </Box>
       </Grid>
     </Grid>

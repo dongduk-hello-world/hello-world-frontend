@@ -8,7 +8,8 @@ import Signup from "./pages/account/signup";
 import Assignment, { loader as assignmentLoader } from "./pages/assignment";
 import NewAssignment, { loader as newAssignmentLoader } from "./pages/newAssignment";
 
-import ClassRoom from "./pages/ClassRoom";
+import ProfessorClassRoom from "./pages/ClassRoom/professor";
+import StudentClassRoom from "./pages/ClassRoom/student";
 import Lecture from "./pages/Lecture";
 import ProfessorLecture from "./pages/Lecture/professor";
 import StudentLecture from "./pages/Lecture/student";
@@ -70,8 +71,14 @@ export default createBrowserRouter([
     ]
   },
   {
-    path: '/classes/:classId',
-    element: <ClassRoom />,
+    path: "/classes/:classId/professor",
+    element: <ProfessorClassRoom />,
+    loader: checkLogin,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/classes/:classId/student",
+    element: <StudentClassRoom />,
     loader: checkLogin,
     errorElement: <ErrorPage />,
   },

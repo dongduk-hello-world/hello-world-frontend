@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import axiosPromise from "../../services/axiosPromise";
+import axiosPromise from "../../../services/axiosPromise";
 import {axios} from 'axios';
 
 

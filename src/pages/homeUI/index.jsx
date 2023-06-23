@@ -39,14 +39,13 @@ export default function TemporaryDrawer() {
 
   useEffect(() => {
     const result = getSubjectList(10);
-    
+    console.log("sidebar 실행");
       result.then((list) => {
         console.log(list);
         for (let i = 0; i < Object.keys(list).length; i++) {
           console.log(list['classes'][i]);
           if (lecture_list.length <= Object.keys(list).length) {
             setLecture_list(lecture_list => [...lecture_list, list['classes'][i]]);
-            // lecture_list[i] = list[i];
           }
         }
       });
@@ -62,21 +61,25 @@ export default function TemporaryDrawer() {
           </div>
         </div>
         <Divider />
-        <List>
-          {lecture_list.map((lecture) => (
-            <ListItem 
-              key={Number(lecture['lecture_id'])}
-              onClick={() => {navigate(`/classes/${lecture['lecture_id']}`, {state: lecture['lecture_id']})}}
-            >
-              <ListItemButton>
-                <ListItemIcon>
-                  <SchoolIcon />
-                </ListItemIcon>
-                <ListItemText primary={lecture['name']} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
+        {lecture_list[0].length == 0 ? 
+          <div></div>
+            :
+          <List>
+            {lecture_list.map((lecture) => (
+              <ListItem 
+                key={Number(lecture['lecture_id'])}
+                onClick={() => {navigate(`/classes/${lecture['lecture_id']}`, {state: lecture['lecture_id']})}}
+              >
+                <ListItemButton>
+                  <ListItemIcon>
+                    <SchoolIcon />
+                  </ListItemIcon>
+                  <ListItemText primary={lecture['name']} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        }
       </Box>  
     </span>
   );
