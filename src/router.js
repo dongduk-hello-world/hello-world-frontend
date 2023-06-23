@@ -9,20 +9,15 @@ import Assignment, { loader as assignmentLoader } from "./pages/assignment";
 import NewAssignment, { loader as newAssignmentLoader } from "./pages/newAssignment";
 
 import ClassRoom, { loader as classLoader } from "./pages/ClassRoom";
-import ProfessorClassRoom from "./pages/ClassRoom/professor";
-import StudentClassRoom from "./pages/ClassRoom/student";
-import Lecture, {loader as lectureLoader} from "./pages/Lecture";
-import ProfessorLecture from "./pages/Lecture/professor";
-import StudentLecture from "./pages/Lecture/student";
+import Lecture, { loader as lectureLoader } from "./pages/Lecture";
 import NewLecture from "./pages/Lecture/professor/Form";
-import HomeUI from "./pages/homeUI";
-import Home, { loader as homeLoader } from "./pages/homeUI";
+import HomeUI, { loader as homeLoader } from "./pages/homeUI";
 import Result, { loader as resultLoader } from "./pages/Result";
 
 import ErrorPage from "./error-page";
 
-const checkLogin = () => { 
-//  if(!(await isLogin())) return redirect("/account");
+const checkLogin = async () => { 
+  if(!(await isLogin())) return redirect("/account");
   return null;
 }
 
@@ -56,20 +51,18 @@ export default createBrowserRouter([
   },
   {
     path: '/',
-    element: <Lecture />,
-    loader: lectureLoader,
+    element: <HomeUI />,
+    loader: homeLoader,
     errorElement: <ErrorPage />,
     children: [
       {
         path: "professor",
         element: <ProfessorLecture />,
-        loader: homeLoader,
         errorElement: <ErrorPage />,
       },
       {
         path: "student",
         element: <StudentLecture />,
-        loader: homeLoader,
         errorElement: <ErrorPage />,
       },
     ]
