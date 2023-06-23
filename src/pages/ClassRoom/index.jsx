@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useLoaderData, redirect } from "react-router-dom";
+import { useNavigate, useLoaderData } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 
 import * as React from 'react';
@@ -30,26 +30,27 @@ export default function ClassRoom() {
   let [data, setData] = useState([]);
   const navigate = useNavigate();
 
-  const data = {};
-  data.user = await getUser(userId);
+  useEffect(() => {
+    // if(!(await isLogin())) return redirect("/account");
+    const userId = Number(sessionStorage.getItem('userId'));
 
-  data.assignments = (await getAssignments()).assignments;
-  console.log(data);
-  return data;
-};
+    console.log(userId);
+    result = getUser(userId);
 
-export default function ClassRoom() {
-  let result;
-  const navigate = useNavigate();
-  let { user } = useLoaderData();
+    console.log(result);
+    result.then((info) => {
+      setData(info);
+      console.log(data);
+    });
+  },[]);
  
   return (
     <Grid container spacing={2}>
       <Grid item xs={3}>
-        <Sidebar data={user}/>
+        <Sidebar data={data}/>
       </Grid>
       <Grid item xs={9}>
-        {user.type== '학생' ? <Student /> : <Professor />}
+        {data['type'] == '학생' ? <Student /> : <Professor />}
       </Grid>
     </Grid>
   );
