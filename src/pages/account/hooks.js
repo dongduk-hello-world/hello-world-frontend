@@ -33,6 +33,7 @@ export const signup = async ({ email, password, name }) => {
 
 export const logout = async () => {
   await axiosPromise.get(`/login/logout`);
+  
 }
 
 let authcode;
