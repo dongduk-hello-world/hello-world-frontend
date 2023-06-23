@@ -13,13 +13,11 @@ import ProfessorLecture from "./pages/Lecture/professor";
 import StudentLecture from "./pages/Lecture/student";
 import NewLecture from "./pages/Lecture/professor/Form";
 import Result, { loader as resultLoader } from "./pages/Result";
-// import StudentResult, { loader as studentResultLoader } from "./pages/Result/Student";
-// import ProfessorResult from "./pages/Result/Professor";
 
 import ErrorPage from "./error-page";
 
 const checkLogin = () => { 
-  // if(!sessionStorage.getItem("userId")) return redirect("/account");
+//  if(!(await isLogin())) return redirect("/account");
   return null;
 }
 

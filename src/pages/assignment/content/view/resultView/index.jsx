@@ -32,7 +32,7 @@ export default ({ testIdx }) => {
         console.log(result.highScore.score);
         setRows(result.submits);
     };
-    useEffect(() => { refresh() });
+    // useEffect(() => { refresh() });
     useEffect(() => { 
         refresh();
         setCodeModal([...new Array(rows.length+1).fill(false)]);
@@ -47,7 +47,6 @@ export default ({ testIdx }) => {
                     <>
                         <label>현재 최고 점수: {highScore.score}</label>
                         <Link onClick={() => {
-                            console.log(highScore.score);
                             codeModal[rows.length] = true;
                             setCodeModal([...codeModal]);
                         }}>코드 보기</Link>

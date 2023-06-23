@@ -6,7 +6,7 @@ import StudentResult from "./Student";
 import ProfessorResult from "./Professor";
 
 export const loader = async ({ params }) => {
-//    if(!sessionStorage.getItem("userId")) return redirect("/account");
+//  if(!(await isLogin())) return redirect("/account");
     const assignmentId = params.assignmentId;
     const user = await getLoginedUser();
 
