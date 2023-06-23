@@ -20,7 +20,7 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import SchoolIcon from '@mui/icons-material/School';
-import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
 import { getSubjectList } from "./hooks";
 
 let classList;
@@ -61,6 +61,7 @@ export default function TemporaryDrawer(props) {
       <Box className = {classes.box}>
         <div className={styles.info}>
           <h1>{user_info['name']}</h1><br/>
+          <Button onClick={()=> navigate("/account", { replace: true}) }>로그아웃</Button>
           <div>
             <span>{user_info['email']}</span>
           </div>

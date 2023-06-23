@@ -16,6 +16,8 @@ import Button from '@mui/material/Button';
 import styles from "./style.module.scss";
 import LanguageSelect from "./languageSelect.jsx";
 
+import { submitForm } from "./hooks";
+
 export default function CreateClassForm() {
 
     const navigate = useNavigate();
@@ -35,32 +37,54 @@ export default function CreateClassForm() {
         setDivide(event.target.value);
     }
 
-    const type = location.state.type['type'];
+    // const type = location.state.type['type'];
     function moveToBack() {
-        console.log('back');
-        if (type == '교수')
-            navigate('/professor')
-        if (type == '학생')
-            navigate('/student')
+        navigate('/');
+        // console.log('back');
+        // if (type == '교수')
+        //     navigate('/professor')
+        // if (type == '학생')
+        //     navigate('/student')
     }
 
-    return ( 
-        // <FormControl>
-        <Container maxWidth="sm" className={styles.formContainer}>
-            <form className={styles.form}>
+    const SubmitForm = () => {
+        // e.preventDefault();
+
+        function submitData(e) {
+            e.preventDefault();
+            console.log("form 제출");
+            console.log(e.target.name.value);
+            console.log(e.target.description.value);
+            console.log(e.target.year.value);
+            console.log(e.target.semester.value);
+            console.log(e.target.divide.value);
+
+            let data = {
+                name: e.target.name.value,
+                description: e.target.description.value,
+                invite_code: 1,
+                period: e.target.year.value+"학년도 "+e.target.semester.value+"학기",
+                divide: e.target.divide.value
+            }
+
+            submitForm(data);
+        }
+
+        return (
+            <form className={styles.form} onSubmit={submitData}>
                 <Box>
                     <InputLabel htmlFor="class-name">강의명</InputLabel>
-                    <Input required id="class-name" aria-describedby="class-name-helper-text" fullWidth="true" />
+                    <Input name='name' required id="class-name" aria-describedby="class-name-helper-text" fullWidth="true" />
                     <FormHelperText id="class-name-helper-text">강의 이름을 입력해주세요</FormHelperText>
                 </Box>
                 <Box>
                     <InputLabel htmlFor="class-description">세부 설명</InputLabel>
-                    <Input required id="class-description" aria-describedby="class-description-helper-text" fullWidth="true" />
+                    <Input name='description' required id="class-description" aria-describedby="class-description-helper-text" fullWidth="true" />
                     <FormHelperText id="class-description-helper-text">간단한 강의설명 입력해주세요</FormHelperText>
                 </Box>
                 <Box>
                     <InputLabel htmlFor="professor">교수</InputLabel>
-                    <Input required id="professor" aria-describedby="professor-helper-text" fullWidth="true" readOnly value="박창섭"/>
+                    <Input name='professor' required id="professor" aria-describedby="professor-helper-text" fullWidth="true"/>
                 </Box>
                 <Box>
                     <Stack direction="row" spacing={2}>
@@ -68,6 +92,7 @@ export default function CreateClassForm() {
                             <InputLabel htmlFor="year-select-label">학년도</InputLabel>
                             <FormControl sx={{ minWidth: 150 }}>
                                 <Select
+                                    name='year'
                                     required 
                                     labelId="year-select-label"
                                     id="year-select"
@@ -85,6 +110,7 @@ export default function CreateClassForm() {
                             <InputLabel htmlFor="semester-select-label">학기</InputLabel>
                             <FormControl sx={{ minWidth: 150 }}>
                                 <Select
+                                    name='semester'
                                     required 
                                     labelId="semester-select-label"
                                     id="demo-simple-select"
@@ -101,6 +127,7 @@ export default function CreateClassForm() {
                             <InputLabel htmlFor="divide-select-label">분반</InputLabel>
                             <FormControl sx={{ minWidth: 150 }}>
                                 <Select
+                                    name='divide'
                                     required 
                                     labelId="divide-select-label"
                                     id="demo-simple-select"
@@ -119,21 +146,28 @@ export default function CreateClassForm() {
                     </Stack>
                     <FormHelperText id="period-helper-text">학년도와 학기를 선택해주세요</FormHelperText>
                 </Box>
-                <Box>
+                {/* <Box>
                     <InputLabel htmlFor="language">언어</InputLabel>
-                    <LanguageSelect required />
+                    <LanguageSelect name='language' required />
                     <FormHelperText id="language-helper-text">테스트에서 사용될 언어를 선택(복수 선택 가능)</FormHelperText>
-                </Box>
-                <Box>
+                </Box> */}
+                {/* <Box>
                     <InputLabel htmlFor="invite">초대코드</InputLabel>
-                    <Input required id="invite" aria-describedby="invite-helper-text" fullWidth="true" />
+                    <Input id="invite" aria-describedby="invite-helper-text" fullWidth="true" />
                     <FormHelperText id="invite-helper-text">초대코드를 입력해주세요</FormHelperText>
-                </Box>
+                </Box> */}
                 <Stack spacing={2} direction="row">
                     <Button variant="contained" type="submit">제출</Button>
                     <Button variant="outlined" onClick={moveToBack}>취소</Button>
                 </Stack>
             </form>
+        );
+    }
+
+    return ( 
+        // <FormControl>
+        <Container maxWidth="sm" className={styles.formContainer}>
+            <SubmitForm />
         </Container>
     );
 }
