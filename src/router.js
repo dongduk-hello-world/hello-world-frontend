@@ -8,7 +8,7 @@ import Signup from "./pages/account/signup";
 import Assignment, { loader as assignmentLoader } from "./pages/assignment";
 import NewAssignment, { loader as newAssignmentLoader } from "./pages/newAssignment";
 
-import ClassRoom from "./pages/ClassRoom";
+import ClassRoom, { loader as classLoader } from "./pages/ClassRoom";
 import ProfessorClassRoom from "./pages/ClassRoom/professor";
 import StudentClassRoom from "./pages/ClassRoom/student";
 import Lecture, {loader as lectureLoader} from "./pages/Lecture";
@@ -74,7 +74,7 @@ export default createBrowserRouter([
   {
     path: '/classes/:classId',
     element: <ClassRoom />,
-    loader: checkLogin,
+    loader: classLoader,
     errorElement: <ErrorPage />,
   },
   {

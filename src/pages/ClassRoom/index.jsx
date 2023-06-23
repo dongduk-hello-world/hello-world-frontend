@@ -9,13 +9,26 @@ import Sidebar from '../homeUI'
 import Professor from './professor'
 import Student from './student'
 
-import { getUser, getAssignments } from "./hooks";
+import { getClassInfo, getAssignmentList, getStudents} from "./hooks";
+import { getUser } from "./hooks";
 import { isLogin } from "../../services/axiosPromise";
 import { LocalConvenienceStoreOutlined } from "@mui/icons-material";
 
-export const loader = async () => {
-  if(!(await isLogin())) return redirect("/account");
-  const userId = sessionStorage.getItem('userId');
+export const loader = async ({ params }) => {
+  const classId = params.classId;
+  
+  const data = {};
+  data.lecture = await getClassInfo(classId);
+  data.assignmentList = await getAssignmentList(classId);
+
+  console.log(data);
+  return data;
+}
+
+export default function ClassRoom() {
+  let result;
+  let [data, setData] = useState([]);
+  const navigate = useNavigate();
 
   const data = {};
   data.user = await getUser(userId);
