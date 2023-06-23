@@ -14,44 +14,8 @@ import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
-// function createData(name, stu_no, score, scoreList) {
-//   return {
-//     name,
-//     stu_no, 
-//     score,
-//     scoreList: [
-//       {
-//         name: '1번문제',
-//         maxScore: '50',
-//         score: '40',
-
-//       }
-//     ]
-//   }
-//   // return {
-//   //   name,
-//   //   calories,
-//   //   fat,
-//   //   carbs,
-//   //   protein,
-//   //   price,
-//   //   history: [
-//   //     {
-//   //       date: '2020-01-05',
-//   //       customerId: '11091700',
-//   //       amount: 3,
-//   //     },
-//   //     {
-//   //       date: '2020-01-02',
-//   //       customerId: 'Anonymous',
-//   //       amount: 1,
-//   //     },
-//   //   ],
-//   // };
-// }
-
-function Row(props) {
-  const { row } = props;
+function Row({ row }) {
+  const { user, score, totalScore, tests } = row;
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -60,9 +24,9 @@ function Row(props) {
         <TableCell component="th" scope="row">
           1
         </TableCell>
-        <TableCell>김땡땡</TableCell>
-        <TableCell>20201111</TableCell>
-        <TableCell>250 / 300</TableCell>
+        <TableCell>{user.name}</TableCell>
+        <TableCell>{user.email.split('@')[0]}</TableCell>
+        <TableCell>{score} / {totalScore}</TableCell>
         <TableCell>버튼</TableCell>
         <TableCell>
           <IconButton
@@ -91,18 +55,18 @@ function Row(props) {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {/* {row.history.map((historyRow) => ( */}
+                  {tests.map((test) => (
                     <TableRow>
                       <TableCell component="th" scope="row">
-                        {'문제 이름'}
+                        {test.testName}
                       </TableCell>
-                      <TableCell>{50}</TableCell>
-                      <TableCell align="right">{40}</TableCell>
+                      <TableCell>{test.maxScore}</TableCell>
+                      <TableCell align="right">{test.score}</TableCell>
                       <TableCell align="right">
                         {'버튼'}
                       </TableCell>
                     </TableRow>
-                  {/* ))} */}
+                  ))}
                 </TableBody>
               </Table>
             </Box>
@@ -113,37 +77,7 @@ function Row(props) {
   );
 }
 
-// Row.propTypes = {
-//   row: PropTypes.shape({
-//     calories: PropTypes.number.isRequired,
-//     carbs: PropTypes.number.isRequired,
-//     fat: PropTypes.number.isRequired,
-//     history: PropTypes.arrayOf(
-//       PropTypes.shape({
-//         amount: PropTypes.number.isRequired,
-//         customerId: PropTypes.string.isRequired,
-//         date: PropTypes.string.isRequired,
-//       }),
-//     ).isRequired,
-//     name: PropTypes.string.isRequired,
-//     price: PropTypes.number.isRequired,
-//     protein: PropTypes.number.isRequired,
-//   }).isRequired,
-// };
-
-// const scoreList = [
-
-// ];
-
-// const rows = [
-//   createData('김땡땡', '20201111', 300, scoreList),
-//   createData('Ice cream sandwich', 237, 9.0, 37, 4.3, 4.99),
-//   createData('Eclair', 262, 16.0, 24, 6.0, 3.79),
-//   createData('Cupcake', 305, 3.7, 67, 4.3, 2.5),
-//   createData('Gingerbread', 356, 16.0, 49, 3.9, 1.5),
-// ];
-
-export default function ScoreTable() {
+export default function ScoreTable({ rows }) {
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
@@ -158,9 +92,9 @@ export default function ScoreTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {/* {rows.map((row) => ( */}
-            <Row key={'ddd'} row={'row'} />
-          {/* ))} */}
+          {rows.map((row, i) => (
+            <Row key={`assignment_result${i}`} row={row} />
+          ))}
         </TableBody>
       </Table>
     </TableContainer>

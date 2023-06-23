@@ -13,7 +13,7 @@ import { getCode } from "../../../hooks";
 
 import styles from "./style.module.scss";
 
-export default ({ testId, index, open, onClose, highScore }) => {
+export default ({ open, onClose, result }) => {
     const [languageIdx, setLanguageIdx] = useState(0);
     const language = [ c, java, python ];
 
@@ -22,25 +22,14 @@ export default ({ testId, index, open, onClose, highScore }) => {
 
     useEffect(() => {
         if(open) {
-            if (highScore != null) {
-                if(highScore.language === "c") setLanguageIdx(0);
-                if(highScore.language === "java") setLanguageIdx(1);
-                if(highScore.language === "python") setLanguageIdx(2);
+            if (result != null) {
+                if(result.language === "c") setLanguageIdx(0);
+                if(result.language === "java") setLanguageIdx(1);
+                if(result.language === "python") setLanguageIdx(2);
 
-                setCode(highScore.code);
-                setError(highScore.error);
-            }
-            else {
-                (async () => {
-                    const { language, code, error } = await getCode(testId, index);
-                    
-                    if(language === "c") setLanguageIdx(0);
-                    if(language === "java") setLanguageIdx(1);
-                    if(language === "python") setLanguageIdx(2);
-
-                    setCode(code);
-                    setError(error);
-                })();
+                setCode(result.code);
+                if(result.error) setError(result.error);
+                else setError(result.errorMsg);
             }
         }
         

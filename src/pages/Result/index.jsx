@@ -34,7 +34,11 @@ export const loader = async ({ params }) => {
         if(studentList.length > 0) {
             for(let i = 0; i < studentList.length; i++) {
                 const result = await getResult(assignmentId, studentList[i].user_id);
-                if(result) data.results.push(result);
+                
+                if(result) {
+                    result.user = studentList[i];
+                    data.results.push(result);
+                }
             }
         } else {
              for(let i = 0; i < 10; i++) {
