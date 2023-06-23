@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { Outlet } from "react-router-dom";
+import { useLoaderData, redirect } from "react-router-dom";
 
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
@@ -8,33 +7,32 @@ import Sidebar from '../homeUI'
 import Professor from './professor'
 import Student from './student'
 
-import { getUser } from "./hooks";
+import { getUser, getLectureLsit } from "./hooks";
+import { isLogin } from "../../services/axiosPromise";
+
+export const loader = async () => {
+  if(!(await isLogin())) return redirect("/account");
+  const userId = sessionStorage.getItem('userId');
+  
+  const data = {};
+  data.user = await getUser(userId);
+
+  data.lectureList = (await getLectureLsit()).classes;
+  console.log(data);
+  return data;
+};
 
 export default function Lecture() {
   let result;
-  let [data, setData] = useState([]);
-
-  useEffect(() => {
-    // if(!(await isLogin())) return redirect("/account");
-    const userId = Number(sessionStorage.getItem('userId'));
-
-    console.log(userId);
-    result = getUser(userId);
-
-    console.log(result);
-    result.then((info) => {
-      setData(info);
-      console.log(data);
-    });
-  },[]);
+  let { user } = useLoaderData();
 
   return (
     <Grid container spacing={2}>
       <Grid item xs={3}>
-        <Sidebar data={data}/>
+        <Sidebar data={user}/>
       </Grid>
       <Grid item xs={9}>
-        {data['type'] == '학생' ? <Professor /> : <Professor />}
+        {user.type== '학생' ? <Student /> : <Professor />}
       </Grid>
     </Grid>
   );

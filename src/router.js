@@ -11,7 +11,7 @@ import NewAssignment, { loader as newAssignmentLoader } from "./pages/newAssignm
 import ClassRoom from "./pages/ClassRoom";
 import ProfessorClassRoom from "./pages/ClassRoom/professor";
 import StudentClassRoom from "./pages/ClassRoom/student";
-import Lecture from "./pages/Lecture";
+import Lecture, {loader as lectureLoader} from "./pages/Lecture";
 import ProfessorLecture from "./pages/Lecture/professor";
 import StudentLecture from "./pages/Lecture/student";
 import NewLecture from "./pages/Lecture/professor/Form";
@@ -56,7 +56,7 @@ export default createBrowserRouter([
   {
     path: '/',
     element: <Lecture />,
-    loader: checkLogin,
+    loader: lectureLoader,
     errorElement: <ErrorPage />,
     children: [
       {

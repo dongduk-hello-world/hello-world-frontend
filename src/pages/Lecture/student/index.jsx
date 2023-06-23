@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLoaderData } from "react-router-dom";
 import styles from "./style.module.css";
 import { useStyles } from "./styles";
 
@@ -18,6 +19,8 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 import { Grid3x3 } from "@mui/icons-material";
+
+import { joinLecture } from "../hooks";
 
 const Search = () => {
   const [keyword, setKeyword] = useState("");
@@ -113,13 +116,14 @@ const Filter = () => {
   );
 }
 
-const LectureCard = () => {  
+const LectureCard = ({ lecture }) => {  
   const classes = useStyles();
 
   function joinClass() {
     if (window.confirm('해당 클래스에 참여할까요?')) {
+      joinLecture(lecture.classId);
       alert('참가하였습니다.');
-      window.location.reload();
+      // window.location.reload();
     }
   }
 
@@ -139,10 +143,10 @@ const LectureCard = () => {
         </CardActions>
       <CardContent className={styles.cardContent}>
         <Typography variant="h5" component="div">
-        프로그래밍 논리의 이해
+          {lecture.className}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          박수희 / 1분반
+          {lecture.professor} / {lecture.divide}분반
         </Typography>
       </CardContent>
       </div>
@@ -151,24 +155,20 @@ const LectureCard = () => {
 }
 
 export default function TemporaryDrawer() {
+  const { lectureList } = useLoaderData();
 
   return (
       <Grid className={styles.container}>
         <Grid mb={8} mt={8}><Search /></Grid>
         <Grid mb={8} mr={8}><Filter /></Grid>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          <Grid item>
-            <LectureCard>1</LectureCard>
-          </Grid>
-          <Grid item>
-            <LectureCard>2</LectureCard>
-          </Grid>
-          <Grid item>
-            <LectureCard>3</LectureCard>
-          </Grid>
-          <Grid item>
-            <LectureCard>4</LectureCard>
-          </Grid>
+          {
+            lectureList.map((lecture, idx) => (
+              <Grid item>
+                <LectureCard lecture={lecture}/>
+              </Grid>
+            ))
+          }
         </Grid>
       </Grid>
   );
