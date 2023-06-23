@@ -17,14 +17,7 @@ import Fade from '@mui/material/Fade';
 import { getClassInfo, getAssignments, getStudents} from "./hooks";
 import Sidebar from '../../homeUI'
 
-export const loader = async ({ params }) => {
-  
-  // console.log("classid is ", classId);
 
-  // result = getClassInfo(classId);
-  // setClassData(result);
-  // console.log(result);
-}
 
 export default function ClassRoom() {
 

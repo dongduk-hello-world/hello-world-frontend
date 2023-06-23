@@ -9,9 +9,21 @@ import Sidebar from '../homeUI'
 import Professor from './professor'
 import Student from './student'
 
+import { getClassInfo, getAssignmentList, getStudents} from "./hooks";
 import { getUser } from "./hooks";
 import { isLogin } from "../../services/axiosPromise";
 import { LocalConvenienceStoreOutlined } from "@mui/icons-material";
+
+export const loader = async ({ params }) => {
+  const classId = params.classId;
+  
+  const data = {};
+  data.lecture = await getClassInfo(classId);
+  data.assignmentList = await getAssignmentList(classId);
+
+  console.log(data);
+  return data;
+}
 
 export default function ClassRoom() {
   let result;

@@ -15,7 +15,7 @@ export const getStudents = async (classId) => {
   return result;
 }
 
-export const getAssignments = async (classId) => {
+export const getAssignmentList = async (classId) => {
   const result = await axiosPromise.get(`/classes/${classId}/assignments`);
   return result;
 }
