@@ -113,7 +113,6 @@ export default function CreateClassForm() {
                                     name='semester'
                                     required 
                                     labelId="semester-select-label"
-                                    id="demo-simple-select"
                                     value={semester}
                                     label="학기"
                                     onChange={changeSemester}
@@ -130,7 +129,6 @@ export default function CreateClassForm() {
                                     name='divide'
                                     required 
                                     labelId="divide-select-label"
-                                    id="demo-simple-select"
                                     value={divide}
                                     label="분반"
                                     onChange={changeDivide}

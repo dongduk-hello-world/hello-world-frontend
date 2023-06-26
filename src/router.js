@@ -5,11 +5,14 @@ import Account from "./pages/account";
 import Login from "./pages/account/login";
 import Signup from "./pages/account/signup";
 
+
 import Assignment, { loader as assignmentLoader } from "./pages/assignment";
 import NewAssignment, { loader as newAssignmentLoader } from "./pages/newAssignment";
 
 import ClassRoom, { loader as classLoader } from "./pages/ClassRoom";
 import Lecture, { loader as lectureLoader } from "./pages/Lecture";
+import StudentLecture from "./pages/Lecture/student";
+import ProfessorLecture from "./pages/Lecture/professor";
 import NewLecture from "./pages/Lecture/professor/Form";
 import HomeUI, { loader as homeLoader } from "./pages/homeUI";
 import Result, { loader as resultLoader } from "./pages/Result";
@@ -58,11 +61,13 @@ export default createBrowserRouter([
       {
         path: "professor",
         element: <ProfessorLecture />,
+        loader: homeLoader,
         errorElement: <ErrorPage />,
       },
       {
         path: "student",
         element: <StudentLecture />,
+        loader: homeLoader,
         errorElement: <ErrorPage />,
       },
     ]

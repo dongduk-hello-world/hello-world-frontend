@@ -6,7 +6,7 @@ export const getUser = async (userId) => {
   return result;
 }
 
-export const getLectureLsit = async () => {
+export const getLectureList = async () => {
   const result = await axiosPromise.get(`/classes`);
   return result;
 }

@@ -7,3 +7,7 @@ export const getSubjectList = async (userId) => {
   return result;
 }
 
+export const getUser = async (userId) => {
+  const result = await axiosPromise.get(`/users/${userId}`);
+  return result;
+}

@@ -20,7 +20,18 @@ import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 import { Grid3x3 } from "@mui/icons-material";
 
-import { joinLecture } from "../hooks";
+import { joinLecture, getLectureList } from "../hooks";
+
+export const loader = async ({ params }) => {
+  
+  // console.log("classid is ", classId);
+
+  const data = {};
+  const result= await getLectureList();
+
+  data.lecture_list = result['classes'];
+  return data;
+}
 
 const Search = () => {
   const [keyword, setKeyword] = useState("");
@@ -143,10 +154,10 @@ const LectureCard = ({ lecture }) => {
         </CardActions>
       <CardContent className={styles.cardContent}>
         <Typography variant="h5" component="div">
-          {lecture.className}
+          {lecture.name}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          {lecture.professor} / {lecture.divide}분반
+          {lecture.divide}분반
         </Typography>
       </CardContent>
       </div>
@@ -155,18 +166,17 @@ const LectureCard = ({ lecture }) => {
 }
 
 export default function TemporaryDrawer() {
-  const { lectureList } = useLoaderData();
+  const { lecture_list } = useLoaderData();
+  console.log(lecture_list);
 
   return (
       <Grid className={styles.container}>
         <Typography variant="h5" component="div">
           강의에 가입해보세요!
         </Typography>
-        {/* <Grid mb={8} mt={8}><Search /></Grid>
-        <Grid mb={8} mr={8}><Filter /></Grid> */}
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           {
-            lectureList.map((lecture, idx) => (
+            lecture_list.map((lecture, idx) => (
               <Grid item>
                 <LectureCard lecture={lecture}/>
               </Grid>
