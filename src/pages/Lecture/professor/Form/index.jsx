@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
+// import { useForm } from 'react-hook-form';
 
 import Container from '@mui/material/Container';
 import InputLabel from '@mui/material/InputLabel';
@@ -67,7 +68,10 @@ export default function CreateClassForm() {
                 divide: e.target.divide.value
             }
 
-            submitForm(data);
+            submitForm(data).then(() =>{
+                alert('등록이 완료되었습니다.');
+                navigate('/');
+            });
         }
 
         return (
@@ -113,7 +117,6 @@ export default function CreateClassForm() {
                                     name='semester'
                                     required 
                                     labelId="semester-select-label"
-                                    id="demo-simple-select"
                                     value={semester}
                                     label="학기"
                                     onChange={changeSemester}
@@ -130,7 +133,6 @@ export default function CreateClassForm() {
                                     name='divide'
                                     required 
                                     labelId="divide-select-label"
-                                    id="demo-simple-select"
                                     value={divide}
                                     label="분반"
                                     onChange={changeDivide}
