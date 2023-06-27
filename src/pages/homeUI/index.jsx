@@ -44,12 +44,15 @@ export default function TemporaryDrawer() {
   const { user_info, lecture_list } = useLoaderData();
   const navigate = useNavigate();
 
-  // let name = "전유영"
-  // let grade = "1"
-  // let id = "20201015"
   console.log(lecture_list);
   const classes = useStyles();
 
+  useEffect(() => {
+    if (user_info.type == "학생") navigate('/student', { replace: true});
+    else if (user_info.type == "교수") navigate('/professor', { replace: true});
+  },[]);
+
+  
   return (
 
     <Grid container className={styles.container}>
