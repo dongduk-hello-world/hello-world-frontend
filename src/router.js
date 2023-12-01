@@ -9,13 +9,7 @@ import Signup from "./pages/account/signup";
 import Assignment, { loader as assignmentLoader } from "./pages/assignment";
 import NewAssignment, { loader as newAssignmentLoader } from "./pages/newAssignment";
 
-import ClassRoom, { loader as classLoader } from "./pages/ClassRoom";
-import Lecture, { loader as lectureLoader } from "./pages/Lecture";
-import StudentLecture from "./pages/Lecture/student";
-import ProfessorLecture from "./pages/Lecture/professor";
-import NewLecture from "./pages/Lecture/professor/Form";
-import HomeUI, { loader as homeLoader } from "./pages/homeUI";
-import Result, { loader as resultLoader } from "./pages/Result";
+import MyLecture, { loader as myLectureLoader } from "./pages/myLecture";
 
 import ErrorPage from "./error-page";
 
@@ -54,48 +48,54 @@ export default createBrowserRouter([
   },
   {
     path: '/',
-    element: <HomeUI />,
-    loader: homeLoader,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        path: "professor",
-        element: <ProfessorLecture />,
-        loader: homeLoader,
-        errorElement: <ErrorPage />,
-      },
-      {
-        path: "student",
-        element: <StudentLecture />,
-        loader: homeLoader,
-        errorElement: <ErrorPage />,
-      },
-    ]
-  },
-  {
-    path: '/classes/:classId',
-    element: <ClassRoom />,
-    loader: classLoader,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: 'classes/add-class',
-    element: <NewLecture />,
-    loader: checkLogin,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: 'result/:assignmentId',
-    element: <Result />,
-    loader: resultLoader,
+    element: <MyLecture />,
+    // loader: myLectureLoader,
     errorElement: <ErrorPage />
   },
-  {
-    path: 'test/:userId',
-    element: <HomeUI />,
-    loader: resultLoader,
-    errorElement: <ErrorPage />
-  },
+  // {
+  //   path: '/',
+  //   element: <HomeUI />,
+  //   loader: homeLoader,
+  //   errorElement: <ErrorPage />,
+  //   children: [
+  //     {
+  //       path: "professor",
+  //       element: <ProfessorLecture />,
+  //       loader: homeLoader,
+  //       errorElement: <ErrorPage />,
+  //     },
+  //     {
+  //       path: "student",
+  //       element: <StudentLecture />,
+  //       loader: homeLoader,
+  //       errorElement: <ErrorPage />,
+  //     },
+  //   ]
+  // },
+  // {
+  //   path: '/classes/:classId',
+  //   element: <ClassRoom />,
+  //   loader: classLoader,
+  //   errorElement: <ErrorPage />,
+  // },
+  // {
+  //   path: 'classes/add-class',
+  //   element: <NewLecture />,
+  //   loader: checkLogin,
+  //   errorElement: <ErrorPage />,
+  // },
+  // {
+  //   path: 'result/:assignmentId',
+  //   element: <Result />,
+  //   loader: resultLoader,
+  //   errorElement: <ErrorPage />
+  // },
+  // {
+  //   path: 'test/:userId',
+  //   element: <HomeUI />,
+  //   loader: resultLoader,
+  //   errorElement: <ErrorPage />
+  // },
   // {
   //   path: 'result/:userId',
   //   element: <Result />,
