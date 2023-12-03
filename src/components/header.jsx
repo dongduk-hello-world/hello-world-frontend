@@ -19,6 +19,8 @@ const Header = () => {
       >
         <span>내 과목</span>
         <span>과목 찾기</span>
+        {/* 삼항연산자(user_type == professor) */}
+        <span>과목 개설</span>
       </Grid>
       <Grid 
         container
