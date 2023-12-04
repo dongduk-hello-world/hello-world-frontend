@@ -17,7 +17,6 @@ html {
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
   img {
     width: 12rem;
     height: 12rem;
@@ -43,4 +42,25 @@ html {
   width: 60%;
 
   display: flex;
+  flex-wrap: wrap;
+  gap: 3em;
+}
+
+.card {
+  width: 230px;
+  height: 100px;
+  background: #5E99F1;
+
+  position: relative;
+  border-radius: 25px;
+  padding: 35px;
+  &:hover {
+    cursor: pointer;
+  }
+
+  .cardContent {
+    display: flex;
+
+    height: 100%;
+  }
 }

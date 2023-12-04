@@ -36,7 +36,36 @@ export default () => {
           </Container>
         </div>
         <div className={styles.cardContainer}>
-          
+          <div className={styles.card}>
+            <div class={styles.cardContent}>
+              어쩌고ㅇ
+            </div>
+          </div>
+          <div className={styles.card}>
+            <div class={styles.cardContent}>
+              어쩌고ㅇ
+            </div>
+          </div>
+          <div className={styles.card}>
+            <div class={styles.cardContent}>
+              어쩌고ㅇ
+            </div>
+          </div>
+          <div className={styles.card}>
+            <div class={styles.cardContent}>
+              어쩌고ㅇ
+            </div>
+          </div>
+          <div className={styles.card}>
+            <div class={styles.cardContent}>
+              어쩌고ㅇ
+            </div>
+          </div>
+          <div className={styles.card}>
+            <div class={styles.cardContent}>
+              어쩌고ㅇ
+            </div>
+          </div>
         </div>
       </div>
     </ThemeProvider>
