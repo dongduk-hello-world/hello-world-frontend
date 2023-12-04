@@ -1,0 +1,46 @@
+html {
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+
+  margin-top: 5rem;
+  margin-right: 5rem;
+  margin-left: 5rem;
+  height: 100%;
+}
+
+.infoContainer {
+  width: 40%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  img {
+    width: 12rem;
+    height: 12rem;
+    margin: 0px auto;
+  }
+  div {
+    margin: 0px auto;
+  }
+  .textView {
+    margin-top: 2rem;
+    text-align: center;
+  }
+  button {
+    margin: 0px auto;
+    display: flex;
+    &:last-child {
+      margin-top: 2rem;
+    }
+  }
+}
+
+.cardContainer {
+  width: 60%;
+
+  display: flex;
+}

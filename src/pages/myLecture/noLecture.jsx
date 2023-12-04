@@ -3,9 +3,9 @@ import styles from "./noLecture.module.scss";
 import Lottie from 'lottie-react';
 import { lottie } from 'assets/lottie';
 
-import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 
 export default () => {
   const theme = createTheme({
