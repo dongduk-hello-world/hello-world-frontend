@@ -1,4 +1,4 @@
-import styles from "./style.module.scss";
+import styles from "./noLecture.module.scss";
 
 import Lottie from 'lottie-react';
 import { lottie } from 'assets/lottie';
