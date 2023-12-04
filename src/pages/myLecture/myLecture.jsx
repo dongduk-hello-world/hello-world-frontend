@@ -38,32 +38,50 @@ export default () => {
         <div className={styles.cardContainer}>
           <div className={styles.card}>
             <div class={styles.cardContent}>
-              어쩌고ㅇ
+              <Typography variant="h6" gutterBottom>프로그래밍 논리의 이해</Typography>
+              <Typography variant="subtitle2" gutterBottom>
+                박수희 / 1분반
+              </Typography>
             </div>
           </div>
           <div className={styles.card}>
             <div class={styles.cardContent}>
-              어쩌고ㅇ
+              <Typography variant="h6" gutterBottom>프로그래밍 논리의 이해</Typography>
+              <Typography variant="subtitle2" gutterBottom>
+                박수희 / 1분반
+              </Typography>
             </div>
           </div>
           <div className={styles.card}>
             <div class={styles.cardContent}>
-              어쩌고ㅇ
+              <Typography variant="h6" gutterBottom>프로그래밍 논리의 이해</Typography>
+              <Typography variant="subtitle2" gutterBottom>
+                박수희 / 1분반
+              </Typography>
             </div>
           </div>
           <div className={styles.card}>
             <div class={styles.cardContent}>
-              어쩌고ㅇ
+              <Typography variant="h6" gutterBottom>프로그래밍 논리의 이해</Typography>
+              <Typography variant="subtitle2" gutterBottom>
+                박수희 / 1분반
+              </Typography>
             </div>
           </div>
           <div className={styles.card}>
             <div class={styles.cardContent}>
-              어쩌고ㅇ
+              <Typography variant="h6" gutterBottom>프로그래밍 논리의 이해</Typography>
+              <Typography variant="subtitle2" gutterBottom>
+                박수희 / 1분반
+              </Typography>
             </div>
           </div>
           <div className={styles.card}>
             <div class={styles.cardContent}>
-              어쩌고ㅇ
+              <Typography variant="h6" gutterBottom>프로그래밍 논리의 이해</Typography>
+              <Typography variant="subtitle2" gutterBottom>
+                박수희 / 1분반
+              </Typography>
             </div>
           </div>
         </div>
