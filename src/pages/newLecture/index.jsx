@@ -21,9 +21,9 @@ export default () => {
     <div>
       <Header />
       <ThemeProvider theme={theme}>
-        <div className={styles.container}>
-          <Stepper />
-          <Form />  {/* relative 적용 */}
+        <div>
+          {/* <Stepper /> */}
+          <Form />
         </div>
         
       </ThemeProvider>
