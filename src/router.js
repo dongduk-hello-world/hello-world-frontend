@@ -10,6 +10,7 @@ import Assignment, { loader as assignmentLoader } from "./pages/assignment";
 import NewAssignment, { loader as newAssignmentLoader } from "./pages/newAssignment";
 
 import MyLecture, { loader as myLectureLoader } from "./pages/myLecture";
+import NewLecture from "./pages/newLecture";
 
 import ErrorPage from "./error-page";
 
@@ -52,6 +53,11 @@ export default createBrowserRouter([
     // loader: myLectureLoader,
     errorElement: <ErrorPage />
   },
+  {
+    path: '/newLecture',
+    element: <NewLecture />,
+    errorElement: <ErrorPage />
+  }
   // {
   //   path: '/',
   //   element: <HomeUI />,

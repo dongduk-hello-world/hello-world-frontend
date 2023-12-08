@@ -12,8 +12,8 @@ export default () => {
     palette: {
       themeColor: {
         main: '#5E99F1',
-        light: '#5E99F1',
-        dark: '#5E99F1',
+        light: '#C4DAFC',
+        dark: '#3874CB',
         contrastText: '#000000',
       },
     },
