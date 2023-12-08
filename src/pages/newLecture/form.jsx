@@ -37,6 +37,7 @@ export default () => {
     },
   ];
   const [activeStep, setActiveStep] = React.useState(0);
+  const [idx, setIdx] = React.useState(1);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -105,20 +106,30 @@ export default () => {
             variant="filled"
           />
           <div className={styles.buttonContainer}>
-            <Button
-              variant="contained"
-              size="large"
-              disabled
-              onClick={handleBack}
-            >
-              이전
-            </Button>
+            {activeStep === 0 ? 
+              <Button
+                variant="contained"
+                size="large"
+                disabled
+                onClick={handleBack}
+              > 
+                이전
+              </Button>
+            :
+              <Button
+                variant="contained"
+                size="large"
+                onClick={handleBack}
+              > 
+                이전
+              </Button>
+            }
             <Button
               variant="contained"
               size="large"
               onClick={handleNext}
             >
-              다음
+              {activeStep === steps.length - 1 ? '개설' : '다음'}
             </Button>
           </div>
         </form>
