@@ -122,77 +122,105 @@ export default () => {
               />
             </div>
           :
-            <div>
-              <Typography variant="h6" gutterBottom>3. 수업이 진행되는 학년도, 학기를 선택해주세요.</Typography>
-                <Grid
+            (activeStep === 1 ?
+              <div>
+                <Typography variant="h6" gutterBottom>3. 수업이 진행되는 학년도, 학기를 선택해주세요.</Typography>
+                  <Grid
+                    container
+                    spacing={4}
+                    alignItems="center"
+                  >
+                    <Grid item xs={4}>
+                      <Box sx={{ minWidth: 120 }}>
+                        <FormControl fullWidth size="small">
+                          {/* <InputLabel id="year-select-label">학년도</InputLabel> */}
+                          <Select
+                            labelId="year-select-label"
+                            id="year-select"
+                            value={year}
+                            label="Year"
+                            onChange={changeYear}
+                          >
+                            <MenuItem value={2023}>2023</MenuItem>
+                            <MenuItem value={2024}>2024</MenuItem>
+                            <MenuItem value={2025}>2025</MenuItem>
+                          </Select>
+                        </FormControl>
+                      </Box>
+                    </Grid>
+                    <Grid item xs={2}>
+                      학년도
+                    </Grid>
+                    <Grid item xs={4}>
+                      <Box sx={{ minWidth: 120 }}>
+                        <FormControl fullWidth size="small">
+                          {/* <InputLabel id="semester-select-label">학기</InputLabel> */}
+                          <Select
+                            labelId="semester-select-label"
+                            id="semester-select"
+                            value={semester}
+                            label="Semester"
+                            onChange={changeSemester}
+                          >
+                            <MenuItem value={1}>1학기</MenuItem>
+                            <MenuItem value={2}>2학기</MenuItem>
+                          </Select>
+                        </FormControl>
+                      </Box>
+                    </Grid>
+                    <Grid item xs={2}>
+                      학기
+                    </Grid>
+                  </Grid>
+                <Box sx={{height: 50}} />
+                <Typography variant="h6" gutterBottom>4. 분반을 입력해주세요.</Typography>
+                <Grid 
                   container
-                  spacing={4}
+                  spacing={3}
                   alignItems="center"
                 >
-                  <Grid item xs={4}>
-                    <Box sx={{ minWidth: 120 }}>
-                      <FormControl fullWidth size="small">
-                        {/* <InputLabel id="year-select-label">학년도</InputLabel> */}
-                        <Select
-                          labelId="year-select-label"
-                          id="year-select"
-                          value={year}
-                          label="Year"
-                          onChange={changeYear}
-                        >
-                          <MenuItem value={2023}>2023</MenuItem>
-                          <MenuItem value={2024}>2024</MenuItem>
-                          <MenuItem value={2025}>2025</MenuItem>
-                        </Select>
-                      </FormControl>
-                    </Box>
+                  <Grid item xs={2}>
+                    <TextField
+                      required
+                      defaultValue=""
+                      fullWidth
+                      outlined
+                      size="small"
+                    />
                   </Grid>
                   <Grid item xs={2}>
-                    학년도
+                    분반
                   </Grid>
-                  <Grid item xs={4}>
-                    <Box sx={{ minWidth: 120 }}>
-                      <FormControl fullWidth size="small">
-                        {/* <InputLabel id="semester-select-label">학기</InputLabel> */}
-                        <Select
-                          labelId="semester-select-label"
-                          id="semester-select"
-                          value={semester}
-                          label="Semester"
-                          onChange={changeSemester}
-                        >
-                          <MenuItem value={1}>1학기</MenuItem>
-                          <MenuItem value={2}>2학기</MenuItem>
-                        </Select>
-                      </FormControl>
-                    </Box>
+                  <Grid item xs={8} />
+                </Grid>
+              </div>
+            :
+              <div>
+                <Typography variant="h6" gutterBottom>5. 초대코드를 생성해주세요.</Typography>
+                <Grid 
+                  container
+                  spacing={2}
+                  alignItems="center"
+                >
+                  <Grid item xs={9}>
+                    <TextField
+                      required
+                      defaultValue=""
+                      fullWidth
+                      outlined
+                      size="small"
+                    />
                   </Grid>
-                  <Grid item xs={2}>
-                    학기
+                  <Grid item xs={3}>
+                    <Button
+                      variant="contained"
+                    >
+                      랜덤생성
+                    </Button>
                   </Grid>
                 </Grid>
-              <Box sx={{height: 50}} />
-              <Typography variant="h6" gutterBottom>4. 분반을 입력해주세요.</Typography>
-              <Grid 
-                container
-                spacing={3}
-                alignItems="center"
-              >
-                <Grid item xs={2}>
-                  <TextField
-                    required
-                    defaultValue=""
-                    fullWidth
-                    outlined
-                    size="small"
-                  />
-                </Grid>
-                <Grid item xs={2}>
-                  분반
-                </Grid>
-                <Grid item xs={8} />
-              </Grid>
-            </div>
+              </div>
+            )
           }
           
           <div className={styles.buttonContainer}>
