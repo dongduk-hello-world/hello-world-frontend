@@ -4,6 +4,10 @@ import * as React from 'react';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import FormControl from '@mui/material/FormControl';
+import Grid from '@mui/material/Grid';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
@@ -37,7 +41,6 @@ export default () => {
     },
   ];
   const [activeStep, setActiveStep] = React.useState(0);
-  const [idx, setIdx] = React.useState(1);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -49,6 +52,16 @@ export default () => {
 
   const handleReset = () => {
     setActiveStep(0);
+  };
+
+  const [year, setYear] = React.useState('');
+  const [semester, setSemester] = React.useState('');
+
+  const changeYear = (event) => {
+    setYear(event.target.value);
+  };
+  const changeSemester = (event) => {
+    setSemester(event.target.value);
   };
 
   return (
@@ -86,25 +99,102 @@ export default () => {
     <div className={styles.frame}>
       <div className={styles.form}>
         <form>
-          <Typography variant="h6" gutterBottom>1. 생성할 과목의 이름을 입력해주세요.</Typography>
-          <TextField
-            required
-            id="filled-required"
-            label="과목명 입력"
-            defaultValue=""
-            fullWidth
-            variant="filled"
-          />
-          <Box sx={{height: 50}} />
-          <Typography variant="h6" gutterBottom>2. 과목을 개설하는 사람의 이름을 입력해주세요.(본인 이름 입력)</Typography>
-          <TextField
-            required
-            id="filled-required"
-            label="이름 입력"
-            defaultValue=""
-            fullWidth
-            variant="filled"
-          />
+          {activeStep === 0 ?
+            <div>
+              <Typography variant="h6" gutterBottom>1. 생성할 과목의 이름을 입력해주세요.</Typography>
+              <TextField
+                required
+                id="filled-required"
+                label="과목명 입력"
+                defaultValue=""
+                fullWidth
+                variant="filled"
+              />
+              <Box sx={{height: 50}} />
+              <Typography variant="h6" gutterBottom>2. 과목을 개설하는 사람의 이름을 입력해주세요.(본인 이름 입력)</Typography>
+              <TextField
+                required
+                id="filled-required"
+                label="이름 입력"
+                defaultValue=""
+                fullWidth
+                variant="filled"
+              />
+            </div>
+          :
+            <div>
+              <Typography variant="h6" gutterBottom>3. 수업이 진행되는 학년도, 학기를 선택해주세요.</Typography>
+                <Grid
+                  container
+                  spacing={4}
+                  alignItems="center"
+                >
+                  <Grid item xs={4}>
+                    <Box sx={{ minWidth: 120 }}>
+                      <FormControl fullWidth size="small">
+                        {/* <InputLabel id="year-select-label">학년도</InputLabel> */}
+                        <Select
+                          labelId="year-select-label"
+                          id="year-select"
+                          value={year}
+                          label="Year"
+                          onChange={changeYear}
+                        >
+                          <MenuItem value={2023}>2023</MenuItem>
+                          <MenuItem value={2024}>2024</MenuItem>
+                          <MenuItem value={2025}>2025</MenuItem>
+                        </Select>
+                      </FormControl>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={2}>
+                    학년도
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Box sx={{ minWidth: 120 }}>
+                      <FormControl fullWidth size="small">
+                        {/* <InputLabel id="semester-select-label">학기</InputLabel> */}
+                        <Select
+                          labelId="semester-select-label"
+                          id="semester-select"
+                          value={semester}
+                          label="Semester"
+                          onChange={changeSemester}
+                        >
+                          <MenuItem value={1}>1학기</MenuItem>
+                          <MenuItem value={2}>2학기</MenuItem>
+                        </Select>
+                      </FormControl>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={2}>
+                    학기
+                  </Grid>
+                </Grid>
+              <Box sx={{height: 50}} />
+              <Typography variant="h6" gutterBottom>4. 분반을 입력해주세요.</Typography>
+              <Grid 
+                container
+                spacing={3}
+                alignItems="center"
+              >
+                <Grid item xs={2}>
+                  <TextField
+                    required
+                    defaultValue=""
+                    fullWidth
+                    outlined
+                    size="small"
+                  />
+                </Grid>
+                <Grid item xs={2}>
+                  분반
+                </Grid>
+                <Grid item xs={8} />
+              </Grid>
+            </div>
+          }
+          
           <div className={styles.buttonContainer}>
             {activeStep === 0 ? 
               <Button
