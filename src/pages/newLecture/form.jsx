@@ -56,12 +56,17 @@ export default () => {
 
   const [year, setYear] = React.useState('');
   const [semester, setSemester] = React.useState('');
+  const [randomString, setRandomString] = React.useState('');
 
   const changeYear = (event) => {
     setYear(event.target.value);
   };
   const changeSemester = (event) => {
     setSemester(event.target.value);
+  };
+
+  const random = () => {
+    setRandomString(Math.random().toString(16).substr(2, 6));
   };
 
   return (
@@ -205,7 +210,7 @@ export default () => {
                   <Grid item xs={9}>
                     <TextField
                       required
-                      defaultValue=""
+                      value={randomString}
                       fullWidth
                       outlined
                       size="small"
@@ -214,6 +219,7 @@ export default () => {
                   <Grid item xs={3}>
                     <Button
                       variant="contained"
+                      onClick={random}
                     >
                       랜덤생성
                     </Button>
