@@ -11,6 +11,7 @@ import NewAssignment, { loader as newAssignmentLoader } from "./pages/newAssignm
 
 import MyLecture, { loader as myLectureLoader } from "./pages/myLecture";
 import NewLecture from "./pages/newLecture";
+import SearchLecture from "./pages/searchLecture";
 
 import ErrorPage from "./error-page";
 
@@ -56,6 +57,11 @@ export default createBrowserRouter([
   {
     path: '/newLecture',
     element: <NewLecture />,
+    errorElement: <ErrorPage />
+  },
+  {
+    path: '/search',
+    element: <SearchLecture />,
     errorElement: <ErrorPage />
   }
   // {
