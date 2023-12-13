@@ -59,58 +59,110 @@ export default () => {
     <div>
       <Header />
       <ThemeProvider theme={theme}>
-        <div className={styles.container}>
-          <div>
-            <Typography variant='h6'>과목명 검색</Typography>
-            <Box sx={{ minHeight: 20 }} />
-            <FormControl variant="standard">
-              <Input
-                id="input-with-icon-adornment"
-                startAdornment={
-                  <InputAdornment position="start">
-                    <SearchIcon />
-                  </InputAdornment>
-                }
-              />
-            </FormControl>
-            <Button variant="outlined" size="small">검색</Button>
-          </div>
+        <div className ={styles.container}>
+          <div className={styles.searchSection}>
+            <div>
+              <Typography variant='h6'>과목명 검색</Typography>
+              <Box sx={{ minHeight: 20 }} />
+              <FormControl variant="standard">
+                <Input
+                  id="input-with-icon-adornment"
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <SearchIcon />
+                    </InputAdornment>
+                  }
+                />
+              </FormControl>
+              <Button variant="outlined" size="small">검색</Button>
+            </div>
 
-          <div>
-            <Typography variant='h6'>필터 검색</Typography>
-            <Box sx={{ minHeight: 20 }} />
-            <div className={styles.chipContainer}>
-              <Chip label="박수희 교수님" variant="outlined" onClick={chipClick} />
-              <Chip label="한혁 교수님" variant="outlined" onClick={chipClick} />
-              <Chip label="박창섭 교수님" variant="outlined" onClick={chipClick} />
-              <Chip label="최윤석 교수님" variant="outlined" onClick={chipClick} />
+            <div>
+              <Typography variant='h6'>필터 검색</Typography>
+              <Box sx={{ minHeight: 20 }} />
+              <div className={styles.chipContainer}>
+                <Chip label="박수희 교수님" variant="outlined" onClick={chipClick} />
+                <Chip label="한혁 교수님" variant="outlined" onClick={chipClick} />
+                <Chip label="박창섭 교수님" variant="outlined" onClick={chipClick} />
+                <Chip label="최윤석 교수님" variant="outlined" onClick={chipClick} />
+              </div>
+            </div>
+
+            <div>
+              <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+                <InputLabel id="year-label">Year</InputLabel>
+                <Select
+                  labelId="year-label"
+                  value={year}
+                  onChange={yearSelect}
+                >
+                  <MenuItem value={2023}>2023</MenuItem>
+                  <MenuItem value={2024}>2024</MenuItem>
+                  <MenuItem value={2025}>2025</MenuItem>
+                </Select>
+              </FormControl>
+              <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+                <InputLabel id="semester-label">Semester</InputLabel>
+                <Select
+                  labelId="semester-label"
+                  value={semester}
+                  onChange={semesterSelect}
+                >
+                  <MenuItem value={1}>1학기</MenuItem>
+                  <MenuItem value={2}>2학기</MenuItem>
+                </Select>
+              </FormControl>
             </div>
           </div>
-
-          <div>
-            <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-              <InputLabel id="year-label">Year</InputLabel>
-              <Select
-                labelId="year-label"
-                value={year}
-                onChange={yearSelect}
-              >
-                <MenuItem value={2023}>2023</MenuItem>
-                <MenuItem value={2024}>2024</MenuItem>
-                <MenuItem value={2025}>2025</MenuItem>
-              </Select>
-            </FormControl>
-            <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-              <InputLabel id="semester-label">Semester</InputLabel>
-              <Select
-                labelId="semester-label"
-                value={semester}
-                onChange={semesterSelect}
-              >
-                <MenuItem value={1}>1학기</MenuItem>
-                <MenuItem value={2}>2학기</MenuItem>
-              </Select>
-            </FormControl>
+          <div className={styles.cardContainer}>
+            <div className={styles.card}>
+              <div class={styles.cardContent}>
+                <Typography variant="h6" gutterBottom>프로그래밍 논리의 이해</Typography>
+                <Typography variant="subtitle2" gutterBottom>
+                  박수희 / 1분반
+                </Typography>
+              </div>
+            </div>
+            <div className={styles.card}>
+              <div class={styles.cardContent}>
+                <Typography variant="h6" gutterBottom>프로그래밍 논리의 이해</Typography>
+                <Typography variant="subtitle2" gutterBottom>
+                  박수희 / 1분반
+                </Typography>
+              </div>
+            </div>
+            <div className={styles.card}>
+              <div class={styles.cardContent}>
+                <Typography variant="h6" gutterBottom>프로그래밍 논리의 이해</Typography>
+                <Typography variant="subtitle2" gutterBottom>
+                  박수희 / 1분반
+                </Typography>
+              </div>
+            </div>
+            <div className={styles.card}>
+              <div class={styles.cardContent}>
+                <Typography variant="h6" gutterBottom>프로그래밍 논리의 이해</Typography>
+                <Typography variant="subtitle2" gutterBottom>
+                  박수희 / 1분반
+                </Typography>
+              </div>
+            </div>
+            <div className={styles.card}>
+              <div class={styles.cardContent}>
+                <Typography variant="h6" gutterBottom>프로그래밍 논리의 이해</Typography>
+                <Typography variant="subtitle2" gutterBottom>
+                  박수희 / 1분반
+                </Typography>
+              </div>
+            </div>
+            <div className={styles.card}>
+              <div class={styles.cardContent}>
+                <Typography variant="h6" gutterBottom>프로그래밍 논리의 이해</Typography>
+                <Typography variant="subtitle2" gutterBottom>
+                  박수희 / 1분반
+                </Typography>
+              </div>
+            </div>
           </div>
         </div>
       </ThemeProvider>

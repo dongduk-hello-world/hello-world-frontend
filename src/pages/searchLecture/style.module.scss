@@ -4,14 +4,20 @@ html {
 
 .container {
   display: flex;
+  flex-direction: row;
+
+  margin-top: 5rem;
+  margin-right: 5rem;
+  margin-left: 5rem;
+  height: 100%;
+}
+
+.searchSection {
+  display: flex;
   flex-direction: column;
   gap: 3rem;
 
-  margin-top: 5rem;
-  margin-right: 9rem;
-  margin-left: 9rem;
-
-  width: 30%;
+  width: 40%;
   height: 100%;
 }
 
@@ -19,5 +25,34 @@ html {
   display: flex;
   gap: 2px;
   flex-wrap: wrap;
+}
+
+.cardContainer {
+  width: 60%;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3em;
+}
+
+.card {
+  width: 230px;
+  height: 120px;
+  background: #5E99F1;
+
+  position: relative;
+  border-radius: 10px;
+  padding: 20px;
+  &:hover {
+    cursor: pointer;
+  }
+
+  .cardContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    height: 100%;
+  }
 }
 
