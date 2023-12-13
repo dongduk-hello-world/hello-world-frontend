@@ -71,194 +71,194 @@ export default () => {
 
   return (
     <div className={styles.container}>
-    <div>
-      <Box sx={{ maxWidth: 400 }}>
-        <Stepper activeStep={activeStep} orientation="vertical">
-          {steps.map((step, index) => (
-            <Step key={step.label}>
-              <StepLabel
-                optional={
-                  index === 2 ? (
-                    <Typography variant="caption">Last step</Typography>
-                  ) : null
-                }
-              >
-                {step.label}
-              </StepLabel>
-              <StepContent>
-                <Typography>{step.description}</Typography>
-              </StepContent>
-            </Step>
-          ))}
-        </Stepper>
-        {activeStep === steps.length && (
-          <Paper square elevation={0} sx={{ p: 3 }}>
-            <Typography>All steps completed - you&apos;re finished</Typography>
-            <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
-              Reset
-            </Button>
-          </Paper>
-        )}
-      </Box>
-    </div>
-    <div className={styles.frame}>
-      <div className={styles.form}>
-        <form>
-          {activeStep === 0 ?
-            <div>
-              <Typography variant="h6" gutterBottom>1. 생성할 과목의 이름을 입력해주세요.</Typography>
-              <TextField
-                required
-                id="filled-required"
-                label="과목명 입력"
-                defaultValue=""
-                fullWidth
-                variant="filled"
-              />
-              <Box sx={{height: 50}} />
-              <Typography variant="h6" gutterBottom>2. 과목을 개설하는 사람의 이름을 입력해주세요.(본인 이름 입력)</Typography>
-              <TextField
-                required
-                id="filled-required"
-                label="이름 입력"
-                defaultValue=""
-                fullWidth
-                variant="filled"
-              />
-            </div>
-          :
-            (activeStep === 1 ?
+      <div>
+        <Box sx={{ maxWidth: 400 }}>
+          <Stepper activeStep={activeStep} orientation="vertical">
+            {steps.map((step, index) => (
+              <Step key={step.label}>
+                <StepLabel
+                  optional={
+                    index === 2 ? (
+                      <Typography variant="caption">Last step</Typography>
+                    ) : null
+                  }
+                >
+                  {step.label}
+                </StepLabel>
+                <StepContent>
+                  <Typography>{step.description}</Typography>
+                </StepContent>
+              </Step>
+            ))}
+          </Stepper>
+          {activeStep === steps.length && (
+            <Paper square elevation={0} sx={{ p: 3 }}>
+              <Typography>All steps completed - you&apos;re finished</Typography>
+              <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
+                Reset
+              </Button>
+            </Paper>
+          )}
+        </Box>
+      </div>
+      <div className={styles.frame}>
+        <div className={styles.form}>
+          <form>
+            {activeStep === 0 ?
               <div>
-                <Typography variant="h6" gutterBottom>3. 수업이 진행되는 학년도, 학기를 선택해주세요.</Typography>
-                  <Grid
+                <Typography variant="h6" gutterBottom>1. 생성할 과목의 이름을 입력해주세요.</Typography>
+                <TextField
+                  required
+                  id="filled-required"
+                  label="과목명 입력"
+                  defaultValue=""
+                  fullWidth
+                  variant="filled"
+                />
+                <Box sx={{height: 50}} />
+                <Typography variant="h6" gutterBottom>2. 과목을 개설하는 사람의 이름을 입력해주세요.(본인 이름 입력)</Typography>
+                <TextField
+                  required
+                  id="filled-required"
+                  label="이름 입력"
+                  defaultValue=""
+                  fullWidth
+                  variant="filled"
+                />
+              </div>
+            :
+              (activeStep === 1 ?
+                <div>
+                  <Typography variant="h6" gutterBottom>3. 수업이 진행되는 학년도, 학기를 선택해주세요.</Typography>
+                    <Grid
+                      container
+                      spacing={4}
+                      alignItems="center"
+                    >
+                      <Grid item xs={4}>
+                        <Box sx={{ minWidth: 120 }}>
+                          <FormControl fullWidth size="small">
+                            {/* <InputLabel id="year-select-label">학년도</InputLabel> */}
+                            <Select
+                              labelId="year-select-label"
+                              id="year-select"
+                              value={year}
+                              label="Year"
+                              onChange={changeYear}
+                            >
+                              <MenuItem value={2023}>2023</MenuItem>
+                              <MenuItem value={2024}>2024</MenuItem>
+                              <MenuItem value={2025}>2025</MenuItem>
+                            </Select>
+                          </FormControl>
+                        </Box>
+                      </Grid>
+                      <Grid item xs={2}>
+                        학년도
+                      </Grid>
+                      <Grid item xs={4}>
+                        <Box sx={{ minWidth: 120 }}>
+                          <FormControl fullWidth size="small">
+                            {/* <InputLabel id="semester-select-label">학기</InputLabel> */}
+                            <Select
+                              labelId="semester-select-label"
+                              id="semester-select"
+                              value={semester}
+                              label="Semester"
+                              onChange={changeSemester}
+                            >
+                              <MenuItem value={1}>1학기</MenuItem>
+                              <MenuItem value={2}>2학기</MenuItem>
+                            </Select>
+                          </FormControl>
+                        </Box>
+                      </Grid>
+                      <Grid item xs={2}>
+                        학기
+                      </Grid>
+                    </Grid>
+                  <Box sx={{height: 50}} />
+                  <Typography variant="h6" gutterBottom>4. 분반을 입력해주세요.</Typography>
+                  <Grid 
                     container
-                    spacing={4}
+                    spacing={3}
                     alignItems="center"
                   >
-                    <Grid item xs={4}>
-                      <Box sx={{ minWidth: 120 }}>
-                        <FormControl fullWidth size="small">
-                          {/* <InputLabel id="year-select-label">학년도</InputLabel> */}
-                          <Select
-                            labelId="year-select-label"
-                            id="year-select"
-                            value={year}
-                            label="Year"
-                            onChange={changeYear}
-                          >
-                            <MenuItem value={2023}>2023</MenuItem>
-                            <MenuItem value={2024}>2024</MenuItem>
-                            <MenuItem value={2025}>2025</MenuItem>
-                          </Select>
-                        </FormControl>
-                      </Box>
+                    <Grid item xs={2}>
+                      <TextField
+                        required
+                        defaultValue=""
+                        fullWidth
+                        outlined
+                        size="small"
+                      />
                     </Grid>
                     <Grid item xs={2}>
-                      학년도
+                      분반
                     </Grid>
-                    <Grid item xs={4}>
-                      <Box sx={{ minWidth: 120 }}>
-                        <FormControl fullWidth size="small">
-                          {/* <InputLabel id="semester-select-label">학기</InputLabel> */}
-                          <Select
-                            labelId="semester-select-label"
-                            id="semester-select"
-                            value={semester}
-                            label="Semester"
-                            onChange={changeSemester}
-                          >
-                            <MenuItem value={1}>1학기</MenuItem>
-                            <MenuItem value={2}>2학기</MenuItem>
-                          </Select>
-                        </FormControl>
-                      </Box>
+                    <Grid item xs={8} />
+                  </Grid>
+                </div>
+              :
+                <div>
+                  <Typography variant="h6" gutterBottom>5. 초대코드를 생성해주세요.</Typography>
+                  <Grid 
+                    container
+                    spacing={2}
+                    alignItems="center"
+                  >
+                    <Grid item xs={9}>
+                      <TextField
+                        required
+                        value={randomString}
+                        fullWidth
+                        outlined
+                        size="small"
+                      />
                     </Grid>
-                    <Grid item xs={2}>
-                      학기
+                    <Grid item xs={3}>
+                      <Button
+                        variant="contained"
+                        onClick={random}
+                      >
+                        랜덤생성
+                      </Button>
                     </Grid>
                   </Grid>
-                <Box sx={{height: 50}} />
-                <Typography variant="h6" gutterBottom>4. 분반을 입력해주세요.</Typography>
-                <Grid 
-                  container
-                  spacing={3}
-                  alignItems="center"
-                >
-                  <Grid item xs={2}>
-                    <TextField
-                      required
-                      defaultValue=""
-                      fullWidth
-                      outlined
-                      size="small"
-                    />
-                  </Grid>
-                  <Grid item xs={2}>
-                    분반
-                  </Grid>
-                  <Grid item xs={8} />
-                </Grid>
-              </div>
-            :
-              <div>
-                <Typography variant="h6" gutterBottom>5. 초대코드를 생성해주세요.</Typography>
-                <Grid 
-                  container
-                  spacing={2}
-                  alignItems="center"
-                >
-                  <Grid item xs={9}>
-                    <TextField
-                      required
-                      value={randomString}
-                      fullWidth
-                      outlined
-                      size="small"
-                    />
-                  </Grid>
-                  <Grid item xs={3}>
-                    <Button
-                      variant="contained"
-                      onClick={random}
-                    >
-                      랜덤생성
-                    </Button>
-                  </Grid>
-                </Grid>
-              </div>
-            )
-          }
-          
-          <div className={styles.buttonContainer}>
-            {activeStep === 0 ? 
-              <Button
-                variant="contained"
-                size="large"
-                disabled
-                onClick={handleBack}
-              > 
-                이전
-              </Button>
-            :
-              <Button
-                variant="contained"
-                size="large"
-                onClick={handleBack}
-              > 
-                이전
-              </Button>
+                </div>
+              )
             }
-            <Button
-              variant="contained"
-              size="large"
-              onClick={handleNext}
-            >
-              {activeStep === steps.length - 1 ? '개설' : '다음'}
-            </Button>
-          </div>
-        </form>
+            
+            <div className={styles.buttonContainer}>
+              {activeStep === 0 ? 
+                <Button
+                  variant="contained"
+                  size="large"
+                  disabled
+                  onClick={handleBack}
+                > 
+                  이전
+                </Button>
+              :
+                <Button
+                  variant="contained"
+                  size="large"
+                  onClick={handleBack}
+                > 
+                  이전
+                </Button>
+              }
+              <Button
+                variant="contained"
+                size="large"
+                onClick={handleNext}
+              >
+                {activeStep === steps.length - 1 ? '개설' : '다음'}
+              </Button>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
     </div>
   );
 };

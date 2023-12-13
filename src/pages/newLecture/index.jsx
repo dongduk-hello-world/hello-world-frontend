@@ -1,5 +1,3 @@
-import styles from "./style.module.scss";
-
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Header from "components/header.jsx"
 import Form from "./form.jsx"
