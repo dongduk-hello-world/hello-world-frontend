@@ -5,6 +5,8 @@ import styles from "./style.module.scss";
 import Header from "components/header.jsx"
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import AutoStoriesIcon from '@mui/icons-material/AutoStories';
+import { Typography } from '@mui/material';
 
 export default () => {
   const theme = createTheme({
@@ -27,12 +29,27 @@ export default () => {
             <div className={styles.classInfo1}>
               <div className={styles.iconContainer}>
                 <div className={styles.iconFrame}>
-                  
+                  <AutoStoriesIcon className={styles.icon} />
                 </div>
               </div>
+              <h2 className={styles.className}>프로그래밍 논리의 이해</h2>
             </div>
             <div className={styles.classInfo2}>
-              fdsagsf
+              <span>
+                <span className={styles.title}>교수</span>
+                <br />
+                <span className={styles.subtitle}>박수희</span>
+              </span>
+              <span>
+                <span className={styles.title}>수업학기</span>
+                <br />
+                <span className={styles.subtitle}>2023-1</span>
+              </span>
+              <span>
+                <span className={styles.title}>수강생 수</span>
+                <br />
+                <span className={styles.subtitle}>n명</span>
+              </span>
             </div>
           </div>
         </div>

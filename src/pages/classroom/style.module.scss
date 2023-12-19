@@ -10,40 +10,76 @@ html {
 }
 
 .top {
-  height: 22rem;
+  height: 20rem;
   background: linear-gradient( to top, #BB86FC, #5E99F1  );
 
+  padding-bottom: 3rem;
   padding-right: 7rem;
   padding-left: 7rem;
+
+  .contents {
+    height: 100%;
+  }
 }
+
+.items{
+  height: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  .classInfo1 {
+    flex-direction: column;
+    max-width: 520px;
+
+    .iconContainer {
+      margin-bottom: 1rem;
+
+      .iconFrame {
+        width: 7rem;
+        height: 7rem;
+        flex-basis: 160px;
+        overflow: hidden;
+        border-radius: 16px;
+        position: relative;
+        z-index: 1;
+        background-color: white;
+
+        display : inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        .icon {
+          font-size: 5em;
+          fill: #BB86FC;
+        }
+      }
+    }
+
+    .className {
+      color: white;
+    }
+  }
+
+  .classInfo2 {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+
+    .title {
+      color: white;
+      font-weight: bolder;
+    }
+
+    .subtitle {
+      color: #D9D9D9;
+    }
+  }
+}  
 
 .bottom {
   // height: 22rem;
   background-color: aqua;
 }
 
-.items{
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-}
-
-.classInfo1 {
-  flex-direction: column;
-  max-width: 520px;
-}
-
-.iconContainer {
-  margin-bottom: 1rem;
-}
-
-.iconFrame {
-  width: 7rem;
-  height: 7rem;
-  flex-basis: 160px;
-  overflow: hidden;
-  border-radius: 16px;
-  position: relative;
-  z-index: 1;
-  background-color: white;
-}
