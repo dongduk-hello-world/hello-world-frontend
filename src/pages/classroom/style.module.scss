@@ -1,0 +1,49 @@
+html {
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+}
+
+.top {
+  height: 22rem;
+  background: linear-gradient( to top, #BB86FC, #5E99F1  );
+
+  padding-right: 7rem;
+  padding-left: 7rem;
+}
+
+.bottom {
+  // height: 22rem;
+  background-color: aqua;
+}
+
+.items{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.classInfo1 {
+  flex-direction: column;
+  max-width: 520px;
+}
+
+.iconContainer {
+  margin-bottom: 1rem;
+}
+
+.iconFrame {
+  width: 7rem;
+  height: 7rem;
+  flex-basis: 160px;
+  overflow: hidden;
+  border-radius: 16px;
+  position: relative;
+  z-index: 1;
+  background-color: white;
+}

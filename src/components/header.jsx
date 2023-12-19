@@ -8,10 +8,16 @@ const Header = () => {
     <Grid 
       container 
       className={styles.header} 
-      justifyContent="space-around"
+      justifyContent="space-between"
       alignItems="center"
     >
-      <Grid xs={2}  className={styles.logo}>Helloworld</Grid>
+      <Grid 
+        xs={2}  
+        className={styles.logo} 
+        justifyContent="left"
+      >
+        Helloworld
+      </Grid>
       <Grid 
         container
         xs={7} 
@@ -25,10 +31,10 @@ const Header = () => {
       <Grid 
         container
         xs={3} 
-        justifyContent="space-evenly"
+        justifyContent="right"
         alignItems="center"
       >
-        <span>id / 이름</span>
+        <span className={styles.profile}>id / 이름</span>
         <Stack
           direction="row"
           justifyContent="center"

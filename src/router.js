@@ -12,6 +12,8 @@ import NewAssignment, { loader as newAssignmentLoader } from "./pages/newAssignm
 import MyLecture, { loader as myLectureLoader } from "./pages/myLecture";
 import NewLecture from "./pages/newLecture";
 import SearchLecture from "./pages/searchLecture";
+import Classroom from "./pages/classroom";
+import Result from "./pages/result";
 
 import ErrorPage from "./error-page";
 
@@ -63,64 +65,15 @@ export default createBrowserRouter([
     path: '/search',
     element: <SearchLecture />,
     errorElement: <ErrorPage />
+  },
+  {
+    path: '/classroom',
+    element: <Classroom />,
+    errorElement: <ErrorPage />
+  },
+  {
+    path: '/result',
+    element: <Result />,
+    errorElement: <ErrorPage />
   }
-  // {
-  //   path: '/',
-  //   element: <HomeUI />,
-  //   loader: homeLoader,
-  //   errorElement: <ErrorPage />,
-  //   children: [
-  //     {
-  //       path: "professor",
-  //       element: <ProfessorLecture />,
-  //       loader: homeLoader,
-  //       errorElement: <ErrorPage />,
-  //     },
-  //     {
-  //       path: "student",
-  //       element: <StudentLecture />,
-  //       loader: homeLoader,
-  //       errorElement: <ErrorPage />,
-  //     },
-  //   ]
-  // },
-  // {
-  //   path: '/classes/:classId',
-  //   element: <ClassRoom />,
-  //   loader: classLoader,
-  //   errorElement: <ErrorPage />,
-  // },
-  // {
-  //   path: 'classes/add-class',
-  //   element: <NewLecture />,
-  //   loader: checkLogin,
-  //   errorElement: <ErrorPage />,
-  // },
-  // {
-  //   path: 'result/:assignmentId',
-  //   element: <Result />,
-  //   loader: resultLoader,
-  //   errorElement: <ErrorPage />
-  // },
-  // {
-  //   path: 'test/:userId',
-  //   element: <HomeUI />,
-  //   loader: resultLoader,
-  //   errorElement: <ErrorPage />
-  // },
-  // {
-  //   path: 'result/:userId',
-  //   element: <Result />,
-  //   errorElement: <ErrorPage />,
-  //   children: [
-  //     {
-  //       path: "student",
-  //       element: <StudentResult />,
-  //     },
-  //     {
-  //       path: "professor",
-  //       element: <ProfessorResult />,
-  //     },
-  //   ]
-  // }
 ]);
