@@ -6,7 +6,8 @@ import Header from "components/header.jsx"
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
-import { Typography } from '@mui/material';
+import AnnouncementIcon from '@mui/icons-material/Announcement';
+import Box from '@mui/material/Box';
 
 export default () => {
   const theme = createTheme({
@@ -55,7 +56,10 @@ export default () => {
         </div>
       </div>
       <div className={styles.bottom}>
-        dfasdafa
+        <Box className={styles.announceBox}>
+          <AnnouncementIcon classname={styles.announceIcon}/>
+          미완료, 완료 모두 표시됩니다.  
+        </Box>
       </div> 
     </div>
   );
