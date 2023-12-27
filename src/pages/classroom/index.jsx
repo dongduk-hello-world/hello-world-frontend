@@ -3,6 +3,7 @@ import { useState } from 'react';
 import styles from "./style.module.scss";
 
 import Header from "components/header.jsx"
+import Table from "./table.jsx"
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
@@ -55,12 +56,27 @@ export default () => {
           </div>
         </div>
       </div>
-      <div className={styles.bottom}>
-        <Box className={styles.announceBox}>
-          <AnnouncementIcon classname={styles.announceIcon}/>
-          미완료, 완료 모두 표시됩니다.  
+      <Box className={styles.bottom}>
+        <Box sx={{ 
+            border: 1,
+            maxWidth: 300,
+            mb: 5,
+            borderRadius: 7,
+            p: 1
+          }} 
+          className={styles.announceBox}
+        >
+          <span><AnnouncementIcon color="primary"/></span>
+          <span>미완료, 완료 모두 표시됩니다.</span>
         </Box>
-      </div> 
+        <Box sx={{
+            fontSize: 25,
+            mb: 5,
+        }}>
+          전체 17개
+        </Box>
+        <Table/>
+      </Box> 
     </div>
   );
 };
