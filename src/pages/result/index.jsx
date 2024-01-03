@@ -25,14 +25,8 @@ export default () => {
     <div>
       <Header />
       <div className ={styles.container}>
-        <Grid container spacing={12}>
-          <Grid item xs={8}>
-            <ScoreTable />
-          </Grid>
-          <Grid item xs={4}>
-            <InfoTable />
-          </Grid>
-        </Grid>
+        <InfoTable />
+        <ScoreTable />
       </div>
     </div>
   );
