@@ -75,7 +75,6 @@ export default createBrowserRouter([
   },
   {
     path: '/result',
-    // element: <Result />,
     errorElement: <ErrorPage />,
     children: [
       {

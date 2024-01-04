@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import styles from "./style.module.scss";
+import styles from "./professor.module.scss";
 
 import Header from "components/header.jsx"
 import { createTheme, ThemeProvider } from '@mui/material/styles';

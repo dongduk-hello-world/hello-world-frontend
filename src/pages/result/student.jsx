@@ -1,12 +1,9 @@
-import { useState } from 'react';
-
-import styles from "./style.module.scss";
+import styles from "./student.module.scss";
 
 import Header from "components/header.jsx"
 import ScoreTable from "./scoreTable.jsx"
 import InfoTable from "./infoTable.jsx"
 
-import Grid from '@mui/material/Grid';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 export default () => {
