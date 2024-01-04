@@ -13,7 +13,9 @@ import MyLecture, { loader as myLectureLoader } from "./pages/myLecture";
 import NewLecture from "./pages/newLecture";
 import SearchLecture from "./pages/searchLecture";
 import Classroom from "./pages/classroom";
-import Result from "./pages/result";
+import Result from "./pages/result/student";
+import ResultStudent from "./pages/result/student.jsx";
+import ResultProfessor from "./pages/result/professor.jsx";
 
 import ErrorPage from "./error-page";
 
@@ -73,7 +75,17 @@ export default createBrowserRouter([
   },
   {
     path: '/result',
-    element: <Result />,
-    errorElement: <ErrorPage />
+    // element: <Result />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "student",
+        element: <ResultStudent />,
+      },
+      {
+        path: "professor",
+        element: <ResultProfessor />,
+      },
+    ],
   }
 ]);
