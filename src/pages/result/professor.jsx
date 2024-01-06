@@ -5,6 +5,7 @@ import styles from "./professor.module.scss";
 import Header from "components/header.jsx";
 import { BarChart } from "./barChart.jsx";
 import { LineChart } from "./lineChart.jsx";
+import { ProfessorTable } from "./professorTable.jsx"
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -38,6 +39,9 @@ export default () => {
               <LineChart />
             </Grid>
           </Grid>
+          <Box sx={{mt: 10, mb: 5}}>
+            <ProfessorTable />
+          </Box>
         </Box>
       </div>
     </div>
