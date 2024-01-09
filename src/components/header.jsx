@@ -1,7 +1,8 @@
 import styles from "./style.module.scss";
 
-import Grid from '@mui/material/Unstable_Grid2'; 
-import Stack from '@mui/material/Stack';
+import { blue } from '@mui/material/colors';
+import Avatar from '@mui/material/Avatar';
+import FaceIcon from '@mui/icons-material/Face';
 
 const Header = () => {
   return (
@@ -15,52 +16,18 @@ const Header = () => {
         {/* 삼항연산자(user_type == professor) */}
         <li>과목 개설</li>
       </nav>
-      <div>
-
+      <div className={styles.navWrap}>
+        <span>
+        <Avatar sx={{ bgcolor: blue[500] }}>
+          <FaceIcon />
+        </Avatar>
+        김이름/20202020
+        </span>
+        <span>
+          <a><img src={`${process.env.PUBLIC_URL}/public_assets/logout.png`} alt="logout" className={styles.logout}/>로그아웃</a>
+        </span>
       </div>
     </div>
-    // <Grid 
-    //   container 
-    //   className={styles.header} 
-    //   justifyContent="space-between"
-    //   alignItems="center"
-    // >
-    //   <Grid 
-    //     xs={2}  
-    //     className={styles.logo} 
-    //     justifyContent="left"
-    //   >
-    //     <div className={styles.logo}>
-    //       <img src={`${process.env.PUBLIC_URL}/public_assets/logo/logo_black.png`} alt="logo_black"/>
-    //     </div>
-    //   </Grid>
-    //   <Grid 
-    //     container
-    //     xs={7} 
-    //     justifyContent="space-evenly"
-    //   >
-    //     <span>내 과목</span>
-    //     <span>과목 찾기</span>
-    //     {/* 삼항연산자(user_type == professor) */}
-    //     <span>과목 개설</span>
-    //   </Grid>
-    //   <Grid 
-    //     container
-    //     xs={3} 
-    //     justifyContent="right"
-    //     alignItems="center"
-    //   >
-    //     <span className={styles.profile}>id / 이름</span>
-    //     <Stack
-    //       direction="row"
-    //       justifyContent="center"
-    //       alignItems="center"
-    //     >
-    //       <img src={`${process.env.PUBLIC_URL}/public_assets/logout.png`} alt="logout" className={styles.logout}/>
-    //       로그아웃
-    //     </Stack>
-    //   </Grid>
-    // </Grid>
   );
 }
 
