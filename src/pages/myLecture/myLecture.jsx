@@ -7,6 +7,16 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Typography from '@mui/material/Typography';
 
+function createData(className, professor, classNumber, semester, language, max, recent) {
+  return { className, professor, classNumber, semester, language, max, recent };
+}
+
+const datalist = [
+  createData('프로그래밍 논리의 이해', '박수희', '1', '2023/1', 'C', 45, 43),
+  createData('알고리즘', '한혁', '1', '2023/2', 'C/Java/Python', 45, 45),
+  createData('알고리즘', '한혁', '2', '2023/2', 'C/Java/Python', 45, 40),
+];
+
 export default () => {
   const theme = createTheme({
     palette: {
@@ -41,8 +51,102 @@ export default () => {
             클래스 탈퇴
           </Button>
         </div>
-        
         <div className={styles.cardContainer}>
+          <div className={styles.card}>
+            <div className={styles.cardTip}>
+              <div className={styles.circle}>
+                <img src={`${process.env.PUBLIC_URL}/public_assets/bookIcon.png`} alt="bookIcon" />
+              </div>
+            </div>
+            <div class={styles.cardContent}>
+              <h1>프로그래밍 논리의 이해</h1>
+              <h3>박수희 / 1분반 / 2023학년도 1학기</h3>
+              <div className={styles.cardContentBottom}>
+                <div className={styles.chips}>
+                  <Chip label="C" variant="outlined" />
+                  <Chip label="JAVA" variant="outlined" />
+                  <Chip label="Python" variant="outlined" />
+                </div>
+                <h3>45/45 명</h3>
+              </div>
+            </div>
+          </div>
+          <div className={styles.card}>
+            <div className={styles.cardTip}>
+              <div className={styles.circle}>
+                <img src={`${process.env.PUBLIC_URL}/public_assets/bookIcon.png`} alt="bookIcon" />
+              </div>
+            </div>
+            <div class={styles.cardContent}>
+              <h1>프로그래밍 논리의 이해</h1>
+              <h3>박수희 / 1분반 / 2023학년도 1학기</h3>
+              <div className={styles.cardContentBottom}>
+                <div className={styles.chips}>
+                  <Chip label="C" variant="outlined" />
+                  <Chip label="JAVA" variant="outlined" />
+                  <Chip label="Python" variant="outlined" />
+                </div>
+                <h3>45/45 명</h3>
+              </div>
+            </div>
+          </div>
+          <div className={styles.card}>
+            <div className={styles.cardTip}>
+              <div className={styles.circle}>
+                <img src={`${process.env.PUBLIC_URL}/public_assets/bookIcon.png`} alt="bookIcon" />
+              </div>
+            </div>
+            <div class={styles.cardContent}>
+              <h1>프로그래밍 논리의 이해</h1>
+              <h3>박수희 / 1분반 / 2023학년도 1학기</h3>
+              <div className={styles.cardContentBottom}>
+                <div className={styles.chips}>
+                  <Chip label="C" variant="outlined" />
+                  <Chip label="JAVA" variant="outlined" />
+                  <Chip label="Python" variant="outlined" />
+                </div>
+                <h3>45/45 명</h3>
+              </div>
+            </div>
+          </div>
+          <div className={styles.card}>
+            <div className={styles.cardTip}>
+              <div className={styles.circle}>
+                <img src={`${process.env.PUBLIC_URL}/public_assets/bookIcon.png`} alt="bookIcon" />
+              </div>
+            </div>
+            <div class={styles.cardContent}>
+              <h1>프로그래밍 논리의 이해</h1>
+              <h3>박수희 / 1분반 / 2023학년도 1학기</h3>
+              <div className={styles.cardContentBottom}>
+                <div className={styles.chips}>
+                  <Chip label="C" variant="outlined" />
+                  <Chip label="JAVA" variant="outlined" />
+                  <Chip label="Python" variant="outlined" />
+                </div>
+                <h3>45/45 명</h3>
+              </div>
+            </div>
+          </div>
+          <div className={styles.card}>
+            <div className={styles.cardTip}>
+              <div className={styles.circle}>
+                <img src={`${process.env.PUBLIC_URL}/public_assets/bookIcon.png`} alt="bookIcon" />
+              </div>
+            </div>
+            <div class={styles.cardContent}>
+              <h1>프로그래밍 논리의 이해</h1>
+              <h3>박수희 / 1분반 / 2023학년도 1학기</h3>
+              <div className={styles.cardContentBottom}>
+                <div className={styles.chips}>
+                  <Chip label="C" variant="outlined" />
+                  <Chip label="JAVA" variant="outlined" />
+                  <Chip label="Python" variant="outlined" />
+                </div>
+                <h3>45/45 명</h3>
+              </div>
+            </div>
+          </div>
           <div className={styles.card}>
             <div className={styles.cardTip}>
               <div className={styles.circle}>
