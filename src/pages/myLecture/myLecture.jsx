@@ -1,6 +1,7 @@
 import styles from "./myLecture.module.scss";
 
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -22,19 +23,25 @@ export default () => {
     <ThemeProvider theme={theme}>
       <div className={styles.container}>
         <div className={styles.infoContainer}>
-          <img src={`${process.env.PUBLIC_URL}/public_assets/profile.png`} alt="profile"/>
-          <div className={styles.textView}>
-            <Typography variant="h6" gutterBottom>이름: ㅇㅇㅇ</Typography>
-            <Typography variant="h6" gutterBottom>ID: 20202020</Typography>
-            <Typography variant="h6" gutterBottom>회원 유형: 학생</Typography>
-            <Typography variant="h6" gutterBottom>속한 강의 수: 3개</Typography>
-          </div>
-          <Container maxWidth="sm">
-            <Button variant="outlined" color="error" startIcon={<DeleteIcon />} className={styles.deleteButton}>
-              클래스 탈퇴
-            </Button>
-          </Container>
+          <Box 
+            sx={{
+              boxShadow: 1,
+              px: 17,
+              py: 5,
+            }}
+          >
+            <img src={`${process.env.PUBLIC_URL}/public_assets/profile.png`} alt="profile"/>
+            <div className={styles.textView}>
+              <Typography variant="h6" gutterBottom>ID: 20202020</Typography>
+              <Typography variant="h6" gutterBottom>회원 유형: 학생</Typography>
+              <Typography variant="h6" gutterBottom>속한 강의 수: 3개</Typography>
+            </div>
+          </Box>
+          <Button variant="outlined" color="error" startIcon={<DeleteIcon />} size="large" className={styles.deleteButton}>
+            클래스 탈퇴
+          </Button>
         </div>
+        
         <div className={styles.cardContainer}>
           <div className={styles.card}>
             <div class={styles.cardContent}>
@@ -77,6 +84,11 @@ export default () => {
             </div>
           </div>
           <div className={styles.card}>
+            <div className={styles.cardTip}>
+              <div className={styles.circle}>
+                
+              </div>
+            </div>
             <div class={styles.cardContent}>
               <Typography variant="h6" gutterBottom>프로그래밍 논리의 이해</Typography>
               <Typography variant="subtitle2" gutterBottom>
