@@ -2,7 +2,7 @@ import styles from "./myLecture.module.scss";
 
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
+import Chip from '@mui/material/Chip';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Typography from '@mui/material/Typography';
@@ -44,56 +44,22 @@ export default () => {
         
         <div className={styles.cardContainer}>
           <div className={styles.card}>
-            <div class={styles.cardContent}>
-              <Typography variant="h6" gutterBottom>프로그래밍 논리의 이해</Typography>
-              <Typography variant="subtitle2" gutterBottom>
-                박수희 / 1분반
-              </Typography>
-            </div>
-          </div>
-          <div className={styles.card}>
-            <div class={styles.cardContent}>
-              <Typography variant="h6" gutterBottom>프로그래밍 논리의 이해</Typography>
-              <Typography variant="subtitle2" gutterBottom>
-                박수희 / 1분반
-              </Typography>
-            </div>
-          </div>
-          <div className={styles.card}>
-            <div class={styles.cardContent}>
-              <Typography variant="h6" gutterBottom>프로그래밍 논리의 이해</Typography>
-              <Typography variant="subtitle2" gutterBottom>
-                박수희 / 1분반
-              </Typography>
-            </div>
-          </div>
-          <div className={styles.card}>
-            <div class={styles.cardContent}>
-              <Typography variant="h6" gutterBottom>프로그래밍 논리의 이해</Typography>
-              <Typography variant="subtitle2" gutterBottom>
-                박수희 / 1분반
-              </Typography>
-            </div>
-          </div>
-          <div className={styles.card}>
-            <div class={styles.cardContent}>
-              <Typography variant="h6" gutterBottom>프로그래밍 논리의 이해</Typography>
-              <Typography variant="subtitle2" gutterBottom>
-                박수희 / 1분반
-              </Typography>
-            </div>
-          </div>
-          <div className={styles.card}>
             <div className={styles.cardTip}>
               <div className={styles.circle}>
-                
+                <img src={`${process.env.PUBLIC_URL}/public_assets/bookIcon.png`} alt="bookIcon" />
               </div>
             </div>
             <div class={styles.cardContent}>
-              <Typography variant="h6" gutterBottom>프로그래밍 논리의 이해</Typography>
-              <Typography variant="subtitle2" gutterBottom>
-                박수희 / 1분반
-              </Typography>
+              <h1>프로그래밍 논리의 이해</h1>
+              <h3>박수희 / 1분반 / 2023학년도 1학기</h3>
+              <div className={styles.cardContentBottom}>
+                <div className={styles.chips}>
+                  <Chip label="C" variant="outlined" />
+                  <Chip label="JAVA" variant="outlined" />
+                  <Chip label="Python" variant="outlined" />
+                </div>
+                <h3>45/45 명</h3>
+              </div>
             </div>
           </div>
         </div>
