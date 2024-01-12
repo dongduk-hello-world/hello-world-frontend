@@ -9,12 +9,12 @@ import MyLecture from "./myLecture.jsx";
 export const loader = async ({ request }) => {
   const userId = window.sessionStorage.getItem("userId");
   const userdata = await getUser(Number(userId));
-  return null;
+  return userdata;
 }
 
 export default () => {
-  const userdata = loader();
-  
+  const userdata = useLoaderData();
+  console.log(userdata);
 
   return (
     <div>
