@@ -55,7 +55,7 @@ export default createBrowserRouter([
   {
     path: '/',
     element: <MyLecture />,
-    // loader: myLectureLoader,
+    loader: myLectureLoader,
     errorElement: <ErrorPage />
   },
   {
