@@ -1,26 +1,37 @@
 import { useLoaderData } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
-import { getUser } from "./hook.js"
+import { getUser, getLecture } from "./hook.js"
 
 import Header from "components/header.jsx"
-import NoLecture from "./noLecture.jsx";
-import MyLecture from "./myLecture.jsx";
+
 
 export const loader = async ({ request }) => {
   const userId = window.sessionStorage.getItem("userId");
   const userdata = await getUser(Number(userId));
-  return userdata;
+  const lecturedata = await getLecture(Number(userId));
+
+  return { userdata, lecturedata };
 }
 
 export default () => {
-  const userdata = useLoaderData();
-  console.log(userdata);
+  const navigate = useNavigate();
+  const { userdata, lecturedata } = useLoaderData();
+  const lecturelist = lecturedata.classes;
+
+  useEffect(() => {
+    if (lecturelist.length === 0) {
+      console.log("nolecture");
+      navigate("/no-lecture");
+    }
+  }, [lecturelist.length])
 
   return (
     <div>
-      <Header />
-      {/* <NoLecture /> */}
-      <MyLecture />
+      <Header /> 
+      { lecturelist.length === 0 && navigate("/no-lecture") }
+      <Outlet />
     </div>
   );
 };

@@ -9,7 +9,10 @@ import Signup from "./pages/account/signup";
 import Assignment, { loader as assignmentLoader } from "./pages/assignment";
 import NewAssignment, { loader as newAssignmentLoader } from "./pages/newAssignment";
 
-import MyLecture, { loader as myLectureLoader } from "./pages/myLecture";
+import Lecture, { loader as LectureLoader } from "./pages/myLecture";
+import MyLecture from "./pages/myLecture/myLecture.jsx";
+import NoLecture from "./pages/myLecture/noLecture.jsx";
+
 import NewLecture from "./pages/newLecture";
 import SearchLecture from "./pages/searchLecture";
 import Classroom from "./pages/classroom";
@@ -54,9 +57,19 @@ export default createBrowserRouter([
   },
   {
     path: '/',
-    element: <MyLecture />,
-    loader: myLectureLoader,
-    errorElement: <ErrorPage />
+    element: <Lecture />,
+    loader: LectureLoader,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: '',
+        element: <MyLecture />
+      },
+      {
+        path: '/no-lecture',
+        element: <NoLecture />
+      }
+    ],
   },
   {
     path: '/newLecture',
