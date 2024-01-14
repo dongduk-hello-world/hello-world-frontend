@@ -62,7 +62,7 @@ export default createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: '',
+        path: '/my-lecture',
         element: <MyLecture />
       },
       {

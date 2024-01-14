@@ -21,10 +21,10 @@ export default () => {
   const lecturelist = lecturedata.classes;
 
   useEffect(() => {
-    if (lecturelist.length === 0) {
-      console.log("nolecture");
+    if (lecturelist.length === 0)
       navigate("/no-lecture");
-    }
+    else 
+      navigate("/my-lecture");
   }, [lecturelist.length])
 
   return (
