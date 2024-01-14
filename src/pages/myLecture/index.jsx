@@ -17,21 +17,20 @@ export const loader = async ({ request }) => {
 
 export default () => {
   const navigate = useNavigate();
-  const { userdata, lecturedata } = useLoaderData();
-  const lecturelist = lecturedata.classes;
+  const data = useLoaderData();
+  const lectureCount = data.lecturedata.classes.length;
 
   useEffect(() => {
-    if (lecturelist.length === 0)
+    if (lectureCount === 0)
       navigate("/no-lecture");
     else 
       navigate("/my-lecture");
-  }, [lecturelist.length])
+  }, [lectureCount])
 
   return (
     <div>
       <Header /> 
-      { lecturelist.length === 0 && navigate("/no-lecture") }
-      <Outlet />
+      <Outlet context={data}/>
     </div>
   );
 };
