@@ -70,25 +70,6 @@ export default () => {
               </div>
             </div>
           ))}
-          <div className={styles.card}>
-            <div className={styles.cardTip}>
-              <div className={styles.circle}>
-                <img src={`${process.env.PUBLIC_URL}/public_assets/bookIcon.png`} alt="bookIcon" />
-              </div>
-            </div>
-            <div class={styles.cardContent}>
-              <h1>프로그래밍 논리의 이해</h1>
-              <h3>박수희 / 1분반 / 2023학년도 1학기</h3>
-              <div className={styles.cardContentBottom}>
-                <div className={styles.chips}>
-                  <Chip label="C" variant="outlined" />
-                  <Chip label="JAVA" variant="outlined" />
-                  <Chip label="Python" variant="outlined" />
-                </div>
-                <h3>45/45 명</h3>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </ThemeProvider>
