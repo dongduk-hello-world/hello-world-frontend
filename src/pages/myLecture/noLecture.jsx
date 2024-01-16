@@ -50,8 +50,7 @@ export default () => {
               <b>과목 검색 바로가기</b>
             </Button>
           </div>
-        }
-          
+        } 
       </div>
     </ThemeProvider>
   );

@@ -6,7 +6,6 @@ import { getUser, getLecture } from "./hook.js"
 
 import Header from "components/header.jsx"
 
-
 export const loader = async ({ request }) => {
   const userId = window.sessionStorage.getItem("userId");
   const userdata = await getUser(Number(userId));
