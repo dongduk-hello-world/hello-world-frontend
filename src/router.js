@@ -72,7 +72,7 @@ export default createBrowserRouter([
     ],
   },
   {
-    path: '/newLecture',
+    path: '/new-lecture',
     element: <NewLecture />,
     errorElement: <ErrorPage />
   },

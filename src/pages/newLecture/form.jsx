@@ -1,10 +1,13 @@
 import styles from "./form.module.scss";
 
-import * as React from 'react';
+import { useState } from 'react';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
+import Checkbox from '@mui/material/Checkbox';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
@@ -40,10 +43,14 @@ export default () => {
                 they're running and how to resolve approval issues.`,
     },
   ];
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  const submit = () => {
+    console.log(state);
   };
 
   const handleBack = () => {
@@ -54,9 +61,9 @@ export default () => {
     setActiveStep(0);
   };
 
-  const [year, setYear] = React.useState('');
-  const [semester, setSemester] = React.useState('');
-  const [randomString, setRandomString] = React.useState('');
+  const [year, setYear] = useState('');
+  const [semester, setSemester] = useState('');
+  const [randomString, setRandomString] = useState('');
 
   const changeYear = (event) => {
     setYear(event.target.value);
@@ -64,6 +71,21 @@ export default () => {
   const changeSemester = (event) => {
     setSemester(event.target.value);
   };
+
+  const [state, setState] = useState({
+    C: false,
+    Java: false,
+    Python: false,
+  });
+
+  const handleCheckbox = (event) => {
+    setState({
+      ...state,
+      [event.target.name]: event.target.checked,
+    });
+  };
+
+  const { C, Java,  Python } = state;
 
   const random = () => {
     setRandomString(Math.random().toString(16).substr(2, 6));
@@ -113,23 +135,33 @@ export default () => {
                   label="과목명 입력"
                   defaultValue=""
                   fullWidth
-                  variant="filled"
+                  variant="outlined"
                 />
                 <Box sx={{height: 50}} />
-                <Typography variant="h6" gutterBottom>2. 과목을 개설하는 사람의 이름을 입력해주세요.(본인 이름 입력)</Typography>
+                <Typography variant="h6" gutterBottom>2. 과목을 개설하는 사람의 이름을 입력해주세요(본인 이름 입력).</Typography>
                 <TextField
                   required
                   id="filled-required"
                   label="이름 입력"
                   defaultValue=""
                   fullWidth
-                  variant="filled"
+                  variant="outlined"
+                />
+                <Box sx={{height: 50}} />
+                <Typography variant="h6" gutterBottom>3. 과목 설명을 간략하게 입력해주세요.</Typography>
+                <TextField
+                  required
+                  id="filled-required"
+                  label="설명 입력"
+                  defaultValue=""
+                  fullWidth
+                  variant="outlined"
                 />
               </div>
             :
               (activeStep === 1 ?
                 <div>
-                  <Typography variant="h6" gutterBottom>3. 수업이 진행되는 학년도, 학기를 선택해주세요.</Typography>
+                  <Typography variant="h6" gutterBottom>4. 수업이 진행되는 학년도, 학기를 선택해주세요.</Typography>
                     <Grid
                       container
                       spacing={4}
@@ -178,7 +210,7 @@ export default () => {
                       </Grid>
                     </Grid>
                   <Box sx={{height: 50}} />
-                  <Typography variant="h6" gutterBottom>4. 분반을 입력해주세요.</Typography>
+                  <Typography variant="h6" gutterBottom>5. 분반을 입력해주세요.</Typography>
                   <Grid 
                     container
                     spacing={3}
@@ -189,7 +221,6 @@ export default () => {
                         required
                         defaultValue=""
                         fullWidth
-                        outlined
                         size="small"
                       />
                     </Grid>
@@ -201,7 +232,29 @@ export default () => {
                 </div>
               :
                 <div>
-                  <Typography variant="h6" gutterBottom>5. 초대코드를 생성해주세요.</Typography>
+                  <Typography variant="h6" gutterBottom>6. 과제에서 사용할 수 있는 언어를 설정해주세요.</Typography>
+                  <FormGroup>
+                    <FormControlLabel
+                      control={
+                        <Checkbox onChange={handleCheckbox} name={"C"} checked={C}/>
+                      }
+                      label="C"
+                    />
+                    <FormControlLabel
+                      control={
+                        <Checkbox onChange={handleCheckbox} name={"Java"} checked={Java}/>
+                      }
+                      label="Java"
+                    />
+                    <FormControlLabel
+                      control={
+                        <Checkbox onChange={handleCheckbox} name={"Python"} checked={Python}/>
+                      }
+                      label="Python"
+                    />
+                  </FormGroup>
+                  <Box sx={{height: 50}} />
+                  <Typography variant="h6" gutterBottom>7. 초대코드를 생성해주세요.</Typography>
                   <Grid 
                     container
                     spacing={2}
@@ -248,13 +301,23 @@ export default () => {
                   이전
                 </Button>
               }
-              <Button
-                variant="contained"
-                size="large"
-                onClick={handleNext}
-              >
-                {activeStep === steps.length - 1 ? '개설' : '다음'}
-              </Button>
+              {activeStep === steps.length - 1 ? 
+                <Button
+                  variant="contained"
+                  size="large"
+                  onClick={submit}
+                >
+                  개설
+                </Button>
+                : 
+                <Button
+                  variant="contained"
+                  size="large"
+                  onClick={handleNext}
+                >
+                  다음
+                </Button> 
+              }
             </div>
           </form>
         </div>
