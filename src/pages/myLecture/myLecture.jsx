@@ -24,6 +24,7 @@ export default () => {
   const { userdata, lecturedata }  = useOutletContext();
   const lecturelist = lecturedata.classes;
   console.log(userdata);
+  console.log(lecturelist);
 
   return (
     <ThemeProvider theme={theme}>

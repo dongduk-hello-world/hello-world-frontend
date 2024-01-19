@@ -2,7 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-import { getUser, getLecture } from "./hook.js"
+import { getUser, getLecture } from "./hooks.js"
 
 import Header from "components/header.jsx"
 

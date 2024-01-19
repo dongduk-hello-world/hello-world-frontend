@@ -2,6 +2,8 @@ import styles from "./form.module.scss";
 
 import { useState } from 'react';
 
+import { addLecture } from './hooks.js'
+
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
@@ -49,8 +51,19 @@ export default () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
-  const submit = () => {
-    console.log(state);
+  const submit = async () => {
+    const professor_id = window.sessionStorage.getItem('userId');
+
+    let selectedLang = [];
+    if (language['C'] === true)
+      selectedLang.push('C');
+    if (language['Java'] === true)
+      selectedLang.push('Java');
+    if (language['Python'] === true)
+      selectedLang.push('Python');
+    selectedLang = selectedLang.join('/');
+
+    await addLecture(professor_id, divide, randomString, name, description, year, semester, professorName, selectedLang);
   };
 
   const handleBack = () => {
@@ -61,32 +74,44 @@ export default () => {
     setActiveStep(0);
   };
 
+  const [name, setName] = useState('');
+  const [professorName, setProfessorName] = useState('');
+  const [description, setDescription] = useState('');
   const [year, setYear] = useState('');
   const [semester, setSemester] = useState('');
+  const [divide, setDivide] = useState('');
+  const [language, setLanguage] = useState({
+    C: false,
+    Java: false,
+    Python: false,
+  });
   const [randomString, setRandomString] = useState('');
 
+  const changeName = (event) => {
+    setName(event.target.value);
+  };
+  const changeProfessorName = (event) => {
+    setProfessorName(event.target.value);
+  };
+  const changeDescription = (event) => {
+    setDescription(event.target.value);
+  };
   const changeYear = (event) => {
     setYear(event.target.value);
   };
   const changeSemester = (event) => {
     setSemester(event.target.value);
   };
-
-  const [state, setState] = useState({
-    C: false,
-    Java: false,
-    Python: false,
-  });
-
-  const handleCheckbox = (event) => {
-    setState({
-      ...state,
+  const changeDivide = (event) => {
+    setDivide(event.target.value);
+  };
+  const changeLanguage = (event) => {
+    setLanguage({
+      ...language,
       [event.target.name]: event.target.checked,
     });
   };
-
-  const { C, Java,  Python } = state;
-
+  const { C, Java,  Python } = language;
   const random = () => {
     setRandomString(Math.random().toString(16).substr(2, 6));
   };
@@ -131,31 +156,33 @@ export default () => {
                 <Typography variant="h6" gutterBottom>1. 생성할 과목의 이름을 입력해주세요.</Typography>
                 <TextField
                   required
-                  id="filled-required"
                   label="과목명 입력"
-                  defaultValue=""
                   fullWidth
                   variant="outlined"
+                  value={name}
+                  onChange={changeName}
                 />
                 <Box sx={{height: 50}} />
                 <Typography variant="h6" gutterBottom>2. 과목을 개설하는 사람의 이름을 입력해주세요(본인 이름 입력).</Typography>
                 <TextField
                   required
-                  id="filled-required"
                   label="이름 입력"
                   defaultValue=""
                   fullWidth
                   variant="outlined"
+                  value={professorName}
+                  onChange={changeProfessorName}
                 />
                 <Box sx={{height: 50}} />
                 <Typography variant="h6" gutterBottom>3. 과목 설명을 간략하게 입력해주세요.</Typography>
                 <TextField
                   required
-                  id="filled-required"
                   label="설명 입력"
                   defaultValue=""
                   fullWidth
                   variant="outlined"
+                  value={description}
+                  onChange={changeDescription}
                 />
               </div>
             :
@@ -172,8 +199,6 @@ export default () => {
                           <FormControl fullWidth size="small">
                             {/* <InputLabel id="year-select-label">학년도</InputLabel> */}
                             <Select
-                              labelId="year-select-label"
-                              id="year-select"
                               value={year}
                               label="Year"
                               onChange={changeYear}
@@ -193,8 +218,6 @@ export default () => {
                           <FormControl fullWidth size="small">
                             {/* <InputLabel id="semester-select-label">학기</InputLabel> */}
                             <Select
-                              labelId="semester-select-label"
-                              id="semester-select"
                               value={semester}
                               label="Semester"
                               onChange={changeSemester}
@@ -222,6 +245,8 @@ export default () => {
                         defaultValue=""
                         fullWidth
                         size="small"
+                        value={divide}
+                        onChange={changeDivide}
                       />
                     </Grid>
                     <Grid item xs={2}>
@@ -236,19 +261,19 @@ export default () => {
                   <FormGroup>
                     <FormControlLabel
                       control={
-                        <Checkbox onChange={handleCheckbox} name={"C"} checked={C}/>
+                        <Checkbox onChange={changeLanguage} name={"C"} checked={C}/>
                       }
                       label="C"
                     />
                     <FormControlLabel
                       control={
-                        <Checkbox onChange={handleCheckbox} name={"Java"} checked={Java}/>
+                        <Checkbox onChange={changeLanguage} name={"Java"} checked={Java}/>
                       }
                       label="Java"
                     />
                     <FormControlLabel
                       control={
-                        <Checkbox onChange={handleCheckbox} name={"Python"} checked={Python}/>
+                        <Checkbox onChange={changeLanguage} name={"Python"} checked={Python}/>
                       }
                       label="Python"
                     />
@@ -263,10 +288,10 @@ export default () => {
                     <Grid item xs={9}>
                       <TextField
                         required
-                        value={randomString}
                         fullWidth
                         outlined
                         size="small"
+                        value={randomString}
                       />
                     </Grid>
                     <Grid item xs={3}>
