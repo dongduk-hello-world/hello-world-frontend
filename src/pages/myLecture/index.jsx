@@ -1,5 +1,4 @@
-import { useLoaderData } from "react-router-dom";
-import { Outlet, useNavigate } from "react-router-dom";
+import { useLoaderData, Outlet, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 import { getUser, getLecture } from "./hooks.js"

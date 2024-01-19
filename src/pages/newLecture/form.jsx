@@ -1,6 +1,7 @@
 import styles from "./form.module.scss";
 
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 import { addLecture } from './hooks.js'
 
@@ -45,6 +46,9 @@ export default () => {
                 they're running and how to resolve approval issues.`,
     },
   ];
+
+  const navigate = useNavigate();
+  
   const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => {
@@ -64,6 +68,7 @@ export default () => {
     selectedLang = selectedLang.join('/');
 
     await addLecture(professor_id, divide, randomString, name, description, year, semester, professorName, selectedLang);
+    navigate("/my-lecture");
   };
 
   const handleBack = () => {
