@@ -130,7 +130,14 @@ html {
 
   text-align: right;
 
+  &:hover {
+    cursor: default;
+  }
+
   .deleteIcon {
     padding: 30px;
+    &:hover {
+      cursor: pointer;
+    }
   }
 }

@@ -34,15 +34,12 @@ export default () => {
 
   const [overlay, setOverlay] = useState(false);
   const [open, setOpen] = useState(false);
-
   const showOverlay = () => {
     setOverlay(!overlay);
   }
-
   const handleClickOpen = () => {
     setOpen(true);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
@@ -107,7 +104,12 @@ export default () => {
             <div className={styles.card}>
               { overlay &&
                 <div className={styles.overlay}>
-                  <img src={`${process.env.PUBLIC_URL}/public_assets/deleteIcon.png`} alt="deleteIcon" className={styles.deleteIcon}/>
+                  <img 
+                    src={`${process.env.PUBLIC_URL}/public_assets/deleteIcon.png`} 
+                    alt="deleteIcon" 
+                    className={styles.deleteIcon}
+                    onClick={handleClickOpen}
+                  />
                 </div>
               }
               <div className={styles.cardTip}>
