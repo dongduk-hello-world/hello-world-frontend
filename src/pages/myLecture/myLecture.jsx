@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useOutletContext } from "react-router-dom";
 
+import { deleteLecture, withdrawLecture } from './hooks.js'
+
 import styles from "./myLecture.module.scss";
 
 import Button from '@mui/material/Button';
@@ -34,13 +36,14 @@ export default () => {
 
   const [overlay, setOverlay] = useState(false);
   const [open, setOpen] = useState(false);
-  const showOverlay = () => {
-    setOverlay(!overlay);
-  }
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const handleClose = async (event) => {
+    if (event.target.innerText === "삭제")
+      await deleteLecture(lecturelist[selectedIndex].lecture_id);
+    else if (event.target.innerText === "탈퇴")
+      await withdrawLecture(lecturelist[selectedIndex].lecture_id, userdata.user_id);
+
     setOverlay(false);
     setOpen(false);
   };
@@ -69,7 +72,7 @@ export default () => {
             startIcon={<DeleteIcon />} 
             size="large" 
             className={styles.deleteButton}
-            onClick={showOverlay}
+            onClick={() => {setOverlay(!overlay);}}
           >
             { overlay ?
               '취소'
@@ -128,7 +131,7 @@ export default () => {
                     src={`${process.env.PUBLIC_URL}/public_assets/deleteIcon.png`} 
                     alt="deleteIcon" 
                     className={styles.deleteIcon}
-                    onClick={handleClickOpen}
+                    onClick={() => {setSelectedIndex(index); setOpen(true);}}
                   />
                 </div>
               }
