@@ -44,8 +44,7 @@ export default () => {
     else if (event.target.innerText === "탈퇴")
       await withdrawLecture(lecturelist[selectedIndex].lecture_id, userdata.user_id);
 
-    setOverlay(false);
-    setOpen(false);
+    window.location.href="/";
   };
 
   return (
