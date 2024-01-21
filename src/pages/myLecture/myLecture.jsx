@@ -41,6 +41,7 @@ export default () => {
     setOpen(true);
   };
   const handleClose = () => {
+    setOverlay(false);
     setOpen(false);
   };
 
@@ -81,21 +82,40 @@ export default () => {
             open={open}
             onClose={handleClose}
           >
-            <DialogTitle>
-              {"Use Google's location service?"}
-            </DialogTitle>
-            <DialogContent>
-              <DialogContentText>
-                Let Google help apps determine location. This means sending anonymous
-                location data to Google, even when no apps are running.
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleClose}>Disagree</Button>
-              <Button onClick={handleClose} autoFocus>
-                Agree
-              </Button>
-            </DialogActions>
+            {userdata.type === "학생" ?
+              <>
+                <DialogTitle>
+                  정말 탈퇴하시겠습니까?
+                </DialogTitle>
+                <DialogContent>
+                  <DialogContentText>
+                  탈퇴 시 클래스 내에서 사용자 본인의 정보가 삭제되며, 
+                  클래스에 재가입시 이전 활동 정보(시험 제출여부, 시험별 점수 등) 복구가 어려울 수 있습니다.
+                  </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={handleClose}>탈퇴</Button>
+                  <Button onClick={handleClose}>취소</Button>
+                </DialogActions>
+              </>
+              :
+              <>
+                <DialogTitle>
+                  정말 해당 과목을 삭제하시겠습니까?
+                </DialogTitle>
+                <DialogContent>
+                  <DialogContentText>
+                  클래스 삭제 시 클래스 관련 모든 정보(시험 기록, 학생 정보 등)가 모두 삭제되며, 
+                  이는 복구하기 어렵습니다. 정말로 삭제하시겠습니까?
+                  </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={handleClose}>삭제</Button>
+                  <Button onClick={handleClose}>취소</Button>
+                </DialogActions>
+              </>
+            }
+            
           </Dialog>
         </div>
         <div className={styles.cardContainer}>
