@@ -35,6 +35,10 @@ export default () => {
   const [overlay, setOverlay] = useState(false);
   const [open, setOpen] = useState(false);
 
+  const showOverlay = () => {
+    setOverlay(!overlay);
+  }
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -67,9 +71,14 @@ export default () => {
             startIcon={<DeleteIcon />} 
             size="large" 
             className={styles.deleteButton}
-            onClick={handleClickOpen}
+            onClick={showOverlay}
           >
-            { userdata.type === "학생" ? '클래스 탈퇴' : '클래스 삭제' }
+            { overlay ?
+              '취소'
+              :
+              ( userdata.type === "학생" ? '클래스 탈퇴' : '클래스 삭제' )
+            }
+            
           </Button>
           <Dialog
             open={open}
@@ -96,9 +105,11 @@ export default () => {
 
           {lecturelist.map((lecture, index) => (
             <div className={styles.card}>
-              <div className={styles.overlay}>
-                <img src={`${process.env.PUBLIC_URL}/public_assets/deleteIcon.png`} alt="deleteIcon" className={styles.deleteIcon}/>
-              </div>
+              { overlay &&
+                <div className={styles.overlay}>
+                  <img src={`${process.env.PUBLIC_URL}/public_assets/deleteIcon.png`} alt="deleteIcon" className={styles.deleteIcon}/>
+                </div>
+              }
               <div className={styles.cardTip}>
                 <div className={styles.circle}>
                   <img src={`${process.env.PUBLIC_URL}/public_assets/bookIcon.png`} alt="bookIcon" />
