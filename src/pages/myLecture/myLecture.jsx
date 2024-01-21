@@ -32,6 +32,7 @@ export default () => {
   console.log(userdata);
   console.log(lecturelist);
 
+  const [overlay, setOverlay] = useState(false);
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -95,6 +96,9 @@ export default () => {
 
           {lecturelist.map((lecture, index) => (
             <div className={styles.card}>
+              <div className={styles.overlay}>
+                <img src={`${process.env.PUBLIC_URL}/public_assets/deleteIcon.png`} alt="deleteIcon" className={styles.deleteIcon}/>
+              </div>
               <div className={styles.cardTip}>
                 <div className={styles.circle}>
                   <img src={`${process.env.PUBLIC_URL}/public_assets/bookIcon.png`} alt="bookIcon" />
